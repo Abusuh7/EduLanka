@@ -5,9 +5,6 @@
         </h2>
     </x-slot>
 
-
-    <h2>TESTING THE BRANCH</h2>
-
     <div class="p-4 max-w-md mx-auto">
         <h2 class="text-xl font-semibold mb-4">Create New Student</h2>
         <form action="{{ route('store') }}" method="post">
