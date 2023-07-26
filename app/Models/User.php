@@ -27,6 +27,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        // 'role',
+        // "fname",
+        // "lname",
+        // "dob",
+        // // "email",
+        // "gender",
+        // "grade",
+        // "class",
+        // "parent_id",
+        // "enroll_id",
     ];
 
     /**

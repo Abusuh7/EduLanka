@@ -9,6 +9,7 @@ use App\Models\Primary_Stu_Credentials;
 use App\Models\Primary_Student_Grade;
 use App\Models\Primary_Students;
 use App\Models\Student_Enrollment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -112,12 +113,26 @@ class PrimaryStudents1 extends Controller
         ]);
 
         // Create the primary student credentials record and set the student_id
-        $primaryStudentCredentials = Primary_Stu_Credentials::create([
-            'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
-            //create a default password as aaAA12!@
+        // $primaryStudentCredentials = Primary_Stu_Credentials::create([
+        //     'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
+        //     //create a default password as aaAA12!@
+        //     'password' => Hash::make('aaAA12!@'),
+        //     // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
+        //     'student_id' => $primaryStudent->id,
+        // ]);
+
+        $primaryStudentCredentials = User::create([
+            // 'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
+            // //create a default password as aaAA12!@
+            // 'password' => Hash::make('aaAA12!@'),
+            // // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
+            // 'student_id' => $primaryStudent->id,
+            'name' => $validatedData['fname'] . ' ' . $validatedData['lname'],
+            //create a custom mail starting with (cb + id)@gmail.com
+            'email' => 'cb' . $primaryStudent->id . '@gmail.com',
+            //default password as aaAA12!@
             'password' => Hash::make('aaAA12!@'),
-            // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
-            'student_id' => $primaryStudent->id,
+
         ]);
 
         // reload to the same page

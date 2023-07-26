@@ -22,6 +22,23 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+
+            // $table->id();
+            // $table->enum('role', ['admin', 'teacher', 'pms', 'sns']); //pms (primary student)
+            // $table->string('fname');
+            // $table->string('lname');
+            // $table->date('dob');
+            // $table->string('email')->unique()->nullable();
+            // $table->string('gender');
+            // $table->unsignedBigInteger('parent_id')->nullable();
+            // $table->unsignedBigInteger('enroll_id');
+            // $table->rememberToken();
+            // $table->foreignId('current_team_id')->nullable();
+            // $table->string('profile_photo_path', 2048)->nullable();
+            // $table->timestamps();
+
+            // $table->foreign('parent_id')->references('id')->on('parents_details');
+            // $table->foreign('enroll_id')->references('id')->on('student_enrollment');
         });
     }
 
