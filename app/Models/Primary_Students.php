@@ -16,6 +16,7 @@ class Primary_Students extends Model
         "dob",
         // "email",
         "gender",
+        "category",
         "grade",
         "class",
         "parent_id",

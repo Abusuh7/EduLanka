@@ -1,13 +1,3 @@
-import './bootstrap';
-
-import Alpine from 'alpinejs';
-import focus from '@alpinejs/focus';
-window.Alpine = Alpine;
-
-Alpine.plugin(focus);
-
-Alpine.start();
-
 //student/teacher form visibility
 const showStudentButton = document.getElementById('showStudentBtn');
 const showTeacherButton = document.getElementById('showTeacherBtn');
@@ -18,7 +8,17 @@ const newTeacherFormContainer = document.getElementById('newTeacherFormContainer
 
 showStudentButton.addEventListener('click', () => {
     newStudentFormContainer.classList.remove('hidden');
+    // hide teacher container when student button is pressed
+    newTeacherFormContainer.classList.add('hidden');
 });
+
+showTeacherButton.addEventListener('click', () => {
+    newTeacherFormContainer.classList.remove('hidden');
+    // hide student container when teacher button is pressed
+    newStudentFormContainer.classList.add('hidden');
+});
+
+
 
 // closeUserForm.addEventListener('click', () => {
 //     formContainer.classList.add('hidden');

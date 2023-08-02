@@ -42,6 +42,7 @@ class PrimaryStudents1 extends Controller
             'lname' => 'required|string',
             'dob' => 'required|date',
             'gender' => 'required|string',
+            'category' => 'required|string',
             'grade' => 'required|integer|min:1|max:12',
             'class' => 'required|string',
             'parent_fname' => 'required|string',
@@ -99,6 +100,7 @@ class PrimaryStudents1 extends Controller
             'lname' => $validatedData['lname'],
             'dob' => $validatedData['dob'],
             'gender' => $validatedData['gender'],
+            'category' => $validatedData['category'],
             'grade_id' => $validatedData['grade_id'],
             'class_id' => $validatedData['class_id'],
             'parent_id' => $parentDetails->id,
@@ -112,26 +114,20 @@ class PrimaryStudents1 extends Controller
             'student_id' => $primaryStudent->id,
         ]);
 
-        // Create the primary student credentials record and set the student_id
-        // $primaryStudentCredentials = Primary_Stu_Credentials::create([
-        //     'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
-        //     //create a default password as aaAA12!@
-        //     'password' => Hash::make('aaAA12!@'),
-        //     // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
-        //     'student_id' => $primaryStudent->id,
-        // ]);
 
         $primaryStudentCredentials = User::create([
             // 'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
             // //create a default password as aaAA12!@
             // 'password' => Hash::make('aaAA12!@'),
             // // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
-            // 'student_id' => $primaryStudent->id,
+            'student_id' => $primaryStudent->id,
             'name' => $validatedData['fname'] . ' ' . $validatedData['lname'],
             //create a custom mail starting with (cb + id)@gmail.com
             'email' => 'cb' . $primaryStudent->id . '@gmail.com',
             //default password as aaAA12!@
             'password' => Hash::make('aaAA12!@'),
+            //pass the category to the role
+            'role' => $validatedData['category'],
 
         ]);
 

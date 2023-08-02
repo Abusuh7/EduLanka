@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('dob');
             // $table->string('email');
             $table->string('gender');
+            $table->string('category');
             $table->unsignedBigInteger('parent_id');
             $table->unsignedBigInteger('enroll_id');
             $table->timestamps();
