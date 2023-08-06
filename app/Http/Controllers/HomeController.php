@@ -11,8 +11,6 @@ class HomeController extends Controller
     {
         $role = Auth::user()->role;
 
-
-
         if($role == 'admin'){
             return view('admin.dashboard');
         }
@@ -20,7 +18,7 @@ class HomeController extends Controller
         {
             return view('teacher.dashboard');
         }
-        elseif($role == 'pms')
+        elseif($role == 'primary')
         {
             return view('primaryStudent.dashboard');
         }

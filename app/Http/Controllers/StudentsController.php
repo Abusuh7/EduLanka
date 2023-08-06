@@ -2,24 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
+use App\Models\Grades;
 use App\Models\Parents_Details;
-use App\Models\Primary_Class;
-use App\Models\Primary_Grade;
-use App\Models\Primary_Stu_Credentials;
-use App\Models\Primary_Student_Grade;
-use App\Models\Primary_Students;
 use App\Models\Student_Enrollment;
+use App\Models\Student_Grade;
+use App\Models\Students;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class PrimaryStudents1 extends Controller
+class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        // //display all students/ primary only and secondary only
+        // $students = Students::all();
+
+        // // Filter the students based on their role (assuming 'primary' and 'secondary' are valid roles)
+        // $primarySecondaryStudents = $students->filter(function ($student) {
+        //     return in_array($student->role, ['secondary']);
+        // });
+
+
+
+        // $users = User::all();
+        // return view('admin.users', compact('students', 'users', 'primarySecondaryStudents'));
     }
 
     /**
@@ -35,12 +46,13 @@ class PrimaryStudents1 extends Controller
      */
     public function store(Request $request)
     {
-          // Validate the form data, including the parent and enrollment details
-          $validatedData = $request->validate([
+        // Validate the form data, including the parent and enrollment details
+        $validatedData = $request->validate([
             'fname' => 'required|string',
             'lname' => 'required|string',
             'dob' => 'required|date',
             'gender' => 'required|string',
+            'category' => 'required|string',
             'grade' => 'required|integer|min:1|max:12',
             'class' => 'required|string',
             'parent_fname' => 'required|string',
@@ -56,14 +68,14 @@ class PrimaryStudents1 extends Controller
         ]);
 
         // Create the grade record
-        $grade = Primary_Grade::create([
+        $grade = Grades::create([
             'grade_name' => $validatedData['grade'],
         ]);
 
         // Add the grade_id to the validated data before creating the primary student record
         $validatedData['grade_id'] = $grade->id;
 
-        $class = Primary_Class::create([
+        $class = Classes::create([
             'class_name' => $validatedData['class'],
         ]);
 
@@ -93,11 +105,12 @@ class PrimaryStudents1 extends Controller
         ]);
 
         // Create a new primary student record with the validated data
-        $primaryStudent = Primary_Students::create([
+        $primaryStudent = Students::create([
             'fname' => $validatedData['fname'],
             'lname' => $validatedData['lname'],
             'dob' => $validatedData['dob'],
             'gender' => $validatedData['gender'],
+            'category' => $validatedData['category'],
             'grade_id' => $validatedData['grade_id'],
             'class_id' => $validatedData['class_id'],
             'parent_id' => $parentDetails->id,
@@ -105,19 +118,27 @@ class PrimaryStudents1 extends Controller
         ]);
 
         // Create the primary student grade record and set the student_id
-        $primaryStudentGrade = Primary_Student_Grade::create([
+        $primaryStudentGrade = Student_Grade::create([
             'grade_id' => $validatedData['grade_id'],
             'class_id' => $validatedData['class_id'],
             'student_id' => $primaryStudent->id,
         ]);
 
-        // Create the primary student credentials record and set the student_id
-        $primaryStudentCredentials = Primary_Stu_Credentials::create([
-            'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
-            //create a default password as aaAA12!@
-            'password' => Hash::make('aaAA12!@'),
-            // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
+
+        $primaryStudentCredentials = User::create([
+            // 'username' => 'CB' . $primaryStudent->id, // For example: CB1, CB2, ...
+            // //create a default password as aaAA12!@
+            // 'password' => Hash::make('aaAA12!@'),
+            // // 'password' => bcrypt('password'), // You can set a default password here or let users change it later.
             'student_id' => $primaryStudent->id,
+            'name' => $validatedData['fname'] . ' ' . $validatedData['lname'],
+            //create a custom mail starting with (cb + id)@gmail.com
+            'email' => 'cb' . $primaryStudent->id . '@students.edulanka.lk',
+            //default password as aaAA12!@
+            'password' => Hash::make('aaAA12!@'),
+            //pass the category to the role
+            'role' => $validatedData['category'],
+
         ]);
 
         // reload to the same page

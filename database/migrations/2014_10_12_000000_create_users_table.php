@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('teacher_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('role')->default('admin');
@@ -22,6 +24,26 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+
+            // $table->id();
+            // $table->enum('role', ['admin', 'teacher', 'pms', 'sns']); //pms (primary student)
+            // $table->string('fname');
+            // $table->string('lname');
+            // $table->date('dob');
+            // $table->string('email')->unique()->nullable();
+            // $table->string('gender');
+            // $table->unsignedBigInteger('parent_id')->nullable();
+            // $table->unsignedBigInteger('enroll_id');
+            // $table->rememberToken();
+            // $table->foreignId('current_team_id')->nullable();
+            // $table->string('profile_photo_path', 2048)->nullable();
+            // $table->timestamps();
+
+            // $table->foreign('parent_id')->references('id')->on('parents_details');
+            // $table->foreign('enroll_id')->references('id')->on('student_enrollment');
         });
     }
 

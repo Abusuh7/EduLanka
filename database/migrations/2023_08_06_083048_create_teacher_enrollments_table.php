@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('primary_classes', function (Blueprint $table) {
+        Schema::create('teacher_enrollments', function (Blueprint $table) {
             $table->id();
-            $table->enum('class_name', ['A', 'B', 'C', 'D', 'E']);
+            $table->date('enroll_date');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('primary_classes');
+        Schema::dropIfExists('teacher_enrollments');
     }
 };

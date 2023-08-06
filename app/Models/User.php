@@ -24,10 +24,27 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'student_id',
+        'teacher_id',
         'name',
         'email',
         'password',
+        'role',
+        // "fname",
+        // "lname",
+        // "dob",
+        // // "email",
+        // "gender",
+        // "grade",
+        // "class",
+        // "parent_id",
+        // "enroll_id",
     ];
+
+    // public function primary_students()
+    // {
+    //     return $this->belongsTo(Primary_Students::class);
+    // }
 
     /**
      * The attributes that should be hidden for serialization.

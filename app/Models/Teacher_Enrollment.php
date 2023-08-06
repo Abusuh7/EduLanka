@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Primary_Class extends Model
+class Teacher_Enrollment extends Model
 {
     use HasFactory;
 
-    protected $table = 'primary_classes';
+    protected $table = 'teacher_enrollments';
     protected $fillable = [
-        "class_name",
+        "enroll_date",
     ];
 }

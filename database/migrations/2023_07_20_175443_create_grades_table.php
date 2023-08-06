@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('primary_stu_credentials', function (Blueprint $table) {
+        Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
-            $table->string('username'); //CB number
-            $table->string('password');
+            //only 5 grade names
+            $table->enum('grade_name', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
             $table->timestamps();
-
-            $table->foreign('student_id')->references('id')->on('primary_students');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('primary_stu_credentials');
+        Schema::dropIfExists('grades');
     }
 };

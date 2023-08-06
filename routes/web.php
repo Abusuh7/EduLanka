@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\PrimaryStudents1;
-use App\Http\Controllers\PrimaryStudentsController;
+use App\Http\Controllers\showCategoryController;
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,20 +33,56 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+//Main Redirects
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
 
 
-//admin views
-// Route::get('/admin', [PrimaryStudentsController::class, 'index'])->name('index');
+//------------ADMIN ROUTES----------------
 
-// Route::get('/admin/create', [PrimaryStudentsController::class, 'create'])->name('create');
+//View when adimn dashboard is clicked
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('adminDashboard');
 
-Route::post('/admin/store', [PrimaryStudents1::class, 'store'])->name('store');
+//View when admin users is clicked
+Route::get('/admin/users', function () {
+    return view('admin.user-dashboard');
+})->name('adminUsers');
 
-// Route::get('/admin/{id}', [PrimaryStudentsController::class, 'show'])->name('show');
 
-// Route::get('/admin/{id}/edit', [PrimaryStudentsController::class, 'edit'])->name('edit');
+//Admin views Choose in user dashboard (Teachers, Primary, Secondary)
+Route::get('/admin/users/teachers', [showCategoryController::class, 'teacher',])->name('displayTeacher');
+Route::get('/admin/users/primary', [showCategoryController::class, 'primary'])->name('displayPrimary');
+Route::get('/admin/users/secondary', [showCategoryController::class, 'secondary'])->name('displaySecondary');
 
-// Route::put('/admin/{id}', [PrimaryStudentsController::class, 'update'])->name('update');
+
+//For Student Registration
+Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name('studentCreate');
+
+//For Teacher Registration
+Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');
+
+
+
+
+//------------TEACHER ROUTES----------------
+
+
+//-----------------STUDENT ROUTES----------------
+
+
+
+//------------Commented Code----------------
+
+// Route::get('/admin/create', [StudentsController::class, 'create'])->name('create');
+
+// Route::get('/admin/{id}', [StudentsController::class, 'show'])->name('show');
+
+// Route::get('/admin/{id}/edit', [StudentsController::class, 'edit'])->name('edit');
+
+// Route::put('/admin/{id}', [StudentsController::class, 'update'])->name('update');
 
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
+
+
