@@ -26,7 +26,7 @@ EDULANKA is a web-based Learning Management System (LMS) designed to cater to bo
 
 To get started with EDULANKA, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-team/your-repo.git`
+1. Clone the repository: https://github.com/Abusuh7/EduLanka.git
 
 2. Install dependencies: [Instructions for installing dependencies]
 
