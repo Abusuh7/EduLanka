@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('teacher_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('role')->default('admin');
@@ -24,7 +25,8 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('primary_students');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
 
             // $table->id();
             // $table->enum('role', ['admin', 'teacher', 'pms', 'sns']); //pms (primary student)

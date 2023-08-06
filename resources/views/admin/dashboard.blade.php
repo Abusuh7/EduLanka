@@ -22,7 +22,7 @@
         <!-- Student Form Modal -->
         <div class="p-4 max-w-md mx-auto hidden" id="newStudentFormContainer">
             <h2 class="text-xl font-semibold mb-4">Create New Student</h2>
-            <form action="{{ route('store') }}" method="post">
+            <form action="{{ route('studentCreate') }}" method="post">
                 @csrf
 
                 <div class="mb-4">
@@ -174,7 +174,7 @@
     {{-- Teacher Form Modal --}}
     <div class="p-4 max-w-md mx-auto hidden" id="newTeacherFormContainer">
         <h2 class="text-xl font-semibold mb-4">Create New Teacher</h2>
-        <form action="" method="post">
+        <form action="{{ route('teacherCreate') }}" method="post">
             @csrf
 
             <div class="mb-4">
@@ -242,37 +242,37 @@
 
                 <div class="mb-4">
                     <label for="parent_phone" class="block text-sm font-medium">Phone No:</label>
-                    <input type="number" id="parent_phone" name="parent_phone" required
+                    <input type="number" id="phone" name="phone" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 
                 <div class="mb-4">
                     <label for="parent_address" class="block text-sm font-medium">Address:</label>
-                    <input type="text" id="parent_address" name="parent_address" required
+                    <input type="text" id="address" name="address" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 
                 <div class="mb-4">
                     <label for="parent_city" class="block text-sm font-medium">City:</label>
-                    <input type="text" id="parent_city" name="parent_city" required
+                    <input type="text" id="city" name="city" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 
                 <div class="mb-4">
                     <label for="parent_state" class="block text-sm font-medium">State:</label>
-                    <input type="text" id="parent_state" name="parent_state" required
+                    <input type="text" id="state" name="state" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 
                 <div class="mb-4">
                     <label for="parent_zip" class="block text-sm font-medium">Zip:</label>
-                    <input type="number" id="parent_zip" name="parent_zip" required
+                    <input type="number" id="zip" name="zip" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 
                 <div class="mb-4">
                     <label for="parent_country" class="block text-sm font-medium">Country:</label>
-                    <input type="text" id="parent_country" name="parent_country" required
+                    <input type="text" id="country" name="country" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                 </div>
 

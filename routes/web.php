@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\PrimaryStudents1;
-use App\Http\Controllers\PrimaryStudentsController;
+
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,18 +35,28 @@ Route::middleware([
 
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
 
+//View when admin users is clicked
+Route::get('/admin/users', function () {
+    return view('admin.users');
+})->name('adminUsers');
+
 
 //admin views
-// Route::get('/admin', [PrimaryStudentsController::class, 'index'])->name('index');
+Route::get('/admin/users', [StudentsController::class, 'index'])->name('displayStudents');
 
-// Route::get('/admin/create', [PrimaryStudentsController::class, 'create'])->name('create');
+// Route::get('/admin/create', [StudentsController::class, 'create'])->name('create');
 
-Route::post('/admin/store', [PrimaryStudents1::class, 'store'])->name('store');
+Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name('studentCreate');
 
-// Route::get('/admin/{id}', [PrimaryStudentsController::class, 'show'])->name('show');
+// Route::get('/admin/{id}', [StudentsController::class, 'show'])->name('show');
 
-// Route::get('/admin/{id}/edit', [PrimaryStudentsController::class, 'edit'])->name('edit');
+// Route::get('/admin/{id}/edit', [StudentsController::class, 'edit'])->name('edit');
 
-// Route::put('/admin/{id}', [PrimaryStudentsController::class, 'update'])->name('update');
+// Route::put('/admin/{id}', [StudentsController::class, 'update'])->name('update');
 
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
+
+
+
+//For Teacher Registration
+Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');
