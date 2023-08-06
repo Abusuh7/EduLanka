@@ -1,8 +1,6 @@
 # EDULANKA - LMS System for Sri Lankan Students
 
-<p align="center">
-  <img src="" width="400" alt="EDULANKA Logo">
-</p>
+
 
 <p align="center">
   <!-- Add badges here (if applicable) -->
