@@ -1,25 +1,22 @@
-//student/teacher form visibility
-const showStudentButton = document.getElementById('showStudentBtn');
-const showTeacherButton = document.getElementById('showTeacherBtn');
-const newStudentFormContainer = document.getElementById('newStudentFormContainer');
-const newTeacherFormContainer = document.getElementById('newTeacherFormContainer');
 
-// const closeUserForm = document.getElementById('closeUserForm');
+    //student/teacher form visibility
+    const showStudentButton = document.getElementById('showStudentBtn');
+    const showTeacherButton = document.getElementById('showTeacherBtn');
+    const newStudentFormContainer = document.getElementById('newStudentFormContainer');
+    const newTeacherFormContainer = document.getElementById('newTeacherFormContainer'); // <-- Corrected ID
 
-showStudentButton.addEventListener('click', () => {
-    newStudentFormContainer.classList.remove('hidden');
-    // hide teacher container when student button is pressed
-    newTeacherFormContainer.classList.add('hidden');
-});
+    //Teacher Selected
+    showTeacherButton.addEventListener('click', () => {
+        // hide student container when teacher button is pressed
+        newStudentFormContainer.classList.add('hidden');
+        newTeacherFormContainer.classList.remove('hidden');
 
-showTeacherButton.addEventListener('click', () => {
-    newTeacherFormContainer.classList.remove('hidden');
-    // hide student container when teacher button is pressed
-    newStudentFormContainer.classList.add('hidden');
-});
+    });
 
+    //Student Selected
+    showStudentButton.addEventListener('click', () => {
+        // hide teacher container when student button is pressed
+        newTeacherFormContainer.classList.add('hidden');
+        newStudentFormContainer.classList.remove('hidden');
 
-
-// closeUserForm.addEventListener('click', () => {
-//     formContainer.classList.add('hidden');
-// });
+    });

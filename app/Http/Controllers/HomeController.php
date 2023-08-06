@@ -18,7 +18,7 @@ class HomeController extends Controller
         {
             return view('teacher.dashboard');
         }
-        elseif($role == 'pms')
+        elseif($role == 'primary')
         {
             return view('primaryStudent.dashboard');
         }
