@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\showCategoryController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
@@ -33,20 +33,49 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+//Main Redirects
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
+
+
+//------------ADMIN ROUTES----------------
+
+//View when adimn dashboard is clicked
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('adminDashboard');
 
 //View when admin users is clicked
 Route::get('/admin/users', function () {
-    return view('admin.users');
+    return view('admin.user-dashboard');
 })->name('adminUsers');
 
 
-//admin views
-Route::get('/admin/users', [StudentsController::class, 'index'])->name('displayStudents');
+//Admin views Choose in user dashboard (Teachers, Primary, Secondary)
+Route::get('/admin/users/teachers', [showCategoryController::class, 'teacher',])->name('displayTeacher');
+Route::get('/admin/users/primary', [showCategoryController::class, 'primary'])->name('displayPrimary');
+Route::get('/admin/users/secondary', [showCategoryController::class, 'secondary'])->name('displaySecondary');
+
+
+//For Student Registration
+Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name('studentCreate');
+
+//For Teacher Registration
+Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');
+
+
+
+
+//------------TEACHER ROUTES----------------
+
+
+//-----------------STUDENT ROUTES----------------
+
+
+
+//------------Commented Code----------------
 
 // Route::get('/admin/create', [StudentsController::class, 'create'])->name('create');
-
-Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name('studentCreate');
 
 // Route::get('/admin/{id}', [StudentsController::class, 'show'])->name('show');
 
@@ -57,6 +86,3 @@ Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name(
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
 
 
-
-//For Teacher Registration
-Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');

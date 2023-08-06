@@ -19,11 +19,18 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        //display all students/ primary only and secondary only
-        $students = Students::all();
-        $users = User::all();
-        return view('admin.users', compact('students', 'users'));
+        // //display all students/ primary only and secondary only
+        // $students = Students::all();
 
+        // // Filter the students based on their role (assuming 'primary' and 'secondary' are valid roles)
+        // $primarySecondaryStudents = $students->filter(function ($student) {
+        //     return in_array($student->role, ['secondary']);
+        // });
+
+
+
+        // $users = User::all();
+        // return view('admin.users', compact('students', 'users', 'primarySecondaryStudents'));
     }
 
     /**
