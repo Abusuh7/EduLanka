@@ -45,7 +45,7 @@
                                 </a>
                             </div>
                             <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                                <a href="" class="text-sm leading-6 text-gray-900">Edit</a>
+                                <a href="{{ route('editStudentProfile', $primaryStudent->id) }}" class="text-sm leading-6 text-gray-900">Edit</a>
 
                                 @if ($primaryStudent->status === 'deactivated')
                                     <a href="{{ route('activateStudent', $primaryStudent->id) }}"

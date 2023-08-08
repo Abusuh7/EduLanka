@@ -24,14 +24,6 @@ class StudentsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -193,17 +185,107 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editStudentProfile(string $id)
     {
-        //
+        //find the student by id
+        $users = User::find($id);
+        //Get the student id from the student table and find the student details from the student table
+        $students = Students::find($users->student_id);
+
+        //Get the student id from the student table and find the parent details and enrollment details from the parent details and enrollment table
+        $parents = Parents_Details::find($students->parent_id);
+        $enrollments = Student_Enrollment::find($students->enroll_id);
+
+
+        $studentGrades = Student_Grade::find($users->student_id);
+        //Get the student grade id from the student grade table and find the grade and class from the grades and classes table
+        $grades = Grades::find($studentGrades->grade_id);
+        $classes = Classes::find($studentGrades->class_id);
+
+        //return the view with the student details
+        return view('admin.edit-profile.students-edit', compact('users', 'students', 'parents', 'enrollments', 'grades', 'classes'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the teacher profile details
      */
-    public function update(Request $request, string $id)
+    public function updatestudentProfile(Request $request, $id)
     {
-        //
+         $request->validate([
+            'fname' => 'required|string',
+            'lname' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|string',
+            'category' => 'required|string',
+            'grade' => 'required|integer|min:1|max:12',
+            'class' => 'required|string',
+            'parent_fname' => 'required|string',
+            'parent_lname' => 'required|string',
+            'parent_email' => 'required|email',
+            'parent_phone' => 'required|string',
+            'parent_address' => 'required|string',
+            'parent_city' => 'required|string',
+            'parent_state' => 'required|string',
+            'parent_zip' => 'required|string',
+            'parent_country' => 'required|string',
+        ]);
+
+        //find the student by id
+        $users = User::find($id);
+
+        //Get the student id from the student table and find the student details from the student table
+        $students = Students::find($users->student_id);
+
+        //Get the student id from the student table and find the parent details and enrollment details from the parent details and enrollment table
+        $parents = Parents_Details::find($students->parent_id);
+
+        //Get the student grade id from the student grade table and find the grade and class from the grades and classes table
+        $studentGrades = Student_Grade::find($users->student_id);
+
+        $grades = Grades::find($studentGrades->grade_id);
+        $classes = Classes::find($studentGrades->class_id);
+
+        //update the details accordingly
+
+        //pass the fname and lname to the users table name column
+        $users->name = $request->input('fname') . ' ' . $request->input('lname'); //This is a issue for teacher stuff mail
+
+
+        $students->fname = $request->input('fname');
+        $students->lname = $request->input('lname');
+        $students->dob = $request->input('dob');
+        $students->gender = $request->input('gender');
+        $students->category = $request->input('category');
+
+        $parents->fname = $request->input('parent_fname');
+        $parents->lname = $request->input('parent_lname');
+        $parents->email = $request->input('parent_email');
+        $parents->phone = $request->input('parent_phone');
+        $parents->address = $request->input('parent_address');
+        $parents->city = $request->input('parent_city');
+        $parents->state = $request->input('parent_state');
+        $parents->zip = $request->input('parent_zip');
+        $parents->country = $request->input('parent_country');
+
+        $grades->grade_name = $request->input('grade');
+        $classes->class_name = $request->input('class');
+
+        // $enrollments->enroll_date = $request->input('enroll_date');
+
+        //save the details
+        $parents->save();
+        $students->save();
+        $users->save();
+        $grades->save();
+        $classes->save();
+        // $enrollments->save();
+
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Student details updated successfully.');
+
+
+
+
     }
 
     /**
@@ -211,6 +293,6 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
-
+        //Check with team **********
     }
 }
