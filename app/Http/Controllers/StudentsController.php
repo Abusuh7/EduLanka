@@ -11,6 +11,7 @@ use App\Models\Students;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class StudentsController extends Controller
 {
@@ -19,18 +20,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        // //display all students/ primary only and secondary only
-        // $students = Students::all();
 
-        // // Filter the students based on their role (assuming 'primary' and 'secondary' are valid roles)
-        // $primarySecondaryStudents = $students->filter(function ($student) {
-        //     return in_array($student->role, ['secondary']);
-        // });
-
-
-
-        // $users = User::all();
-        // return view('admin.users', compact('students', 'users', 'primarySecondaryStudents'));
     }
 
     /**
@@ -135,7 +125,7 @@ class StudentsController extends Controller
             //create a custom mail starting with (cb + id)@gmail.com
             'email' => 'cb' . $primaryStudent->id . '@students.edulanka.lk',
             //default password as aaAA12!@
-            'password' => Hash::make('aaAA12!@'),
+            'password' => FacadesHash::make('aaAA12!@'),
             //pass the category to the role
             'role' => $validatedData['category'],
 
@@ -150,12 +140,54 @@ class StudentsController extends Controller
         // ...
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    //deactivate function which takes the student id as a parameter and deactivate the student
+    public function deactivate($id)
     {
-        //
+        //find the student by id
+        $user = User::find($id);
+        //update the status to 0
+        $user->status = 'deactivated';
+        //save the student
+        $user->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Student deactivated successfully.');
+    }
+
+    //activate function which takes the student id as a parameter and activate the student
+    public function activate($id)
+    {
+        //find the student by id
+        $user = User::find($id);
+        //update the status to 1
+        $user->status = 'activated';
+        //save the student
+        $user->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Student activated successfully.');
+    }
+
+    /**
+     * Display the student details from users table and student table using the foreign key student_id
+     */
+    public function showStudentProfile($id)
+    {
+        //find the student by id
+        $users = User::find($id);
+        //Get the student id from the student table and find the student details from the student table
+        $students = Students::find($users->student_id);
+
+        //Get the student id from the student table and find the parent details and enrollment details from the parent details and enrollment table
+        $parents = Parents_Details::find($students->parent_id);
+        $enrollments = Student_Enrollment::find($students->enroll_id);
+
+
+        $studentGrades = Student_Grade::find($users->student_id);
+        //Get the student grade id from the student grade table and find the grade and class from the grades and classes table
+        $grades = Grades::find($studentGrades->grade_id);
+        $classes = Classes::find($studentGrades->class_id);
+
+        //return the view with the student details
+        return view('admin.student-profile', compact('users', 'students', 'parents', 'enrollments', 'grades', 'classes'));
     }
 
     /**
@@ -179,6 +211,6 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }

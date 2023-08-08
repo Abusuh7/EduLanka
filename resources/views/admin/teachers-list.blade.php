@@ -25,9 +25,34 @@
                             </div>
                             <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                                 <p class="text-sm leading-6 text-gray-900">{{ ucwords($teacher->role) }}</p>
-                                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time
-                                        datetime="2023-01-23T13:23Z">3h
-                                        ago</time></p>
+                                <b>
+                                    <p class="mt-1 text-sm leading-5">
+                                        Account Status :
+                                        <time datetime="2023-01-23T13:23Z"
+                                            class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
+                                            {{ ucwords($teacher->status) }}
+                                        </time>
+                                    </p>
+                                </b>
+                            </div>
+                            <div class="hidden md:flex md:items-center md:space-x-4">
+                                <a href="{{ route('teacherProfile', $teacher->id) }}}"
+                                    class="text-sm leading-5 font-medium text-gray-900 hover:text-gray-400 transition ease-in-out duration-150">
+                                    View Profile
+                                </a>
+                            </div>
+                            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                                <a href="" class="text-sm leading-6 text-gray-900">Edit</a>
+
+                                @if ($teacher->status === 'deactivated')
+                                    <a href="{{ route('activateTeacher', $teacher->id) }}"
+                                        class="text-sm leading-6 ">Activate</a>
+                                @else
+                                    <a href="{{ route('deactivateTeacher', $teacher->id) }}"
+                                        class="text-sm leading-6">Deactivate</a>
+                                @endif
+
+                                <a href="" class="text-sm leading-6 text-gray-900">Terminate</a>
                             </div>
                         </li>
                     @endforeach

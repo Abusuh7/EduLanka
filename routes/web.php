@@ -64,12 +64,34 @@ Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name(
 Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');
 
 
+//For Student/Admin Profile View
+Route::get('/admin/student/profile/{id}', [StudentsController::class, 'showStudentProfile'])->name('studentProfile');
+Route::get('/admin/teacher/profile/{id}', [TeachersController::class, 'showTeacherDetails'])->name('teacherProfile');
+
+
+//Deactivate/Activate Student Users
+Route::get('/admin/student/{id}/deactivate', [StudentsController::class, 'deactivate'])->name('deactivateStudent');
+Route::get('/admin/student/{id}/activate', [StudentsController::class, 'activate'])->name('activateStudent');
+
+
+//Deactivate/Activate Teacher Users
+Route::get('/admin/teacher/{id}/deactivate', [TeachersController::class, 'deactivate'])->name('deactivateTeacher');
+Route::get('/admin/teacher/{id}/activate', [TeachersController::class, 'activate'])->name('activateTeacher');
+
+
+
 
 
 //------------TEACHER ROUTES----------------
 
 
+
+
+
 //-----------------STUDENT ROUTES----------------
+
+
+
 
 
 

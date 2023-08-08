@@ -7,6 +7,7 @@ use App\Models\Teachers;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class TeachersController extends Controller
 {
@@ -80,7 +81,7 @@ class TeachersController extends Controller
             //create a custom mail starting with (fullname in lowercase)@edulanka.lk
             'email' => strtolower($validatedData['fname'] . $validatedData['lname']) . '@stuffs.edulanka.lk',
             //default password as aaAA12!@
-            'password' => Hash::make('aaAA12!@'),
+            'password' => FacadesHash::make('aaAA12!@'),
             //pass the category to the role as teacher
             'role' => 'teacher',
 
@@ -97,12 +98,47 @@ class TeachersController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    //activate function which takes the student id as a parameter and activate the teacher
+    public function activate($id)
     {
-        //
+        //find the teacher by id
+        $teacher = User::find($id);
+        //update the status to active
+        $teacher->status = 'activated';
+        //save the teacher
+        $teacher->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Teacher Activated successfully.');
+    }
+
+    //deactivate function which takes the student id as a parameter and deactivate the teacher
+    public function deactivate($id)
+    {
+        //find the teacher by id
+        $teacher = User::find($id);
+        //update the status to active
+        $teacher->status = 'deactivated';
+        //save the teacher
+        $teacher->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Teacher Deactivated successfully.');
+    }
+
+    /**
+     * Display the teacher details from user table and teacher table.
+     */
+    public function showTeacherDetails(string $id)
+    {
+        //find the teacher by id
+        $teacher = User::find($id);
+        //Get the teacher id from the teacher table and find the teacher details in the teacher table
+        $teacherDetails = Teachers::find($teacher->teacher_id);
+
+        //Get the teacher id from the teacher table and find the enrollment details in the enrollemtn table
+        $enrollment = Teacher_Enrollment::find($teacherDetails->enroll_id);
+
+        //return the view with teacher and teacher details
+        return view('admin.teacher-profile', compact('teacher', 'teacherDetails', 'enrollment'));
     }
 
     /**
