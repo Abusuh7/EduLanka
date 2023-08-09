@@ -64,9 +64,19 @@ Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name(
 Route::post('/admin/teacherCreate', [TeachersController::class, 'store'])->name('teacherCreate');
 
 
-//For Student/Admin Profile View
+//For Student/Teacher Profile View
 Route::get('/admin/student/profile/{id}', [StudentsController::class, 'showStudentProfile'])->name('studentProfile');
 Route::get('/admin/teacher/profile/{id}', [TeachersController::class, 'showTeacherDetails'])->name('teacherProfile');
+
+
+//For Student/Teacher Profile Edit
+Route::get('/admin/student/profile/{id}/edit', [StudentsController::class, 'editStudentProfile'])->name('editStudentProfile');
+Route::get('/admin/teacher/profile/{id}/edit', [TeachersController::class, 'editTeacherProfile'])->name('editTeacherProfile');
+
+
+//For Student/Teacher Profile Update
+Route::put('/admin/student/profile/{id}/update', [StudentsController::class, 'updateStudentProfile'])->name('updateStudentProfile');
+Route::put('/admin/teacher/profile/{id}/update', [TeachersController::class, 'updateTeacherProfile'])->name('updateTeacherProfile');
 
 
 //Deactivate/Activate Student Users

@@ -24,7 +24,6 @@ class TeachersController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -34,19 +33,19 @@ class TeachersController extends Controller
     {
         // Validate the teachers form data,
         $validatedData = $request->validate([
-                'fname' => 'required|string',
-                'lname' => 'required|string',
-                'dob' => 'required|date',
-                'gender' => 'required|string',
-                'email' => 'required|email',
-                'subject' => 'required|string',
-                'phone' => 'required|string',
-                'address' => 'required|string',
-                'city' => 'required|string',
-                'state' => 'required|string',
-                'zip' => 'required|string',
-                'country' => 'required|string',
-                'enroll_date' => 'required|date',
+            'fname' => 'required|string',
+            'lname' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip' => 'required|string',
+            'country' => 'required|string',
+            'enroll_date' => 'required|date',
         ]);
 
         // Create the teachers record
@@ -144,17 +143,79 @@ class TeachersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editTeacherProfile(string $id)
     {
-        //
+
+        //find the teacher by id
+        $teacher = User::find($id);
+        //Get the teacher id from the teacher table and find the teacher details in the teacher table
+        $teacherDetails = Teachers::find($teacher->teacher_id);
+
+        //Get the teacher id from the teacher table and find the enrollment details in the enrollemtn table
+        $enrollment = Teacher_Enrollment::find($teacherDetails->enroll_id);
+
+        //return the view with teacher and teacher details
+        return view('admin.edit-profile.teachers-edit', compact('teacher', 'teacherDetails', 'enrollment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateTeacherProfile(Request $request, $id)
     {
-        //
+        $request->validate([
+            'fname' => 'required|string',
+            'lname' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip' => 'required|string',
+            'country' => 'required|string',
+            'enroll_date' => 'required|date',
+        ]);
+
+        //find the teacher by id
+        $teacher = User::find($id);
+        //Get the teacher id from the teacher table and find the teacher details in the teacher table
+        $teacherDetails = Teachers::find($teacher->teacher_id);
+
+        //Get the teacher id from the teacher table and find the enrollment details in the enrollemtn table
+        $enrollment = Teacher_Enrollment::find($teacherDetails->enroll_id);
+
+        //update the teacher details
+        $teacher->name = $request->input('fname') . ' ' . $request->input('lname');
+        //mail with fname and lname
+        $teacher->email = strtolower($request->input('fname') . $request->input('lname')) . '@stuffs.edulanka.lk';
+
+        //update the teacher details
+        $teacherDetails->fname = $request->input('fname');
+        $teacherDetails->lname = $request->input('lname');
+        $teacherDetails->dob = $request->input('dob');
+        $teacherDetails->gender = $request->input('gender');
+        $teacherDetails->email = $request->input('email');
+        $teacherDetails->subject = $request->input('subject');
+        $teacherDetails->phone = $request->input('phone');
+        $teacherDetails->address = $request->input('address');
+        $teacherDetails->city = $request->input('city');
+        $teacherDetails->state = $request->input('state');
+        $teacherDetails->zip = $request->input('zip');
+        $teacherDetails->country = $request->input('country');
+
+        //update the enrollment details
+        // $enrollment->enroll_date = $request->input('enroll_date');
+
+        //save the teacher details
+        $teacherDetails->save();
+        $teacher->save();
+        // $enrollment->save();
+
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Teacher Details Updated successfully.');
     }
 
     /**
