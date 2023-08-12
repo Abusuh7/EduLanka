@@ -17,7 +17,7 @@
                         <li class="flex justify-between gap-x-6 py-5">
                             <div class="flex min-w-0 gap-x-4">
                                 <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
-                                    src="storage/app/public/{{ $primaryStudent->profile_photo_path }}" alt="">
+                                    src="/storage/{{ $primaryStudent->profile_photo_path }}" alt="">
                                 <div class="min-w-0 flex-auto">
                                     <p class="text-sm font-semibold leading-6 text-gray-900">{{ $primaryStudent->name }}
                                     </p>
