@@ -8,42 +8,108 @@
     <div class="bg-gray-100">
         <div class="max-w-6xl mx-auto py-8 px-4">
             <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">User Details</h1>
-                    <h2 class="text-lg">Name: {{ $teacher->name }}</h2>
-                    <h2 class="text-lg">Email: {{ $teacher->email }}</h2>
-                    <h2 class="text-lg">Role: {{ $teacher->role }}</h2>
-                    <h2 class="text-lg">
-                        Status: <b><span class="{{ $teacher->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">{{ ucwords($teacher->status) }}</span></b>
-                    </h2>
+
+                <!-- User Details Section -->
+                <div class="mb-6">
+                    <h1 class="text-2xl font-semibold">User Details</h1>
+                    <table class="w-full">
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Name:</td>
+                            <td class="border px-4 py-2">{{ $teacher->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Email:</td>
+                            <td class="border px-4 py-2">{{ $teacher->email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Role:</td>
+                            <td class="border px-4 py-2">{{ $teacher->role }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Status:</td>
+                            <td class="border px-4 py-2">
+                                <b>
+                                    <span class="{{ $teacher->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">
+                                        {{ ucwords($teacher->status) }}
+                                    </span>
+                                </b>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Teacher Details</h1>
-                    <h2 class="text-lg">First Name: {{ $teacherDetails->fname }}</h2>
-                    <h2 class="text-lg">Last Name: {{ $teacherDetails->lname }}</h2>
-                    <h2 class="text-lg">Date of Birth: {{ $teacherDetails->dob }}</h2>
-                    <h2 class="text-lg">Gender: {{ $teacherDetails->gender }}</h2>
-                    <h2 class="text-lg">Email: {{ $teacherDetails->email }}</h2>
-                    <h2 class="text-lg">Subject: {{ $teacherDetails->subject }}</h2>
-                    <h2 class="text-lg">Phone: {{ $teacherDetails->phone }}</h2>
-                    <h2 class="text-lg">Address: {{ $teacherDetails->address }}</h2>
-                    <h2 class="text-lg">City: {{ $teacherDetails->city }}</h2>
-                    <h2 class="text-lg">State: {{ $teacherDetails->state }}</h2>
-                    <h2 class="text-lg">Zip: {{ $teacherDetails->zip }}</h2>
-                    <h2 class="text-lg">Country: {{ $teacherDetails->country }}</h2>
-                    <h2 class="text-lg">Last Updated: {{ $teacherDetails->updated_at }}</h2>
+                <!-- Teacher and Enrollment Details Section -->
+                <div class="mb-6">
+                    <h1 class="text-2xl font-semibold text-blue-700">Teacher Details</h1>
+                    <table class="w-full">
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">First Name:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->fname }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Last Name:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->lname }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Date of Birth:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->dob }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Gender:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->gender }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Email:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Subject:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->subject }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Phone:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->phone }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Address:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->address }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">City:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->city }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">State:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->state }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Zip:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->zip }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Country:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->country }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Last Updated:</td>
+                            <td class="border px-4 py-2">{{ $teacherDetails->updated_at }}</td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Enrollment Details</h1>
-                    <h2 class="text-lg">Enrollment Date: {{ $enrollment->enroll_date }}</h2>
-                </div>
 
+                <div class="mb-6">
+                    <h1 class="text-2xl font-semibold text-blue-700">Enrollment Details</h1>
+                    <table class="w-full">
+                        <tr>
+                            <td class="font-semibold text-gray-600 border px-4 py-2">Enrollment Date:</td>
+                            <td class="border px-4 py-2">{{ $enrollment->enroll_date }}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
-
-
 </x-app-layout>
+
+

@@ -7,60 +7,92 @@
 
     <div class="bg-gray-100">
         <div class="max-w-6xl mx-auto py-8 px-4">
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">User Details</h1>
-                    <h2 class="text-lg mb-1">Name: {{ $users->name }}</h2>
-                    <h2 class="text-lg mb-1">Email: {{ $users->email }}</h2>
-                    <h2 class="text-lg mb-1">Role: {{ $users->role }}</h2>
-                    <h2 class="text-lg">Status: <b><span
-                            class="{{ $users->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">{{ ucwords($users->status) }}</span></b>
-                    </h2>
+            <div class="bg-white rounded-lg shadow-md p-6 space-y-6">
+
+                <!-- User Details Section -->
+                <div>
+                    <h1 class="text-2xl font-semibold mb-3">User Details</h1>
+                    <dl class="grid grid-cols-2 gap-4">
+                        <div class="font-semibold text-gray-600">Name</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $users->name }}</div>
+                        <div class="font-semibold text-gray-600">Email</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $users->email }}</div>
+                        <div class="font-semibold text-gray-600">Role</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $users->role }}</div>
+                        <div class="font-semibold text-gray-600">Status</div>
+                        <div class="bg-gray-200 p-2 rounded-md">
+                            <b>
+                                <span class="{{ $users->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">
+                                    {{ ucwords($users->status) }}
+                                </span>
+                            </b>
+                        </div>
+                    </dl>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Student Details</h1>
-                    <h2 class="text-lg mb-1">First Name: {{ $students->fname }}</h2>
-                    <h2 class="text-lg mb-1">Last Name: {{ $students->lname }}</h2>
-                    <h2 class="text-lg mb-1">Date of Birth: {{ $students->dob }}</h2>
-                    <h2 class="text-lg mb-1">Gender: {{ $students->gender }}</h2>
-                    <h2 class="text-lg">Category: {{ $students->category }}</h2>
-                    <h2 class="text-lg">Last Updated: {{ $students->updated_at }}</h2>
+                <!-- Student Details Section -->
+                <div>
+                    <h1 class="text-2xl font-semibold mb-3">Student Details</h1>
+                    <dl class="grid grid-cols-2 gap-4">
+                        <div class="font-semibold text-gray-600">First Name</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->fname }}</div>
+                        <div class="font-semibold text-gray-600">Last Name</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->lname }}</div>
+                        <div class="font-semibold text-gray-600">Date of Birth</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->dob }}</div>
+                        <div class="font-semibold text-gray-600">Gender</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->gender }}</div>
+                        <div class="font-semibold text-gray-600">Category</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->category }}</div>
+                        <div class="font-semibold text-gray-600">Last Updated</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $students->updated_at }}</div>
+                    </dl>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Parent Details</h1>
-                    <h2 class="text-lg mb-1">First Name: {{ $parents->fname }}</h2>
-                    <h2 class="text-lg mb-1">Last Name: {{ $parents->lname }}</h2>
-                    <h2 class="text-lg mb-1">Email: {{ $parents->email }}</h2>
-                    <h2 class="text-lg mb-1">Phone: {{ $parents->phone }}</h2>
-                    <h2 class="text-lg mb-1">Address: {{ $parents->address }}</h2>
-                    <h2 class="text-lg mb-1">City: {{ $parents->city }}</h2>
-                    <h2 class="text-lg mb-1">State: {{ $parents->state }}</h2>
-                    <h2 class="text-lg mb-1">Zip: {{ $parents->zip }}</h2>
-                    <h2 class="text-lg">Country: {{ $parents->country }}</h2>
-
+                <!-- Parent Details Section -->
+                <div>
+                    <h1 class="text-2xl font-semibold mb-3">Parent Details</h1>
+                    <dl class="grid grid-cols-2 gap-4">
+                        <div class="font-semibold text-gray-600">First Name</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->fname }}</div>
+                        <div class="font-semibold text-gray-600">Last Name</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->lname }}</div>
+                        <div class="font-semibold text-gray-600">Email</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->email }}</div>
+                        <div class="font-semibold text-gray-600">Phone:</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->phone }}</div>
+                        <div class="font-semibold text-gray-600">Address</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->address }}</div>
+                        <div class="font-semibold text-gray-600">City</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->city }}</div>
+                        <div class="font-semibold text-gray-600">State</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->state }}</div>
+                        <div class="font-semibold text-gray-600">Zip</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->zip }}</div>
+                        <div class="font-semibold text-gray-600">Country</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $parents->country }}</div>
+                    </dl>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Enrollment Details</h1>
-                    <h2 class="text-lg">Enrollment Date: {{ $enrollments->enroll_date }}</h2>
+                <!-- Enrollment Details Section -->
+                <div>
+                    <h1 class="text-2xl font-semibold mb-3">Enrollment Details</h1>
+                    <dl class="grid grid-cols-2 gap-4">
+                        <div class="font-semibold text-gray-600">Enrollment Date</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $enrollments->enroll_date }}</div>
+                    </dl>
                 </div>
 
-                <div class="mb-8">
-                    <h1 class="text-2xl font-semibold mb-2">Grade and Class Details</h1>
-                    <h2 class="text-lg">Class : {{ $grades->grade_name }} {{ $classes->class_name }}</h2>
+                <!-- Grade and Class Details Section -->
+                <div>
+                    <h1 class="text-2xl font-semibold mb-3">Grade and Class Details</h1>
+                    <dl class="grid grid-cols-2 gap-4">
+                        <div class="font-semibold text-gray-600">Class</div>
+                        <div class="bg-gray-200 p-2 rounded-md">{{ $grades->grade_name }} {{ $classes->class_name }}</div>
+                    </dl>
                 </div>
 
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 </x-app-layout>
