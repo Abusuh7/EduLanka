@@ -85,8 +85,18 @@
                             <select id="grade" name="grade" required
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                                 <option value="" disabled selected>Select Grade</option>
-                                <option value="1">1st</option>
-                                <!-- ... Other grade options ... -->
+                                <option value="1">1st</option>\
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                                <option value="4">4th</option>
+                                <option value="5">5th</option>
+                                <option value="6">6th</option>
+                                <option value="7">7th</option>
+                                <option value="8">8th</option>
+                                <option value="9">9th</option>
+                                <option value="10">10th</option>
+                                <option value="11">11th</option>
+                                <option value="12">12th</option>
                             </select>
                         </div>
                         <div>
@@ -128,7 +138,7 @@
 
                         <div class="mb-4">
                             <label for="parent_phone" class="block text-sm font-medium">Phone:</label>
-                            <input type="number" id="parent_phone" name="parent_phone" required
+                            <input type="tel" id="parent_phone" name="parent_phone" required
                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                         </div>
 
