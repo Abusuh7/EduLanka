@@ -58,7 +58,7 @@
                     <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            
+
 
                             <!-- Email input -->
                             <div class="relative mb-6" data-te-input-wrapper-init>
