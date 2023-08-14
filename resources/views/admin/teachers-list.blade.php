@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,87 +14,55 @@
                     @else
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
-                            <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Name
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Role
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Status
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                            </tr>
+                                <tr>
+                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Name
+                                    </th>
+                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Role
+                                    </th>
+                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($teachers as $teacher)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10 rounded-full bg-gray-100"
-                                                     src="storage/app/public/{{ $teacher->profile_photo_path }}" alt="">
+                                @foreach ($teachers as $teacher)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img class="h-10 w-10 rounded-full bg-gray-100"
+                                                         src="storage/app/public/{{ $teacher->profile_photo_path }}" alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $teacher->name }}</div>
+                                                </div>
                                             </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $teacher->name }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">{{ ucwords($teacher->role) }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
+                                                {{ ucwords($teacher->status) }}
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">
-                                        <div class="text-sm leading-5 text-gray-900">{{ ucwords($teacher->role) }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">
-                                        <div class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 border-4">
-            <ul role="list" class="divide-y divide-gray-100">
-                @if (count($teachers) === 0)
-                    <p class="text-center text-lg text-gray-500 py-4">No teachers enrolled.</p>
-                @else
-                    @foreach ($teachers as $teacher)
-                        <!-- Your existing teacher display code here -->
-                        <li class="flex justify-between gap-x-6 py-5">
-                            <div class="flex min-w-0 gap-x-4">
-                                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
-                                    src="/storage/{{ $teacher->profile_photo_path }}" alt="">
-                                <div class="min-w-0 flex-auto">
-                                    <p class="text-sm font-semibold leading-6 text-gray-900">{{ $teacher->name }}</p>
-                                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $teacher->email }}</p>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                                <p class="text-sm leading-6 text-gray-900">{{ ucwords($teacher->role) }}</p>
-                                <b>
-                                    <p class="mt-1 text-sm leading-5">
-                                        Account Status :
-                                        <time datetime="2023-01-23T13:23Z"
-                                            class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
-
-                                            {{ ucwords($teacher->status) }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                        <a href="{{ route('teacherProfile', $teacher->id) }}"
-                                           class="text-indigo-600 hover:text-indigo-900">View Profile</a>
-                                        <a href="{{ route('editTeacherProfile', $teacher->id) }}"
-                                           class="ml-2 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                        @if ($teacher->status === 'deactivated')
-                                            <a href="{{ route('activateTeacher', $teacher->id) }}"
-                                               class="ml-2 text-green-600 hover:text-green-900">Activate</a>
-                                        @else
-                                            <a href="{{ route('deactivateTeacher', $teacher->id) }}"
-                                               class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
-                                        @endif
-                                        <a href=""
-                                           class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            <a href="{{ route('teacherProfile', $teacher->id) }}" class="text-indigo-600 hover:text-indigo-900">View Profile</a>
+                                            <a href="{{ route('editTeacherProfile', $teacher->id) }}" class="ml-2 text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            @if ($teacher->status === 'deactivated')
+                                                <a href="{{ route('activateTeacher', $teacher->id) }}" class="ml-2 text-green-600 hover:text-green-900">Activate</a>
+                                            @else
+                                                <a href="{{ route('deactivateTeacher', $teacher->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
+                                            @endif
+                                            <a href="#" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     @endif
