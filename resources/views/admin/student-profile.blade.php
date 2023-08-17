@@ -22,7 +22,7 @@
                         <div class="font-semibold text-gray-600">Status</div>
                         <div class="bg-gray-200 p-2 rounded-md">
                             <b>
-                                <span class="{{ $users->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">
+                                <span class="{{ $users->status === 'deactivated' || $users->status === 'terminated' ? 'text-red-500' : 'text-green-500' }}">
                                     {{ ucwords($users->status) }}
                                 </span>
                             </b>

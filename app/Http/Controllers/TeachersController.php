@@ -221,8 +221,38 @@ class TeachersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function terminatePrompt(string $id)
     {
-        //
+        $users = User::find($id);
+        return view('admin.prompts.teacher-terminate', compact('users'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function terminate(Request $request, $id)
+    {
+        // Validations
+        $request->validate([
+            'reason' => 'required|string',
+            'comment' => 'required|string',
+        ]);
+
+        // Find the student by id
+        $users = User::find($id);
+
+        // Make the enrollment status to 0 default
+        $users->status = 'terminated';
+
+        //pass the reason and comment to the users table make it lowercase
+        $users->reason = strtolower($request->input('reason'));
+        $users->comment = strtolower($request->input('comment'));
+
+
+        // Save the details
+        $users->save();
+
+        // refresh the page
+        return redirect()->back()->with('success', 'Student terminated successfully.');
     }
 }

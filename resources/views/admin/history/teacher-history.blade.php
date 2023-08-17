@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Teachers List') }}
+            {{ __('Past Teachers List') }}
         </h2>
     </x-slot>
 
@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if (count($teachers) === 0)
-                        <p class="text-center text-lg text-gray-500">No teachers enrolled.</p>
+                    @if (count($terminatedTeachers) === 0)
+                        <p class="text-center text-lg text-gray-500">No past teachers.</p>
                     @else
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
@@ -30,7 +30,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($teachers as $teacher)
+                                @foreach ($terminatedTeachers as $teacher)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap">
                                             <div class="flex items-center">
@@ -47,7 +47,7 @@
                                             <div class="text-sm leading-5 text-gray-900">{{ ucwords($teacher->role) }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
+                                            <div class="@if ($teacher->status === 'terminated') text-red-500 @else text-green-500 @endif">
                                                 {{ ucwords($teacher->status) }}
                                             </div>
                                         </td>
@@ -59,7 +59,7 @@
                                             @else
                                                 <a href="{{ route('deactivateTeacher', $teacher->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
                                             @endif
-                                            <a href="{{ route('terminateTeacher', $teacher->id) }}" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
+                                            <a href="#" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
                                         </td>
                                     </tr>
                                 @endforeach

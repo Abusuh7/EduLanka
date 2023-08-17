@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Teachers List') }}
+            {{ __('Past Secondary Students List') }}
         </h2>
     </x-slot>
 
@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if (count($teachers) === 0)
-                        <p class="text-center text-lg text-gray-500">No teachers enrolled.</p>
+                    @if (count($terminatedSecondary) === 0)
+                        <p class="text-center text-lg text-gray-500">No past secondary students.</p>
                     @else
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
@@ -30,36 +30,36 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($teachers as $teacher)
+                                @foreach ($terminatedSecondary as $secondary)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
                                                     <img class="h-10 w-10 rounded-full bg-gray-100"
-                                                         src="storage/app/public/{{ $teacher->profile_photo_path }}" alt="">
+                                                         src="storage/app/public/{{ $secondary->profile_photo_path }}" alt="">
                                                 </div>
                                                 <div class="ml-4">
-                                                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $teacher->name }}</div>
+                                                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $secondary->name }}</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="text-sm leading-5 text-gray-900">{{ ucwords($teacher->role) }}</div>
+                                            <div class="text-sm leading-5 text-gray-900">{{ ucwords($secondary->role) }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="@if ($teacher->status === 'deactivated') text-red-500 @else text-green-500 @endif">
-                                                {{ ucwords($teacher->status) }}
+                                            <div class="@if ($secondary->status === 'terminated') text-red-500 @else text-green-500 @endif">
+                                                {{ ucwords($secondary->status) }}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                            <a href="{{ route('teacherProfile', $teacher->id) }}" class="text-indigo-600 hover:text-indigo-900">View Profile</a>
-                                            <a href="{{ route('editTeacherProfile', $teacher->id) }}" class="ml-2 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            @if ($teacher->status === 'deactivated')
-                                                <a href="{{ route('activateTeacher', $teacher->id) }}" class="ml-2 text-green-600 hover:text-green-900">Activate</a>
+                                            <a href="{{ route('studentProfile', $secondary->id) }}" class="text-indigo-600 hover:text-indigo-900">View Profile</a>
+                                            <a href="{{ route('editStudentProfile', $secondary->id) }}" class="ml-2 text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            @if ($secondary->status === 'deactivated')
+                                                <a href="{{ route('activateStudent', $secondary->id) }}" class="ml-2 text-green-600 hover:text-green-900">Activate</a>
                                             @else
-                                                <a href="{{ route('deactivateTeacher', $teacher->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
+                                                <a href="{{ route('deactivateStudent', $secondary->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
                                             @endif
-                                            <a href="{{ route('terminateTeacher', $teacher->id) }}" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
+                                            <a href="{{ route('terminateStudent', $secondary->id) }}" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
                                         </td>
                                     </tr>
                                 @endforeach

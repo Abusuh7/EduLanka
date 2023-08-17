@@ -29,7 +29,7 @@
                             <td class="font-semibold text-gray-600 border px-4 py-2">Status:</td>
                             <td class="border px-4 py-2">
                                 <b>
-                                    <span class="{{ $teacher->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">
+                                    <span class="{{ $teacher->status === 'deactivated' || $teacher->status === 'terminated' ? 'text-red-500' : 'text-green-500' }}">
                                         {{ ucwords($teacher->status) }}
                                     </span>
                                 </b>

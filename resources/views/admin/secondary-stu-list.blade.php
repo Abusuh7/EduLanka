@@ -59,7 +59,7 @@
                                             @else
                                                 <a href="{{ route('deactivateStudent', $secondaryStudent->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
                                             @endif
-                                            <a href="#" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
+                                            <a href="{{ route('terminateStudent', $secondaryStudent->id) }}" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
                                         </td>
                                     </tr>
                                 @endforeach

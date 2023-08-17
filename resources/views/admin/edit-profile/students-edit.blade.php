@@ -103,7 +103,55 @@
                         </div>
                     </div>
 
-                    <!-- Other parent details ... -->
+                    <div class="mb-2">
+                        <label for="parent_email" class="block text-sm font-medium">Parent's Email:</label>
+                        <input type="email" id="parent_email" name="parent_email" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->email }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_phone" class="block text-sm font-medium">Parent's Phone:</label>
+                        <input type="text" id="parent_phone" name="parent_phone" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->phone }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_address" class="block text-sm font-medium">Parent's Address:</label>
+                        <input type="text" id="parent_address" name="parent_address" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->address }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_city" class="block text-sm font-medium">Parent's City:</label>
+                        <input type="text" id="parent_city" name="parent_city" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->city }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_state" class="block text-sm font-medium">Parent's State:</label>
+                        <input type="text" id="parent_state" name="parent_state" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->state }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_zip" class="block text-sm font-medium">Parent's Zip:</label>
+                        <input type="text" id="parent_zip" name="parent_zip" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->zip }}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="parent_country" class="block text-sm font-medium">Parent's Country:</label>
+                        <input type="text" id="parent_country" name="parent_country" required
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                               value="{{ $parents->country }}">
+                    </div>
+
 
                     <h2 class="text-xl font-semibold mb-4">Enrollment Details</h2>
                     <div class="mb-2">

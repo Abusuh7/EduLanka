@@ -31,6 +31,8 @@ class User extends Authenticatable
         'password',
         'role',
         'status',
+        'reason',
+        'comment'
         // "fname",
         // "lname",
         // "dob",

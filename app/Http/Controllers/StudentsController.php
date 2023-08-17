@@ -250,6 +250,12 @@ class StudentsController extends Controller
         //pass the fname and lname to the users table name column
         $users->name = $request->input('fname') . ' ' . $request->input('lname'); //This is a issue for teacher stuff mail
 
+        //mail with fname and lname
+        $users->email = strtolower($request->input('fname') . $request->input('lname')) . '@students.edulanka.lk';
+
+        //pass the category to the role
+        $users->role = $request->input('category');
+
 
         $students->fname = $request->input('fname');
         $students->lname = $request->input('lname');
@@ -291,8 +297,43 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function terminatePrompt(string $id)
     {
-        //Check with team **********
+            //pass the user id to the view
+            //find the student by id
+            $users = User::find($id);
+            return view('admin.prompts.terminate-prompt', compact('users'));
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function terminate(Request $request, $id)
+{
+    // Validations
+    $request->validate([
+        'reason' => 'required|string',
+        'comment' => 'required|string',
+    ]);
+
+    // Find the student by id
+    $users = User::find($id);
+
+    // Make the enrollment status to 0 default
+    $users->status = 'terminated';
+
+   //pass the reason and comment to the users table make it lowercase
+    $users->reason = strtolower($request->input('reason'));
+    $users->comment = strtolower($request->input('comment'));
+
+
+    // Save the details
+    $users->save();
+
+    // refresh the page
+    return redirect()->back()->with('success', 'Student terminated successfully.');
+
+
+}
 }

@@ -50,11 +50,21 @@ Route::get('/admin/users', function () {
     return view('admin.user-dashboard');
 })->name('adminUsers');
 
+//view when admin history is clicked
+Route::get('/admin/history', function () {
+    return view('admin.history.user-history');
+})->name('adminHistory');
+
 
 //Admin views Choose in user dashboard (Teachers, Primary, Secondary)
 Route::get('/admin/users/teachers', [showCategoryController::class, 'teacher',])->name('displayTeacher');
 Route::get('/admin/users/primary', [showCategoryController::class, 'primary'])->name('displayPrimary');
 Route::get('/admin/users/secondary', [showCategoryController::class, 'secondary'])->name('displaySecondary');
+
+//Admion view Choose in history dashboard (Teachers, Primary, Secondary)
+Route::get('/admin/history/teachers', [showCategoryController::class, 'terminatedTeacher'])->name('displayTerminatedTeacher');
+Route::get('/admin/history/primary', [showCategoryController::class, 'terminatedPrimary'])->name('displayTerminatedPrimary');
+Route::get('/admin/history/secondary', [showCategoryController::class, 'terminatedSecondary'])->name('displayTerminatedSecondary');
 
 
 //For Student Registration
@@ -82,6 +92,14 @@ Route::put('/admin/teacher/profile/{id}/update', [TeachersController::class, 'up
 //Deactivate/Activate Student Users
 Route::get('/admin/student/{id}/deactivate', [StudentsController::class, 'deactivate'])->name('deactivateStudent');
 Route::get('/admin/student/{id}/activate', [StudentsController::class, 'activate'])->name('activateStudent');
+
+//Terminate Student Users
+Route::get('/admin/student/{id}/prompt', [StudentsController::class, 'terminatePrompt'])->name('terminateStudent');
+Route::put('/admin/student/{id}/terminate', [StudentsController::class, 'terminate'])->name('terminateStudentConfirm');
+
+//Terminate Teacher Users
+Route::get('/admin/teacher/{id}/prompt', [TeachersController::class, 'terminatePrompt'])->name('terminateTeacher');
+Route::put('/admin/teacher/{id}/terminate', [TeachersController::class, 'terminate'])->name('terminateTeacherConfirm');
 
 
 //Deactivate/Activate Teacher Users
