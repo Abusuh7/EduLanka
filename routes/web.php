@@ -41,9 +41,10 @@ Route::get('redirects', 'App\Http\Controllers\HomeController@index');
 //------------ADMIN ROUTES----------------
 
 //View when adimn dashboard is clicked
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('adminDashboard');
+// Route::get('/admin', function () {
+//     return view('admin.dashboard');
+// })->name('adminDashboard');
+Route::get('/admin', [StudentsController::class, 'index'])->name('adminDashboard');
 
 //View when admin users is clicked
 Route::get('/admin/users', function () {
@@ -54,6 +55,9 @@ Route::get('/admin/users', function () {
 Route::get('/admin/history', function () {
     return view('admin.history.user-history');
 })->name('adminHistory');
+
+
+
 
 
 //Admin views Choose in user dashboard (Teachers, Primary, Secondary)

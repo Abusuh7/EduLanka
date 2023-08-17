@@ -9,12 +9,20 @@
         <!-- Dashboard Section -->
         <div class="grid grid-cols-2 gap-6 mt-6 bg-blue-100 rounded-lg shadow p-6">
             <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-600">Number of Students</h2>
-                <p class="text-3xl font-bold">123</p> <!-- Replace with actual student count -->
+                <h2 class="text-xl font-semibold mb-4 text-blue-600">Total Number Of Students</h2>
+                <p class="text-3xl font-bold">{{ $totalStudents }}</p> <!-- Replace with actual student count -->
             </div>
             <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-600">Number of Teachers</h2>
-                <p class="text-3xl font-bold">45</p> <!-- Replace with actual teacher count -->
+                <h2 class="text-xl font-semibold mb-4 text-blue-600">Number of Primary Students</h2>
+                <p class="text-3xl font-bold">{{ $primaryStudentCount }}</p> <!-- Replace with actual student count -->
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600">Number of Secondary Students</h2>
+                <p class="text-3xl font-bold">{{ $secondaryStudentCount }}</p> <!-- Replace with actual teacher count -->
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600">Total Number Of Teachers</h2>
+                <p class="text-3xl font-bold">{{ $teacherCount }}</p> <!-- Replace with actual student count -->
             </div>
         </div>
 
