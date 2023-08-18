@@ -16,7 +16,7 @@ class TeachersController extends Controller
      */
     public function index()
     {
-        //
+        //Teachers count is passed through the student controller reffer student controller
     }
 
     /**

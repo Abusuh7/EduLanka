@@ -13,6 +13,7 @@ class HomeController extends Controller
         $role = Auth::user()->role;
 
         if ($role == 'admin') {
+            //This as soon as the admin logs in, the dashboard will display the total number of students and teachers
             // Get all the primary students count
             $students = User::where('role', 'primary')->get();
             $primaryStudentCount = $students->count();
@@ -31,6 +32,7 @@ class HomeController extends Controller
 
             return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
             // return view('admin.dashboard');
+
         } elseif ($role == 'teacher') {
             return view('teacher.dashboard');
         } elseif ($role == 'primary') {

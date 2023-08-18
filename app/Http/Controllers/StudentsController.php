@@ -20,6 +20,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
+        // This to ensure the admin dashboard in the nav bar is clicked displays to count of the students and teachers
         // Get all the primary students count
         $students = User::where('role', 'primary')->get();
         $primaryStudentCount = $students->count();

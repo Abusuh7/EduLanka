@@ -21,6 +21,9 @@
                     <x-nav-link href="{{ route('adminHistory') }}" :active="request()->routeIs('adminHistory')">
                         {{ __('History') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('adminBanner') }}" :active="request()->routeIs('adminBanner')">
+                        {{ __('Banner') }}
+                    </x-nav-link>
                 </div>
             </div>
 

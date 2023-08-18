@@ -44,7 +44,7 @@ Route::get('redirects', 'App\Http\Controllers\HomeController@index');
 // Route::get('/admin', function () {
 //     return view('admin.dashboard');
 // })->name('adminDashboard');
-Route::get('/admin', [StudentsController::class, 'index'])->name('adminDashboard');
+Route::get('/admin/dashboard', [StudentsController::class, 'index'])->name('adminDashboard');
 
 //View when admin users is clicked
 Route::get('/admin/users', function () {
@@ -56,16 +56,19 @@ Route::get('/admin/history', function () {
     return view('admin.history.user-history');
 })->name('adminHistory');
 
+//view when admin banner is clicked
+Route::get('/admin/banner', function () {
+    return view('admin.banners.new-banner');
+})->name('adminBanner');
 
 
 
-
-//Admin views Choose in user dashboard (Teachers, Primary, Secondary)
+//Admin views if user is clicked (Teachers, Primary, Secondary)
 Route::get('/admin/users/teachers', [showCategoryController::class, 'teacher',])->name('displayTeacher');
 Route::get('/admin/users/primary', [showCategoryController::class, 'primary'])->name('displayPrimary');
 Route::get('/admin/users/secondary', [showCategoryController::class, 'secondary'])->name('displaySecondary');
 
-//Admion view Choose in history dashboard (Teachers, Primary, Secondary)
+//Admion view if history clicked (Teachers, Primary, Secondary)
 Route::get('/admin/history/teachers', [showCategoryController::class, 'terminatedTeacher'])->name('displayTerminatedTeacher');
 Route::get('/admin/history/primary', [showCategoryController::class, 'terminatedPrimary'])->name('displayTerminatedPrimary');
 Route::get('/admin/history/secondary', [showCategoryController::class, 'terminatedSecondary'])->name('displayTerminatedSecondary');
