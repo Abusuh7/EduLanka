@@ -61,6 +61,66 @@ class BannerController extends Controller
 
     }
 
+    //chnage the status of the banner to active
+    public function activate(Request $request, $id)
+    {
+        // Get the banner
+        $banner = Banners::find($id);
+
+        // Update the status
+        $banner->status = 'active';
+
+        // Save the banner
+        $banner->save();
+
+        // Return the response
+        // return response()->json([
+        //     'message' => 'Banner status updated successfully',
+        //     'banner' => $banner
+        // ], 200);
+
+        return redirect()->back()->with('message', 'Banner status updated successfully');
+    }
+
+    //chnage the status of the banner to inactive
+    public function deactivate(Request $request, $id)
+    {
+        // Get the banner
+        $banner = Banners::find($id);
+
+        // Update the status
+        $banner->status = 'inactive';
+
+        // Save the banner
+        $banner->save();
+
+        // Return the response
+        // return response()->json([
+        //     'message' => 'Banner status updated successfully',
+        //     'banner' => $banner
+        // ], 200);
+
+        return redirect()->back()->with('message', 'Banner status updated successfully');
+    }
+
+    //Delete the banner
+    public function delete(Request $request, $id)
+    {
+        // Get the banner
+        $banner = Banners::find($id);
+
+        // Delete the banner
+        $banner->delete();
+
+        // Return the response
+        // return response()->json([
+        //     'message' => 'Banner deleted successfully',
+        //     'banner' => $banner
+        // ], 200);
+
+        return redirect()->back()->with('message', 'Banner deleted successfully');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -77,27 +137,65 @@ class BannerController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    //Eddit the banner
+    public function edit(Request $request, $id)
     {
-        //
+        // Get the banner
+        $banner = Banners::find($id);
+
+        // Return the response
+        // return response()->json([
+        //     'message' => 'Banner fetched successfully',
+        //     'banner' => $banner
+        // ], 200);
+
+        return view('admin.banners.edit-banner', compact('banner'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //Update the banner
+    public function update(Request $request, $id)
     {
-        //
+        // Get the banner
+        $banner = Banners::find($id);
+
+        // Validate the form data with banner details
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'caption' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'button_name' => 'required|string',
+            'link' => 'required|string',
+            'visibility' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        //Store the image if the user has uploaded a new image only
+        if($request->hasFile('image')){
+            $image_path = $request->file('image')->store('banner-photos', 'public');
+        }else{
+            $image_path = $banner->image;
+        }
+
+        // Update the banner
+        $banner->title = $request->input('title');
+        $banner->caption = $request->input('caption');
+        $banner->image = $image_path;
+        $banner->button_name = $request->input('button_name');
+        $banner->link = $request->input('link');
+        $banner->visibility = $request->input('visibility');
+        $banner->status = $request->input('status');
+
+        // Save the banner
+        $banner->save();
+
+        // Return the response
+        // return response()->json([
+        //     'message' => 'Banner updated successfully',
+        //     'banner' => $banner
+        // ], 200);
+
+        return redirect()->back()->with('message', 'Banner updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
 }

@@ -107,6 +107,12 @@ Route::put('/admin/student/{id}/terminate', [StudentsController::class, 'termina
 Route::get('/admin/teacher/{id}/prompt', [TeachersController::class, 'terminatePrompt'])->name('terminateTeacher');
 Route::put('/admin/teacher/{id}/terminate', [TeachersController::class, 'terminate'])->name('terminateTeacherConfirm');
 
+//Rollback Student Users
+Route::get('/admin/student/{id}/rollback', [StudentsController::class, 'rollback'])->name('rollbackStudent');
+
+//Rollback Teacher Users
+Route::get('/admin/teacher/{id}/rollback', [TeachersController::class, 'rollback'])->name('rollbackTeacher');
+
 
 //Deactivate/Activate Teacher Users
 Route::get('/admin/teacher/{id}/deactivate', [TeachersController::class, 'deactivate'])->name('deactivateTeacher');
@@ -115,6 +121,11 @@ Route::get('/admin/teacher/{id}/activate', [TeachersController::class, 'activate
 
 //Admin banner routes
 Route::post('/admin/bannerCreate', [BannerController::class, 'create'])->name('bannerCreate');
+Route::get('/admin/banner/{id}/deactivate', [BannerController::class, 'deactivate'])->name('deactivateBanner');
+Route::get('/admin/banner/{id}/activate', [BannerController::class, 'activate'])->name('activateBanner');
+Route::get('/admin/banner/{id}/delete', [BannerController::class, 'delete'])->name('deleteBanner');
+Route::get('/admin/banner/{id}/edit', [BannerController::class, 'edit'])->name('editBanner');
+Route::put('/admin/banner/{id}/update', [BannerController::class, 'update'])->name('updateBanner');
 
 
 

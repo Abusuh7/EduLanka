@@ -27,6 +27,15 @@
                                 </span>
                             </b>
                         </div>
+
+                            {{-- THe reason and comment is displayed if the status is terminated --}}
+                            @if ($users->status === 'terminated')
+                                <div class="font-semibold text-gray-600">Reason</div>
+                                <div class="bg-gray-200 p-2 rounded-md">{{ $users->reason }}</div>
+                                <div class="font-semibold text-gray-600">Comment</div>
+                                <div class="bg-gray-200 p-2 rounded-md">{{ $users->comment }}</div>
+                            @endif
+                            
                     </dl>
                 </div>
 

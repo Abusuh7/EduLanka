@@ -228,7 +228,7 @@ class StudentsController extends Controller
      */
     public function updatestudentProfile(Request $request, $id)
     {
-         $request->validate([
+        $request->validate([
             'fname' => 'required|string',
             'lname' => 'required|string',
             'dob' => 'required|date',
@@ -305,10 +305,6 @@ class StudentsController extends Controller
 
         //redirect to the same page
         return redirect()->back()->with('success', 'Student details updated successfully.');
-
-
-
-
     }
 
     /**
@@ -316,10 +312,10 @@ class StudentsController extends Controller
      */
     public function terminatePrompt(string $id)
     {
-            //pass the user id to the view
-            //find the student by id
-            $users = User::find($id);
-            return view('admin.prompts.terminate-prompt', compact('users'));
+        //pass the user id to the view
+        //find the student by id
+        $users = User::find($id);
+        return view('admin.prompts.terminate-prompt', compact('users'));
     }
 
 
@@ -327,30 +323,42 @@ class StudentsController extends Controller
      * Remove the specified resource from storage.
      */
     public function terminate(Request $request, $id)
-{
-    // Validations
-    $request->validate([
-        'reason' => 'required|string',
-        'comment' => 'required|string',
-    ]);
+    {
+        // Validations
+        $request->validate([
+            'reason' => 'required|string',
+            'comment' => 'required|string',
+        ]);
 
-    // Find the student by id
-    $users = User::find($id);
+        // Find the student by id
+        $users = User::find($id);
 
-    // Make the enrollment status to 0 default
-    $users->status = 'terminated';
+        // Make the enrollment status to 0 default
+        $users->status = 'terminated';
 
-   //pass the reason and comment to the users table make it lowercase
-    $users->reason = strtolower($request->input('reason'));
-    $users->comment = strtolower($request->input('comment'));
-
-
-    // Save the details
-    $users->save();
-
-    // refresh the page
-    return redirect()->back()->with('success', 'Student terminated successfully.');
+        //pass the reason and comment to the users table make it lowercase
+        $users->reason = strtolower($request->input('reason'));
+        $users->comment = strtolower($request->input('comment'));
 
 
-}
+        // Save the details
+        $users->save();
+
+        // refresh the page
+        return redirect()->back()->with('success', 'Student terminated successfully.');
+    }
+
+
+    //Rollback the terminated student
+    public function rollback($id)
+    {
+        //find the student by id
+        $users = User::find($id);
+        //update the status to 1
+        $users->status = 'activated';
+        //save the student
+        $users->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Student activated successfully.');
+    }
 }

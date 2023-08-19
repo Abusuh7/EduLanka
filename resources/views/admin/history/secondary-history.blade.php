@@ -54,12 +54,8 @@
                                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                                             <a href="{{ route('studentProfile', $secondary->id) }}" class="text-indigo-600 hover:text-indigo-900">View Profile</a>
                                             <a href="{{ route('editStudentProfile', $secondary->id) }}" class="ml-2 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            @if ($secondary->status === 'deactivated')
-                                                <a href="{{ route('activateStudent', $secondary->id) }}" class="ml-2 text-green-600 hover:text-green-900">Activate</a>
-                                            @else
-                                                <a href="{{ route('deactivateStudent', $secondary->id) }}" class="ml-2 text-red-600 hover:text-red-900">Deactivate</a>
-                                            @endif
-                                            <a href="{{ route('terminateStudent', $secondary->id) }}" class="ml-2 text-red-600 hover:text-red-900">Terminate</a>
+
+                                            <a href="{{ route('rollbackStudent', $secondary->id) }}" class="ml-2 text-red-600 hover:text-red-900">Rollback</a>
                                         </td>
                                     </tr>
                                 @endforeach

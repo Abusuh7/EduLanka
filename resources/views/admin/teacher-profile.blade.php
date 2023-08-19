@@ -35,6 +35,18 @@
                                 </b>
                             </td>
                         </tr>
+
+                        {{-- THe reason and comment is displayed if the status is terminated --}}
+                        @if ($teacher->status === 'terminated')
+                            <tr>
+                                <td class="font-semibold text-gray-600 border px-4 py-2">Reason:</td>
+                                <td class="border px-4 py-2">{{ $teacher->reason }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-gray-600 border px-4 py-2">Comment:</td>
+                                <td class="border px-4 py-2">{{ $teacher->comment }}</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
 

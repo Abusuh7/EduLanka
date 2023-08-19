@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Banner Preview') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
 
     {{-- Banner --}}
@@ -272,12 +272,12 @@
                                 </td>
                                 <td class="px-4 py-3 flex space-x-2">
                                     @if ($banner->status == 'active')
-                                        <a href="#" class="flex items-center bg-yellow-500 text-white px-3 py-2 rounded-md hover:bg-yellow-600 transition duration-300">Deactivate</a>
+                                        <a href="{{ route('deactivateBanner', $banner->id) }}" class="flex items-center bg-yellow-500 text-white px-3 py-2 rounded-md hover:bg-yellow-600 transition duration-300">Deactivate</a>
                                     @else
-                                        <a href="#" class="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition duration-300">Activate</a>
+                                        <a href="{{ route('activateBanner', $banner->id) }}" class="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition duration-300">Activate</a>
                                     @endif
-                                    <a href="#" class="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition duration-300">Edit</a>
-                                    <a href="#" class="flex items-center bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 transition duration-300">Delete</a>
+                                    <a href="{{ route('editBanner', $banner->id) }}" class="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition duration-300">Edit</a>
+                                    <a href="{{ route('deleteBanner', $banner->id) }}" class="flex items-center bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 transition duration-300">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
