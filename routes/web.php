@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\showCategoryController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
@@ -57,9 +58,7 @@ Route::get('/admin/history', function () {
 })->name('adminHistory');
 
 //view when admin banner is clicked
-Route::get('/admin/banner', function () {
-    return view('admin.banners.new-banner');
-})->name('adminBanner');
+Route::get('/admin/banner', [BannerController::class, 'index'])->name('adminBanner');
 
 
 
@@ -112,6 +111,10 @@ Route::put('/admin/teacher/{id}/terminate', [TeachersController::class, 'termina
 //Deactivate/Activate Teacher Users
 Route::get('/admin/teacher/{id}/deactivate', [TeachersController::class, 'deactivate'])->name('deactivateTeacher');
 Route::get('/admin/teacher/{id}/activate', [TeachersController::class, 'activate'])->name('activateTeacher');
+
+
+//Admin banner routes
+Route::post('/admin/bannerCreate', [BannerController::class, 'create'])->name('bannerCreate');
 
 
 

@@ -45,5 +45,6 @@
 
         @livewireScripts
         <script src="/js/adminDashboard.js"></script>
+        <script src="/js/adminBanner.js"></script>
     </body>
 </html>
