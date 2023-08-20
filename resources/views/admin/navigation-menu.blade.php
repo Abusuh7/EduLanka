@@ -24,6 +24,9 @@
                     <x-nav-link href="{{ route('adminBanner') }}" :active="request()->routeIs('adminBanner')">
                         {{ __('Banner') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('adminDiscussionRoom') }}" :active="request()->routeIs('adminDiscussionRoom')">
+                        {{ __('Discussion Room') }}
+                    </x-nav-link>
                 </div>
             </div>
 

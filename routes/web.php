@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\DiscussionRoomController;
+use App\Http\Controllers\PrimaryStudentsController;
+use App\Http\Controllers\SecondaryStudentsController;
 use App\Http\Controllers\showCategoryController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
@@ -59,6 +62,11 @@ Route::get('/admin/history', function () {
 
 //view when admin banner is clicked
 Route::get('/admin/banner', [BannerController::class, 'index'])->name('adminBanner');
+
+//view when admin discussion room is clicked
+Route::get('/admin/discussion-room', [DiscussionRoomController::class, 'index'])->name('adminDiscussionRoom');
+
+
 
 
 
@@ -137,7 +145,19 @@ Route::put('/admin/banner/{id}/update', [BannerController::class, 'update'])->na
 
 
 
-//-----------------STUDENT ROUTES----------------
+//-----------------PPRIMARY STUDENT ROUTES----------------
+
+
+
+
+//------------SECONDARY STUDENT ROUTES----------------
+
+
+//When student dashboard is clicked
+Route::get('/student/dashboard', [SecondaryStudentsController::class, 'dashboard'])->name('studentDashboard');
+
+//When discussioan room is clicked
+Route::get('/student/discussion-room', [SecondaryStudentsController::class, 'discussionRoom'])->name('studentDiscussionRoom');
 
 
 

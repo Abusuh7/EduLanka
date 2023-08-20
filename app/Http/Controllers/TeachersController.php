@@ -256,13 +256,16 @@ class TeachersController extends Controller
         return redirect()->back()->with('success', 'Student terminated successfully.');
     }
 
-    //Rollback terminated teacher
+    //Rollback terminated teacher and make the reaosn and comment to null
     public function rollback($id)
     {
         //find the teacher by id
         $teacher = User::find($id);
         //update the status to active
         $teacher->status = 'activated';
+        //update the reason and comment to null
+        $teacher->reason = null;
+        $teacher->comment = null;
         //save the teacher
         $teacher->save();
         //redirect to the same page

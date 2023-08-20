@@ -349,16 +349,19 @@ class StudentsController extends Controller
     }
 
 
-    //Rollback the terminated student
+    //Rollback the terminated student and make the reason and comment to null
     public function rollback($id)
     {
         //find the student by id
         $users = User::find($id);
         //update the status to 1
         $users->status = 'activated';
+        //make the reason and comment to null
+        $users->reason = null;
+        $users->comment = null;
         //save the student
         $users->save();
         //redirect to the same page
-        return redirect()->back()->with('success', 'Student activated successfully.');
+        return redirect()->back()->with('success', 'Student rollbacked successfully.');
     }
 }
