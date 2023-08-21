@@ -46,5 +46,6 @@
         @livewireScripts
         <script src="/js/adminDashboard.js"></script>
         <script src="/js/adminBanner.js"></script>
+        <script src="/js/secondary-students-js/discussionRoom.js"></script>
     </body>
 </html>
