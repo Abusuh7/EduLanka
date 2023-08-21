@@ -64,7 +64,7 @@ Route::get('/admin/history', function () {
 Route::get('/admin/banner', [BannerController::class, 'index'])->name('adminBanner');
 
 //view when admin discussion room is clicked
-Route::get('/admin/discussion-room', [DiscussionRoomController::class, 'index'])->name('adminDiscussionRoom');
+Route::get('/admin/discussion-room', [DiscussionRoomController::class, 'adminView'])->name('adminDiscussionRoom');
 
 
 
@@ -158,6 +158,11 @@ Route::get('/student/dashboard', [SecondaryStudentsController::class, 'dashboard
 
 //When discussioan room is clicked
 Route::get('/student/discussion-room', [SecondaryStudentsController::class, 'discussionRoom'])->name('studentDiscussionRoom');
+
+
+
+//Discussion Room Booking
+Route::post('/student/discussion-room/booking', [DiscussionRoomController::class, 'studentCreate'])->name('studentCreate');
 
 
 

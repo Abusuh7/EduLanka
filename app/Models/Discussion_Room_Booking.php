@@ -9,7 +9,7 @@ class Discussion_Room_Booking extends Model
 {
     use HasFactory;
 
-    protected $table = 'discussion_room_booking';
+    protected $table = 'discussion_room_bookings';
     protected $fillable = [
         "student_id",
         "teacher_id", //added
@@ -24,5 +24,10 @@ class Discussion_Room_Booking extends Model
     public function students()
     {
         return $this->belongsTo(Students::class, 'student_id');
+    }
+
+    public function teachers()
+    {
+        return $this->belongsTo(Teachers::class, 'teacher_id');
     }
 }
