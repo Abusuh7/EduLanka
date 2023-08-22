@@ -162,7 +162,7 @@ Route::get('/student/discussion-room', [SecondaryStudentsController::class, 'dis
 
 
 //Discussion Room Booking
-Route::post('/student/discussion-room/booking', [DiscussionRoomController::class, 'studentCreate'])->name('studentCreate');
+Route::post('/student/discussion-room', [DiscussionRoomController::class, 'studentCreate'])->name('CreateRoomBooking');
 
 
 

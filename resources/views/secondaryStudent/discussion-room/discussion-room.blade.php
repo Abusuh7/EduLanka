@@ -5,20 +5,35 @@
         </h2>
     </x-slot>
 
-
+    {{--
     @if ($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             @foreach ($errors->all() as $error)
                 <p>{{ $error }}</p>
             @endforeach
         </div>
-    @endif
-
-    @if (session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            {{ session('success') }}
+    @endif --}}
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
+
+    {{-- @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md mb-4">
+            {{ session('success') }}
+        </div>
+    @endif --}}
+    @if (isset($success))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md mb-4">
+            {{ $success }}
+        </div>
+    @endif
+
 
     <div class="grid grid-cols-3 gap-4">
         {{-- First Card --}}
@@ -43,6 +58,9 @@
                 </p>
                 <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
                     Availability: <span class="text-green-500">Available</span>
+                </p>
+                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                    Status: <span class="text-green-500">{{ $all->status }}</span>
                 </p>
                 <button type="button" id="discussionRoom1Btn"
                     class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
@@ -138,7 +156,7 @@
             </button>
         </div>
 
-        <form action="{{ route('studentCreate') }}" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBooking') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>
@@ -208,7 +226,7 @@
             </button>
         </div>
 
-        <form action="" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBooking') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>
@@ -279,7 +297,7 @@
             </button>
         </div>
 
-        <form action="" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBooking') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>
