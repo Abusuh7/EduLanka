@@ -156,12 +156,13 @@ Route::put('/admin/banner/{id}/update', [BannerController::class, 'update'])->na
 //When student dashboard is clicked
 Route::get('/student/dashboard', [SecondaryStudentsController::class, 'dashboard'])->name('studentDashboard');
 
-//When discussioan room is clicked
-Route::get('/student/discussion-room', [SecondaryStudentsController::class, 'discussionRoom'])->name('studentDiscussionRoom');
+//When reservations is clicked
+Route::get('/student/reservations', [SecondaryStudentsController::class, 'reservations'])->name('studentReservations');
 
 
 
 //Discussion Room Booking
+Route::get('/student/discussion-room', [DiscussionRoomController::class, 'studentView'])->name('studentDiscussionRoom');
 Route::post('/student/discussion-room', [DiscussionRoomController::class, 'studentCreate'])->name('CreateRoomBooking');
 
 

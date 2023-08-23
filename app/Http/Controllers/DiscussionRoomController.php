@@ -16,6 +16,11 @@ class DiscussionRoomController extends Controller
         return view('admin.discussion-room.discussion-room');
     }
 
+    public function studentView()
+    {
+        return view('secondaryStudent.reservations.discussion-room');
+    }
+
 
     //Create a new discussion room booking for Primary and Secomndary student
     public function studentCreate(Request $request)
@@ -70,14 +75,9 @@ class DiscussionRoomController extends Controller
             'status' => 'pending',
         ]);
 
-        // $all = Discussion_Room_Booking::all();
-
-        // booking status  of this user
-        
-
         $success = 'Discussion Room Booking Successful';
 
-        return view('secondaryStudent.discussion-room.discussion-room', compact( 'success'));
+        return view('secondaryStudent.reservations.discussion-room', compact('success'));
 
         // return redirect()->route('studentDiscussionRoom')->with('success', 'Discussion Room Booking Successful');
 

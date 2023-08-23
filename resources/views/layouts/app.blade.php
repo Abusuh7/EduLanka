@@ -47,5 +47,6 @@
         <script src="/js/adminDashboard.js"></script>
         <script src="/js/adminBanner.js"></script>
         <script src="/js/secondary-students-js/discussionRoom.js"></script>
+        <script src="/js/secondary-students-js/reservationDashboard.js"></script>
     </body>
 </html>
