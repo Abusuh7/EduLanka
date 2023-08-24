@@ -35,7 +35,7 @@ class TeachersController extends Controller
         $user = auth()->user();
         $teacher_id = $user->teacher_id;
         //Get the booking today only with end time less than or equal to current time
-        $discussionRoomBookingsToday = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', today())->whereTime('end_time', '>=', now())->get();
+        $discussionRoomBookingsToday = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', today())->whereTime('end_time', '>', now())->get();
         //Get the upcomming booking after today other than today
         $discussionRoomBookingsUpcomming = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', '>', today())->get();
         //Get the past booking from today when the end time is greater than current time
