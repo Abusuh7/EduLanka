@@ -15,7 +15,7 @@ class SecondaryStudentsController extends Controller
         return view('secondaryStudent.dashboard');
     }
 
-    public function reservations()
+    public function secondaryReservations()
     {
         //get the current user and get his student id then pass the discussion room bookings to the view
         $user = auth()->user();

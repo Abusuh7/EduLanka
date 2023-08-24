@@ -141,11 +141,32 @@ Route::put('/admin/banner/{id}/update', [BannerController::class, 'update'])->na
 
 //------------TEACHER ROUTES----------------
 
+//When teacher dashboard is clicked
+Route::get('/teacher/dashboard', [TeachersController::class, 'dashboard'])->name('teacherDashboard');
+
+//When reservations is clicked
+Route::get('/teacher/reservations', [TeachersController::class, 'teacherReservations'])->name('teacherReservations');
+
+//Discussion Room Booking
+Route::get('/teacher/discussion-room', [DiscussionRoomController::class, 'teacherView'])->name('teacherDiscussionRoom');
+Route::post('/teacher/discussion-room', [DiscussionRoomController::class, 'teacherCreate'])->name('CreateRoomBookingTeacher');
+
 
 
 
 
 //-----------------PPRIMARY STUDENT ROUTES----------------
+
+//When student dashboard is clicked
+Route::get('/primary/dashboard', [PrimaryStudentsController::class, 'dashboard'])->name('primaryStudentDashboard');
+
+//When reservations is clicked
+Route::get('/primary/reservations', [PrimaryStudentsController::class, 'primaryReservations'])->name('primaryStudentReservations');
+
+
+//Discussion Room Booking
+Route::get('/primary/discussion-room', [DiscussionRoomController::class, 'primaryStudentView'])->name('StudentDiscussionRoomPrimary');
+Route::post('/primary/discussion-room', [DiscussionRoomController::class, 'primaryStudentCreate'])->name('CreateRoomBookingPrimary');
 
 
 
@@ -154,16 +175,16 @@ Route::put('/admin/banner/{id}/update', [BannerController::class, 'update'])->na
 
 
 //When student dashboard is clicked
-Route::get('/student/dashboard', [SecondaryStudentsController::class, 'dashboard'])->name('studentDashboard');
+Route::get('/secondary/dashboard', [SecondaryStudentsController::class, 'dashboard'])->name('studentDashboard');
 
 //When reservations is clicked
-Route::get('/student/reservations', [SecondaryStudentsController::class, 'reservations'])->name('studentReservations');
+Route::get('/student/reservations', [SecondaryStudentsController::class, 'secondaryReservations'])->name('studentReservations');
 
 
 
 //Discussion Room Booking
-Route::get('/student/discussion-room', [DiscussionRoomController::class, 'studentView'])->name('studentDiscussionRoom');
-Route::post('/student/discussion-room', [DiscussionRoomController::class, 'studentCreate'])->name('CreateRoomBooking');
+Route::get('/student/discussion-room', [DiscussionRoomController::class, 'secondaryStudentView'])->name('studentDiscussionRoomSecondary');
+Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secondaryStudentCreate'])->name('CreateRoomBookingSecondary');
 
 
 

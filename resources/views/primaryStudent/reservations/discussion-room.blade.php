@@ -156,7 +156,7 @@
             </button>
         </div>
 
-        <form action="{{ route('CreateRoomBookingSecondary') }}" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBookingPrimary') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>
@@ -226,7 +226,7 @@
             </button>
         </div>
 
-        <form action="{{ route('CreateRoomBookingSecondary') }}" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBookingPrimary') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>
@@ -297,7 +297,7 @@
             </button>
         </div>
 
-        <form action="{{ route('CreateRoomBookingSecondary') }}" method="POST" class="mt-6">
+        <form action="{{ route('CreateRoomBookingPrimary') }}" method="POST" class="mt-6">
             @csrf
             <!-- ... (rest of your form fields) ... -->
             <div>

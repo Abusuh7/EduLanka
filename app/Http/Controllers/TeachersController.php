@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discussion_Room_Booking;
 use App\Models\Teacher_Enrollment;
 use App\Models\Teachers;
 use App\Models\User;
@@ -14,9 +15,27 @@ class TeachersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dashboard()
     {
-        //Teachers count is passed through the student controller reffer student controller
+        return view('teacher.dashboard');
+    }
+
+    public function teacherReservations()
+    {
+        //get the current user and get his student id then pass the discussion room bookings to the view
+        $user = auth()->user();
+        $teacher_id = $user->teacher_id;
+        //Get the booking today only with end time less than or equal to current time
+        $discussionRoomBookingsToday = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', today())->whereTime('end_time', '>=', now())->get();
+        //Get the upcomming booking after today other than today
+        $discussionRoomBookingsUpcomming = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', '>', today())->get();
+        //Get the past booking from today when the end time is greater than current time
+        $discussionRoomBookingsPast = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', '<', today())->get();
+
+        // $discussionRoomBookings = Discussion_Room_Booking::where('student_id', $student_id)->get();
+
+        return view('teacher.reservations.reservations-dashboard', compact('discussionRoomBookingsToday', 'discussionRoomBookingsUpcomming', 'discussionRoomBookingsPast'));
+        // return view('secondaryStudent.reservations.reservations-dashboard');
     }
 
     /**
