@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banners;
 use App\Models\Discussion_Room_Booking;
 use App\Models\Teacher_Enrollment;
 use App\Models\Teachers;
@@ -17,7 +18,15 @@ class TeachersController extends Controller
      */
     public function dashboard()
     {
-        return view('teacher.dashboard');
+        // Get all the banners whicxh are active and has a visibity of secondarystu or bothstu or all and compact them
+        $banners = Banners::where('status', 'active')->where('visibility', 'teacher')->orWhere('visibility', 'all')->get();
+        //  $banners = Banners::where('status', 'active')->get();
+
+         // Get all the banners
+         $all = Banners::all();
+
+         return view('teacher.dashboard', compact('banners', 'all'));
+
     }
 
     public function teacherReservations()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banners;
 use App\Models\Discussion_Room_Booking;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,15 @@ class SecondaryStudentsController extends Controller
      */
     public function dashboard()
     {
-        return view('secondaryStudent.dashboard');
+         // Get all the banners whicxh are active and has a visibity of secondarystu or bothstu or all and compact them
+            $banners = Banners::where('status', 'active')->where('visibility', 'secondarystu')->orWhere('visibility', 'bothstu')->orWhere('visibility', 'all')->get();
+        //  $banners = Banners::where('status', 'active')->get();
+
+         // Get all the banners
+         $all = Banners::all();
+
+         return view('secondaryStudent.dashboard', compact('banners', 'all'));
+
     }
 
     public function secondaryReservations()
