@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banners;
+use App\Models\Discussion_Room_Booking;
 use App\Models\Teacher_Enrollment;
 use App\Models\Teachers;
 use App\Models\User;
@@ -14,9 +16,35 @@ class TeachersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dashboard()
     {
-        //
+        // Get all the banners whicxh are active and has a visibity of secondarystu or bothstu or all and compact them
+        $banners = Banners::where('status', 'active')->where('visibility', 'teacher')->orWhere('visibility', 'all')->get();
+        //  $banners = Banners::where('status', 'active')->get();
+
+         // Get all the banners
+         $all = Banners::all();
+
+         return view('teacher.dashboard', compact('banners', 'all'));
+
+    }
+
+    public function teacherReservations()
+    {
+        //get the current user and get his student id then pass the discussion room bookings to the view
+        $user = auth()->user();
+        $teacher_id = $user->teacher_id;
+        //Get the booking today only with end time less than or equal to current time
+        $discussionRoomBookingsToday = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', today())->whereTime('end_time', '>', now())->get();
+        //Get the upcomming booking after today other than today
+        $discussionRoomBookingsUpcomming = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', '>', today())->get();
+        //Get the past booking from today when the end time is greater than current time
+        $discussionRoomBookingsPast = Discussion_Room_Booking::where('teacher_id', $teacher_id)->whereDate('date', '<', today())->get();
+
+        // $discussionRoomBookings = Discussion_Room_Booking::where('student_id', $student_id)->get();
+
+        return view('teacher.reservations.reservations-dashboard', compact('discussionRoomBookingsToday', 'discussionRoomBookingsUpcomming', 'discussionRoomBookingsPast'));
+        // return view('secondaryStudent.reservations.reservations-dashboard');
     }
 
     /**
@@ -221,8 +249,54 @@ class TeachersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function terminatePrompt(string $id)
     {
-        //
+        $users = User::find($id);
+        return view('admin.prompts.teacher-terminate', compact('users'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function terminate(Request $request, $id)
+    {
+        // Validations
+        $request->validate([
+            'reason' => 'required|string',
+            'comment' => 'required|string',
+        ]);
+
+        // Find the student by id
+        $users = User::find($id);
+
+        // Make the enrollment status to 0 default
+        $users->status = 'terminated';
+
+        //pass the reason and comment to the users table make it lowercase
+        $users->reason = strtolower($request->input('reason'));
+        $users->comment = strtolower($request->input('comment'));
+
+
+        // Save the details
+        $users->save();
+
+        // refresh the page
+        return redirect()->back()->with('success', 'Student terminated successfully.');
+    }
+
+    //Rollback terminated teacher and make the reaosn and comment to null
+    public function rollback($id)
+    {
+        //find the teacher by id
+        $teacher = User::find($id);
+        //update the status to active
+        $teacher->status = 'activated';
+        //update the reason and comment to null
+        $teacher->reason = null;
+        $teacher->comment = null;
+        //save the teacher
+        $teacher->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Teacher Activated successfully.');
     }
 }

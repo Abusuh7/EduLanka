@@ -18,8 +18,14 @@
                     <x-nav-link href="{{ route('adminUsers') }}" :active="request()->routeIs('adminUsers')">
                         {{ __('Users') }}
                     </x-nav-link>
-                    <x-nav-link href="" :active="request()->routeIs('adminUsers')">
+                    <x-nav-link href="{{ route('adminHistory') }}" :active="request()->routeIs('adminHistory')">
                         {{ __('History') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('adminBanner') }}" :active="request()->routeIs('adminBanner')">
+                        {{ __('Banner') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('adminDiscussionRoom') }}" :active="request()->routeIs('adminDiscussionRoom')">
+                        {{ __('Discussion Room') }}
                     </x-nav-link>
                 </div>
             </div>

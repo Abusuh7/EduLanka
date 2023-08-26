@@ -20,7 +20,24 @@ class StudentsController extends Controller
      */
     public function index()
     {
+        // This to ensure the admin dashboard in the nav bar is clicked displays to count of the students and teachers
+        // Get all the primary students count
+        $students = User::where('role', 'primary')->get();
+        $primaryStudentCount = $students->count();
 
+        // get all the secondary students count
+        $secondaryStudents = User::where('role', 'secondary')->get();
+        $secondaryStudentCount = $secondaryStudents->count();
+
+        // Get all the teachers count
+        $teachers = User::where('role', 'teacher')->get();
+        $teacherCount = $teachers->count();
+
+        // Get the total number of primary and secondary students
+        $totalStudents = $primaryStudentCount + $secondaryStudentCount;
+
+
+        return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
     }
 
     /**
@@ -211,7 +228,7 @@ class StudentsController extends Controller
      */
     public function updatestudentProfile(Request $request, $id)
     {
-         $request->validate([
+        $request->validate([
             'fname' => 'required|string',
             'lname' => 'required|string',
             'dob' => 'required|date',
@@ -250,6 +267,12 @@ class StudentsController extends Controller
         //pass the fname and lname to the users table name column
         $users->name = $request->input('fname') . ' ' . $request->input('lname'); //This is a issue for teacher stuff mail
 
+        //mail with fname and lname
+        $users->email = strtolower($request->input('fname') . $request->input('lname')) . '@students.edulanka.lk';
+
+        //pass the category to the role
+        $users->role = $request->input('category');
+
 
         $students->fname = $request->input('fname');
         $students->lname = $request->input('lname');
@@ -282,17 +305,63 @@ class StudentsController extends Controller
 
         //redirect to the same page
         return redirect()->back()->with('success', 'Student details updated successfully.');
-
-
-
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function terminatePrompt(string $id)
     {
-        //Check with team **********
+        //pass the user id to the view
+        //find the student by id
+        $users = User::find($id);
+        return view('admin.prompts.terminate-prompt', compact('users'));
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function terminate(Request $request, $id)
+    {
+        // Validations
+        $request->validate([
+            'reason' => 'required|string',
+            'comment' => 'required|string',
+        ]);
+
+        // Find the student by id
+        $users = User::find($id);
+
+        // Make the enrollment status to 0 default
+        $users->status = 'terminated';
+
+        //pass the reason and comment to the users table make it lowercase
+        $users->reason = strtolower($request->input('reason'));
+        $users->comment = strtolower($request->input('comment'));
+
+
+        // Save the details
+        $users->save();
+
+        // refresh the page
+        return redirect()->back()->with('success', 'Student terminated successfully.');
+    }
+
+
+    //Rollback the terminated student and make the reason and comment to null
+    public function rollback($id)
+    {
+        //find the student by id
+        $users = User::find($id);
+        //update the status to 1
+        $users->status = 'activated';
+        //make the reason and comment to null
+        $users->reason = null;
+        $users->comment = null;
+        //save the student
+        $users->save();
+        //redirect to the same page
+        return redirect()->back()->with('success', 'Student rollbacked successfully.');
     }
 }

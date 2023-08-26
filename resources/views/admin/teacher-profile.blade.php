@@ -29,12 +29,24 @@
                             <td class="font-semibold text-gray-600 border px-4 py-2">Status:</td>
                             <td class="border px-4 py-2">
                                 <b>
-                                    <span class="{{ $teacher->status === 'deactivated' ? 'text-red-500' : 'text-green-500' }}">
+                                    <span class="{{ $teacher->status === 'deactivated' || $teacher->status === 'terminated' ? 'text-red-500' : 'text-green-500' }}">
                                         {{ ucwords($teacher->status) }}
                                     </span>
                                 </b>
                             </td>
                         </tr>
+
+                        {{-- THe reason and comment is displayed if the status is terminated --}}
+                        @if ($teacher->status === 'terminated')
+                            <tr>
+                                <td class="font-semibold text-gray-600 border px-4 py-2">Reason:</td>
+                                <td class="border px-4 py-2">{{ $teacher->reason }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-gray-600 border px-4 py-2">Comment:</td>
+                                <td class="border px-4 py-2">{{ $teacher->comment }}</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
 
