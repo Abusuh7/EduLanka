@@ -5,25 +5,20 @@
         </h2>
     </x-slot>
 
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
-                <div class="flex justify-center">
-                    <a href="{{ route('studentDiscussionRoomSecondary') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Discussion Room Reservation
-                    </a>
-                </div>
-                <div class="flex justify-center mt-5">
-                    <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Books Reservation
-                    </a>
-                </div>
+            <div class="bg-white rounded-lg shadow-xl p-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <a href="{{ route('studentDiscussionRoomSecondary') }}"
+                   class="group bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex justify-center items-center">
+                    <span class="text-xl leading-none group-hover:text-white">Discussion Room Reservation</span>
+                </a>
+                <a href=""
+                   class="group bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex justify-center items-center">
+                    <span class="text-xl leading-none group-hover:text-white">Books Reservation</span>
+                </a>
             </div>
         </div>
     </div>
-
 
     {{-- Room Bookings --}}
     <div class="flex justify-center mt-5">

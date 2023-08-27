@@ -2,21 +2,32 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets/img/favicon.png') }}" alt="Logo" class="h-9 w-auto" />
+                <div class="shrink-0 flex items-center border border-gray-300 rounded-full p-1">
+                    <a href="{{ route('studentDashboard') }}">
+                        <img src="{{ asset('assets/img/favicon.png') }}" alt="Logo" class="h-9 w-auto rounded-full" />
                     </a>
                 </div>
+
+
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('studentDashboard') }}" :active="request()->routeIs('studentDashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('studentReservations') }}" :active="request()->routeIs('studentReservations')">
-                        {{ __('Reservations') }}
+                        {{ __('View Subjects') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('studentReservations') }}" :active="request()->routeIs('studentReservations')">
+                        {{ __('Progress Report') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('studentReservations') }}" :active="request()->routeIs('studentReservations')">
+                        {{ __('Attendance Record') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('studentReservations') }}" :active="request()->routeIs('studentReservations')">
+                        {{ __('Calendar') }}
                     </x-nav-link>
 
                 </div>

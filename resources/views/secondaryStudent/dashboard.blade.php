@@ -1,7 +1,32 @@
 <x-app-layout>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>secondary Student Dashboard</title>
+
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700&display=swap" rel="stylesheet">
+
+        <style>
+            .font-acme{
+                font-family: 'Acme', sans-serif;
+            }
+            .font-zen{
+                font-family: 'Zen Kaku Gothic New', sans-serif;
+            }
+
+        </style>
+    </head>
+
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Secondary Student Dashboard') }}
+        <h2 class="font-zen text-xl text-gray-800 leading-tight">
+            {{ __('Welcome,') }} {{ Auth::user()->name }}
         </h2>
     </x-slot>
 
@@ -109,6 +134,43 @@
             </button>
         </div>
         @endif
+
+    </div>
+
+
+    <div class="container mx-auto mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Learning Materials -->
+        <a href="{{ route('studentDashboard') }}" class="p-6 bg-blue-100 rounded-lg shadow-md hover:bg-blue-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Learning Materials</h2>
+            <p class="text-gray-600">Access and manage your learning materials.</p>
+        </a>
+
+
+        <!-- Attendance Record -->
+        <a href="{{ route('studentDashboard') }}" class="p-6 bg-green-100 rounded-lg shadow-md hover:bg-green-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Attendance Record</h2>
+            <p class="text-gray-600">Check your attendance history and records.</p>
+        </a>
+
+        <!-- Progress Report -->
+        <a href="{{ route('studentDashboard') }}" class="p-6 bg-yellow-100 rounded-lg shadow-md hover:bg-yellow-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Progress Report</h2>
+            <p class="text-gray-600">View your academic progress and performance.</p>
+        </a>
+
+        <!-- Book Discussion Room -->
+        <a href="{{ route('studentReservations') }}" class="p-6 bg-purple-100 rounded-lg shadow-md hover:bg-purple-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Book Discussion Room</h2>
+            <p class="text-gray-600">Make reservations online and stay productive.</p>
+        </a>
+
+        <!-- My Calendar -->
+        <a href="{{ route('studentDashboard') }}" class="p-6 bg-white rounded-lg shadow-md hover:bg-pink-100 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">School Calendar</h2>
+            <p class="text-gray-600">Stay organized with your schedule and upcoming events.</p>
+        </a>
+
+
 
     </div>
 

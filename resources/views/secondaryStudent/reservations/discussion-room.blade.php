@@ -35,111 +35,102 @@
     @endif
 
 
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-12">
         {{-- First Card --}}
-        <div
-            class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-            <!-- ... (content of the first card) ... -->
-            <div class="relative overflow-hidden bg-cover bg-no-repeat" data-te-ripple-init data-te-ripple-color="light">
-                <img class="rounded-t-lg" src="https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg" alt="" />
-                <a href="#!">
-                    <div
-                        class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-                    </div>
-                </a>
+        <div class="bg-white rounded-lg shadow-lg dark:bg-neutral-700">
+            <div class="relative overflow-hidden">
+                <img class="h-30 w-full object-cover rounded-t-lg" src="{{asset('assets/img/discussion room.jpeg')}}" alt="Room Image">
+                <a href="#" class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></a>
             </div>
-            <div class="p-6">
-                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    Room 1
+            <div class="bg-sky-950 p-6">
+                <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+                    Discussion Room 1
                 </h5>
                 <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    Facilities:
                 </p>
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Availability: <span class="text-green-500">Available</span>
-                </p>
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Status: <span class="text-green-500">Display Status</span>
-                </p>
-                <button type="button" id="discussionRoom1Btn"
-                    class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-ripple-init data-te-ripple-color="light">
-                    Make Booking
+                <ul class="mb-4 text-sm list-disc list-inside text-neutral-600 dark:text-neutral-300">
+                    <li>Number of chairs: 10</li>
+                    <li>Smartboard: Yes</li>
+                    <li>Computers: 5</li>
+                    <li>Glassboard: No</li>
+                    <li>Audio System: Available</li>
+                    <!-- Add other facilities here -->
+                </ul>
+                <div class="mb-4 text-sm">
+                    <span class="text-neutral-600 dark:text-neutral-300">Availability:</span>
+                    <span class="text-green-500">Available</span>
+                </div>
+                <button type="button" id="discussionRoom1Btn" class="inline-block rounded bg-yellow-200 px-6 py-2 text-xs font-medium uppercase text-black shadow-md transition duration-150 ease-in-out hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-blue-300 dark:hover:shadow">
+                    Book Now
                 </button>
             </div>
         </div>
 
         {{-- Second Card --}}
-        <div
-            class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-            <!-- ... (content of the second card) ... -->
-            <div class="relative overflow-hidden bg-cover bg-no-repeat" data-te-ripple-init
-                data-te-ripple-color="light">
-                <img class="rounded-t-lg" src="https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg"
-                    alt="" />
-                <a href="#!">
-                    <div
-                        class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-                    </div>
-                </a>
+        <div class="bg-white rounded-lg shadow-lg dark:bg-neutral-700">
+            <div class="relative overflow-hidden">
+                <img class="h-30 w-full object-cover rounded-t-lg" src="{{asset('assets/img/discussion room.jpeg')}}" alt="Room Image">
+                <a href="#" class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></a>
             </div>
-            <div class="p-6">
-                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    Room 2
+            <div class="bg-sky-950 p-6">
+                <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+                    Discussion Room 2
                 </h5>
                 <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    Facilities:
                 </p>
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Availability: <span class="text-green-500">Available</span>
-                </p>
-                <button type="button" id="discussionRoom2Btn"
-                    class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-ripple-init data-te-ripple-color="light">
-                    Make Booking
+                <ul class="mb-4 text-sm list-disc list-inside text-neutral-600 dark:text-neutral-300">
+                    <li>Number of chairs: 8</li>
+                    <li>Smartboard: Yes</li>
+                    <li>Computers: 2</li>
+                    <li>Glassboard: No</li>
+                    <li>Audio System: Available</li>
+                    <!-- Add other facilities here -->
+                </ul>
+
+                <div class="mb-4 text-sm">
+                    <span class="text-neutral-600 dark:text-neutral-300">Availability:</span>
+                    <span class="text-green-500">Available</span>
+                </div>
+                <button type="button" id="discussionRoom2Btn" class="inline-block rounded bg-yellow-200 px-6 py-2 text-xs font-medium uppercase text-black shadow-md transition duration-150 ease-in-out hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-blue-300 dark:hover:shadow">
+                    Book Now
                 </button>
             </div>
         </div>
 
         {{-- Third Card --}}
-        <div
-            class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-            <!-- ... (content of the third card) ... -->
-            <div class="relative overflow-hidden bg-cover bg-no-repeat" data-te-ripple-init
-                data-te-ripple-color="light">
-                <img class="rounded-t-lg" src="https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg"
-                    alt="" />
-                <a href="#!">
-                    <div
-                        class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-                    </div>
-                </a>
+        <div class="bg-white rounded-lg shadow-lg dark:bg-neutral-700">
+            <div class="relative overflow-hidden">
+                <img class="h-30 w-full object-cover rounded-t-lg" src="{{asset('assets/img/discussion room.jpeg')}}" alt="Room Image">
+                <a href="#" class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></a>
             </div>
-            <div class="p-6">
-                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    Room 3
+            <div class="bg-sky-950 p-6">
+                <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+                    Discussion Room 3
                 </h5>
                 <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    Facilities:
                 </p>
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    Availability: <span class="text-green-500">Available</span>
-                </p>
-                <button type="button" id="discussionRoom3Btn"
-                    class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-ripple-init data-te-ripple-color="light">
-                    Make Booking
+                <ul class="mb-4 text-sm list-disc list-inside text-neutral-600 dark:text-neutral-300">
+                    <li>Number of chairs: 5</li>
+                    <li>Smartboard: No</li>
+                    <li>Computers: 1</li>
+                    <li>Glassboard: Yes</li>
+                    <li>Audio System: Unavailable</li>
+                    <!-- Add other facilities here -->
+                </ul>
+
+                <div class="mb-4 text-sm">
+                    <span class="text-neutral-600 dark:text-neutral-300">Availability:</span>
+                    <span class="text-green-500">Available</span>
+                </div>
+                <button type="button" id="discussionRoom3Btn" class="inline-block rounded bg-yellow-200 px-6 py-2 text-xs font-medium uppercase text-black shadow-md transition duration-150 ease-in-out hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-blue-300 dark:hover:shadow">
+                    Book Now
                 </button>
             </div>
         </div>
-
-        {{-- ... (additional cards) ... --}}
     </div>
-
-
 
 
 
@@ -203,7 +194,7 @@
 
             <div class="mt-6">
                 <button type="submit"
-                    class="w-full bg-primary text-black px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="w-full bg-sky-950 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Submit
                 </button>
             </div>
@@ -274,7 +265,7 @@
 
             <div class="mt-6">
                 <button type="submit"
-                    class="w-full bg-primary text-black px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="w-full bg-sky-950 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Submit
                 </button>
             </div>
@@ -343,7 +334,7 @@
 
             <div class="mt-6">
                 <button type="submit"
-                    class="w-full bg-primary text-black px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="w-full bg-sky-950 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Submit
                 </button>
             </div>
