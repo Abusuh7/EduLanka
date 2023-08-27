@@ -9,14 +9,13 @@
 
     {{-- Ongoing Discussion Room Bookings --}}
     <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8 flex justify-between">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8 flex justify-between py-4">
             <h1 class="text-2xl font-bold">Ongoing Discussion Room Bookings</h1>
             <button type="button"
                     class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Create
                     Booking</button>
-
-
         </div>
+
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">

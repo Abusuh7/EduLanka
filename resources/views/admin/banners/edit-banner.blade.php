@@ -80,7 +80,7 @@
                     </div>
                     <div class="flex flex-col mt-4">
                         <button type="submit"
-                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Create
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Edit
                             Banner</button>
                     </div>
                 </form>
