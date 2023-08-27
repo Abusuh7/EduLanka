@@ -12,6 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
+        $status = Auth::user()->status;
 
         if ($role == 'admin') {
             //This as soon as the admin logs in, the dashboard will display the total number of students and teachers
@@ -34,7 +35,7 @@ class HomeController extends Controller
             return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
             // return view('admin.dashboard');
 
-        } elseif ($role == 'teacher') {
+        } elseif ($role == 'teacher' && $status == 'activated') {
 
             // Get all the banners whicxh are active and has a visibity of secondarystu or bothstu or all and compact them
         $banners = Banners::where('status', 'active')->where('visibility', 'teacher')->orWhere('visibility', 'all')->get();
@@ -45,7 +46,7 @@ class HomeController extends Controller
 
          return view('teacher.dashboard', compact('banners', 'all'));
 
-        } elseif ($role == 'primary') {
+        } elseif ($role == 'primary' && $status == 'activated') {
 
             // Get all the banners whicxh are active and has a visibity of secondarystu and compact them
             $banners = Banners::where('status', 'active')->where('visibility', 'primarystu')->orWhere('visibility', 'bothstu')->orWhere('visibility', 'all')->get();
@@ -56,7 +57,7 @@ class HomeController extends Controller
 
             return view('primaryStudent.dashboard', compact('banners', 'all'));
 
-        } else {
+        } elseif ($role == 'secondary' && $status == 'activated') {
 
             // Get all the banners whicxh are active and has a visibity of secondarystu and compact them
             $banners = Banners::where('status', 'active')->where('visibility', 'secondarystu')->orWhere('visibility', 'bothstu')->orWhere('visibility', 'all')->get();
@@ -66,6 +67,12 @@ class HomeController extends Controller
             $all = Banners::all();
 
             return view('secondaryStudent.dashboard', compact('banners', 'all'));
+
+        } elseif ($role == 'teacher' && $status == 'deactivated' || $role == 'primary' && $status == 'deactivated' || $role == 'secondary' && $status == 'deactivated') {
+            //return a error message to the user that the account has been deactivated
+            return view('deactivated-view');
+        } else {
+            return view('terminated-view');
         }
     }
 }

@@ -47,9 +47,9 @@
                 @auth
                     <a href="{{ url('/redirects') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:ring-1 focus:ring-gray-600">Dashboard</a>
                 @else
-                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:ring-1 focus:ring-red-500">Log in</a>
+                    <a href="{{ route('login') }}" class="font-semibold text-gray-400 hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:ring-1 focus:ring-red-500">Log in</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:ring-1 focus:ring-red-500">Register</a>
+                        <a href="{{ route('register') }}" class="font-semibold text-gray-400 hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:ring-1 focus:ring-red-500">Register</a>
                     @endif
                 @endauth
             @endif
