@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DiscussionRoomController;
 use App\Http\Controllers\PrimaryStudentsController;
@@ -204,3 +205,21 @@ Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secon
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
 
 
+
+Route::middleware(['auth'])->group(function () {
+    // Check if the authenticated user is a teacher or admin
+    Route::get('/attendance/create', function () {
+        if (auth()->check() && (auth()->user()->isTeacher() || auth()->user()->isAdmin())) {
+            // Only allow teachers and admins to access the attendance feature
+            return view('attendance.markAttendance');
+        }
+
+        // Redirect or display an error message for unauthorized users
+        return redirect('/')->with('error', 'Unauthorized');
+    })->name('attendance.create');
+
+    // Handle attendance form submission
+    Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+
+});
+Route::post('/attendance/get-students', [AttendanceController::class, 'getStudents'])->name('attendance.getStudents');

@@ -13,7 +13,24 @@ class DiscussionRoomController extends Controller
      */
     public function adminView()
     {
-        return view('admin.discussion-room.discussion-room');
+        //Get all the discussion room bookings for today,upcoming and past
+        $discussionRoomBookingsToday = Discussion_Room_Booking::whereDate('date', today())->whereTime('end_time', '>=', now())->get();
+        $discussionRoomBookingsUpcomming = Discussion_Room_Booking::whereDate('date', '>', today())->get();
+        $discussionRoomBookingsPast = Discussion_Room_Booking::whereDate('date', '<', today())->get();
+
+
+
+        //Get the booking today only with end time less than or equal to current time
+        // $discussionRoomBookingsToday = Discussion_Room_Booking::where('student_id', $student_id)->whereDate('date', today())->whereTime('end_time', '>=', now())->get();
+        // //Get the upcomming booking after today other than today
+        // $discussionRoomBookingsUpcomming = Discussion_Room_Booking::where('student_id', $student_id)->whereDate('date', '>', today())->get();
+        // //Get the past booking from today when the end time is greater than current time
+        // $discussionRoomBookingsPast = Discussion_Room_Booking::where('student_id', $student_id)->whereDate('date', '<', today())->get();
+
+        // $discussionRoomBookings = Discussion_Room_Booking::where('student_id', $student_id)->get();
+
+        return view('admin.discussion-room.discussion-room', compact('discussionRoomBookingsToday', 'discussionRoomBookingsUpcomming', 'discussionRoomBookingsPast'));
+        // return view('secondaryStudent.reservations.reservations-dashboard');
     }
 
     public function primaryStudentView()
