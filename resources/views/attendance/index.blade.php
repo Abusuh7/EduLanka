@@ -8,36 +8,46 @@
     <div class="container mx-auto p-4">
         <h2 class="text-2xl font-semibold mb-4">Mark Attendance</h2>
 
-        <form action="{{ route('attendance.store') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label for="student_id" class="block text-sm font-medium text-gray-700">Student:</label>
-                <select name="student_id" id="student_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
-                    <option value="">Select Student</option>
-                    @foreach ($students as $student)
-                        <option value="{{ $student->id }}">{{ $student->fname }} {{ $student->lname }}</option>
-                    @endforeach
-                </select>
-            </div>
+        <!-- Class Dropdown -->
+        <div class="mb-4">
+            <label for="class_id" class="block text-sm font-medium text-gray-700">Class:</label>
+            <select name="class_id" id="class_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <option value="">Select Class</option>
+                @foreach ($classes as $class)
+                    <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <div class="mb-4">
-                <label for="attendance_date" class="block text-sm font-medium text-gray-700">Attendance Date:</label>
-                <input type="date" name="attendance_date" id="attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
-            </div>
+        <!-- Grade Dropdown -->
+        <div class="mb-4">
+            <label for="grade_id" class="block text-sm font-medium text-gray-700">Grade:</label>
+            <select name="grade_id" id="grade_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <option value="">Select Grade</option>
+                @foreach ($grades as $grade)
+                    <option value="{{ $grade->id }}">{{ $grade->grade_name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <div class="mb-4">
-                <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
-                <select name="status" id="status" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
-                    <option value="present">Present</option>
-                    <option value="absent">Absent</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
-                    Save Attendance
-                </button>
-            </div>
-        </form>
+        <!-- "Go" Button to Load Students -->
+        <div class="mb-4">
+            <button type="button" id="load-students" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
+                Go
+            </button>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add an event listener to the "Go" button
+            document.getElementById('load-students').addEventListener('click', function () {
+                const selectedClass = document.getElementById('class_id').value;
+                const selectedGrade = document.getElementById('grade_id').value;
+
+                // Redirect to the students attendance page with selected class and grade as query parameters
+                window.location.href = `/admin/students-attendance?class_id=${selectedClass}&grade_id=${selectedGrade}`;
+            });
+        });
+    </script>
 </x-app-layout>

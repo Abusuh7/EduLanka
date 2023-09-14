@@ -211,5 +211,6 @@ Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secon
 //Route::get('admin/attendance', fn() => view('attendance.index'));
 Route::get('/admin/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 Route::post('/admin/attendance/post', [AttendanceController::class, 'store'])->name('attendance.store');
+Route::get('/admin/students-attendance', [AttendanceController::class, 'showStudentsAttendance'])->name('attendance.showStudents');
 
 

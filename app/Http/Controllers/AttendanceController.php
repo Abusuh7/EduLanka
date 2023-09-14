@@ -28,26 +28,40 @@ class AttendanceController extends Controller
     {
     }
 
+    public function showStudentsAttendance(Request $request)
+    {
+        $classId = $request->input('class_id');
+        $gradeId = $request->input('grade_id');
+
+        // Query your database to retrieve students based on $classId and $gradeId
+        $students = Students::where('class_id', $classId)->where('grade_id', $gradeId)->get();
+
+        return view('attendance.students_attendance', compact('students'));
+    }
+
     public function store(Request $request)
     {
         // Validate the form data
         $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'attendance_date' => 'required|date',
-            'status' => 'required|in:present,absent',
+            'attendance.*.student_id' => 'required|exists:students,id',
+            'attendance.*.attendance_date' => 'required|date',
+            'attendance.*.status' => 'required|in:present,absent',
         ]);
 
-        // Create an attendance record
-        Attendance::create([
-            'student_id' => $request->input('student_id'),
-            'attendance_date' => $request->input('attendance_date'),
-            'status' => $request->input('status'),
-            // Add 'teacher_id' if needed
-        ]);
+        // Loop through the submitted data and save attendance records
+        foreach ($request->input('attendance') as $attendanceData) {
+            Attendance::create([
+                'student_id' => $attendanceData['student_id'],
+                'attendance_date' => $attendanceData['attendance_date'],
+                'status' => $attendanceData['status'],
+                // Add 'teacher_id' if needed
+            ]);
+        }
 
         // Redirect back or to a success page
         return redirect()->back()->with('success', 'Attendance recorded successfully.');
     }
+
 
 
     public function show($id)
