@@ -21,10 +21,15 @@ return new class extends Migration
             $table->string('category');
             $table->unsignedBigInteger('parent_id');
             $table->unsignedBigInteger('enroll_id');
+            $table->unsignedBigInteger('class_id'); // Add class_id column
+            $table->unsignedBigInteger('grade_id'); // Add grade_id column
             $table->timestamps();
 
             $table->foreign('parent_id')->references('id')->on('parents_details');
             $table->foreign('enroll_id')->references('id')->on('student_enrollment');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade'); // Add class_id foreign key
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade'); // Add grade_id foreign key
+
         });
     }
 
