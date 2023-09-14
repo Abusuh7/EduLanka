@@ -21,6 +21,8 @@ class Students extends Model
         "class",
         "parent_id",
         "enroll_id",
+        "class_id",
+        "grade_id",
     ];
 
     //check these tmr
@@ -29,18 +31,10 @@ class Students extends Model
         return $this->belongsTo(Parents_Details::class, 'parent_id');
     }
 
-    public function student_enrollment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function student_enrollment()
     {
         return $this->belongsTo(Student_Enrollment::class, 'enroll_id');
     }
 
-    public function grades(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Grades::class, 'grade_id');
-    }
 
-    public function classes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Classes::class, 'class_id');
-    }
 }

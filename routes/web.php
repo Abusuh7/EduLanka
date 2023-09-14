@@ -210,4 +210,6 @@ Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secon
 
 //Route::get('admin/attendance', fn() => view('attendance.index'));
 Route::get('/admin/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-Route::get('/api/get-students', [AttendanceController::class, 'getStudents']);
+Route::post('/admin/attendance/post', [AttendanceController::class, 'store'])->name('attendance.store');
+
+
