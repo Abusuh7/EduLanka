@@ -36,8 +36,10 @@ class StudentsController extends Controller
         // Get the total number of primary and secondary students
         $totalStudents = $primaryStudentCount + $secondaryStudentCount;
 
+        $grades = Grades::all();
+        $classes = Classes::all();
 
-        return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
+        return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes'));
     }
 
     /**

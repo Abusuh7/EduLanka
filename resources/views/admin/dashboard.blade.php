@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -275,6 +276,34 @@
                                 <option value="dance">Dance</option>
                                 <option value="pe">PE</option>
                             </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label for="grade_id" class="block text-sm font-medium">Grade:</label>
+                                <select id="grade_id" name="grade_id" required
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
+                                    <option value="" disabled selected>Select Grade</option>
+                                    @foreach($grades as $grade)
+
+                                        <option value="{{ $grade->id }}">{{ $grade->grade_name }}</option>
+
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div>
+                                <label for="class_id" class="block text-sm font-medium">Class:</label>
+                                <select id="class_id" name="class_id" required
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
+                                    <option value="" disabled selected>Select Class</option>
+                                   @foreach($classes as $class)
+
+                                       <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+
+                                   @endforeach
+
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -1,108 +1,317 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Discussion Room Bookings') }}
+            {{ __('Admin Reservations List') }}
         </h2>
-
     </x-slot>
 
 
-    {{-- Ongoing Discussion Room Bookings --}}
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8 flex justify-between py-4">
-            <h1 class="text-2xl font-bold">Ongoing Discussion Room Bookings</h1>
-            <button type="button"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Create
-                    Booking</button>
+
+
+
+    {{-- Room Bookings --}}
+    <div class="flex justify-center mt-5">
+        <h1 class="text-2xl font-bold">Discussion Room Bookings</h1>
+    </div>
+    <br>
+    <div class=" flex justify-center w-full">
+        <div class="inline-flex rounded-md shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-200 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-blue-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            role="group">
+            <button type="button" id="todayBookingBtn"
+                class="inline-block rounded-l bg-blue px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-500 focus:bg-blue-600 focus:outline-none focus:ring-0 active:bg-blue-700"
+                data-te-ripple-init data-te-ripple-color="dark">
+                Today
+            </button>
+            <button type="button" id="upcomingBookingBtn"
+                class="inline-block bg-blue px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-500 focus:bg-blue-600 focus:outline-none focus:ring-0 active:bg-blue-700"
+                data-te-ripple-init data-te-ripple-color="light">
+                Upcoming
+            </button>
+            <button type="button" id="pastBookingBtn"
+                class="inline-block rounded-r bg-blue px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-500 focus:bg-blue-600 focus:outline-none focus:ring-0 active:bg-blue-700"
+                data-te-ripple-init data-te-ripple-color="light">
+                Past
+            </button>
         </div>
+    </div>
 
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+    {{-- Today Booking Table --}}
+    <div class="py-12 hidden" id="todayBookingTable">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    @if (count($discussionRoomBookingsToday) === 0)
+                        <p class="text-center text-lg text-gray-500 py-4">No discussion room bookings for today.</p>
+                    @else
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Room
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Date
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Start Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        End Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Duration
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($discussionRoomBookingsToday as $discussionRoomBooking)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->room_name }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->date }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->start_time }}
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->end_time }}
+                                        </td>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                <table class="table-fixed w-full">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="px-4 py-2 w-20">Booking ID</th>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Email</th>
-                            <th class="px-4 py-2">Phone</th>
-                            <th class="px-4 py-2">Date</th>
-                            <th class="px-4 py-2">Time</th>
-                            <th class="px-4 py-2">Duration</th>
-                            <th class="px-4 py-2">Status</th>
-                            <th class="px-4 py-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- @foreach($bookings as $booking) --}}
-                        <tr>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2">
-                                {{-- <a href="" class="text-blue-500 hover:text-blue-600">Edit</a> --}}
-                                <a href="" class="text-red-500 hover:text-red-600">Terminate Session</a>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            @php
+                                                $startTime = \Carbon\Carbon::parse($discussionRoomBooking->start_time);
+                                                $endTime = \Carbon\Carbon::parse($discussionRoomBooking->end_time);
+                                                $duration = $endTime->diff($startTime)->format('%H:%I');
+                                            @endphp
+                                            {{ $duration }} Hrs
+                                        </td>
 
-                            </td>
-                        </tr>
-                        {{-- @endforeach --}}
-                    </tbody>
-                </table>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->status }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            <a href="" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
             </div>
-
         </div>
     </div>
 
 
-    {{-- Upcoming Discussion Room Bookings --}}
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <h1 class="text-2xl font-bold">Upcoming Discussion Room Bookings</h1>
-        </div>
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+    {{-- Upcoming Booking Table --}}
+    <div class="py-12 hidden" id="upcomingBookingTable">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    @if (count($discussionRoomBookingsUpcomming) === 0)
+                        <p class="text-center text-lg text-gray-500 py-4">No upcoming discussion room booking.</p>
+                    @else
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Room
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Date
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Start Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        End Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Duration
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($discussionRoomBookingsUpcomming as $discussionRoomBooking)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->room_name }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->date }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->start_time }}
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->end_time }}
+                                        </td>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                <table class="table-fixed w-full">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="px-4 py-2 w-20">Booking ID</th>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Email</th>
-                            <th class="px-4 py-2">Phone</th>
-                            <th class="px-4 py-2">Date</th>
-                            <th class="px-4 py-2">Time</th>
-                            <th class="px-4 py-2">Duration</th>
-                            <th class="px-4 py-2">Status</th>
-                            <th class="px-4 py-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- @foreach($bookings as $booking) --}}
-                        <tr>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2"></td>
-                            <td class="border px-4 py-2">
-                                {{-- <a href="" class="text-blue-500 hover:text-blue-600">Edit</a> --}}
-                                <a href="" class="text-red-500 hover:text-red-600">Reject Session</a>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            @php
+                                                $startTime = \Carbon\Carbon::parse($discussionRoomBooking->start_time);
+                                                $endTime = \Carbon\Carbon::parse($discussionRoomBooking->end_time);
+                                                $duration = $endTime->diff($startTime)->format('%H:%I');
+                                            @endphp
+                                            {{ $duration }} Hrs
+                                        </td>
 
-                            </td>
-                        </tr>
-                        {{-- @endforeach --}}
-                    </tbody>
-                </table>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->status }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            <a href="" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
             </div>
-
         </div>
     </div>
+
+    {{-- Pass booking Table --}}
+    <div class="py-12 hidden" id="pastBookingTable">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    @if (count($discussionRoomBookingsPast) === 0)
+                        <p class="text-center text-lg text-gray-500 py-4">No Past discussion room booking.</p>
+                    @else
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Room
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Date
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Start Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        End Time
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Duration
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($discussionRoomBookingsPast as $discussionRoomBooking)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->room_name }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->date }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                {{ $discussionRoomBooking->start_time }}
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->end_time }}
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            @php
+                                                $startTime = \Carbon\Carbon::parse($discussionRoomBooking->start_time);
+                                                $endTime = \Carbon\Carbon::parse($discussionRoomBooking->end_time);
+                                                $duration = $endTime->diff($startTime)->format('%H:%I');
+                                            @endphp
+                                            {{ $duration }} Hrs
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            {{ $discussionRoomBooking->status }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            <a href="" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </x-app-layout>

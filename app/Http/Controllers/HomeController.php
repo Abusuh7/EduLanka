@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banners;
+use App\Models\Classes;
+use App\Models\Grades;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +33,11 @@ class HomeController extends Controller
             // Get the total number of primary and secondary students
             $totalStudents = $primaryStudentCount + $secondaryStudentCount;
 
+            $grades = Grades::all();
+            $classes = Classes::all();
 
-            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
+
+            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes'));
             // return view('admin.dashboard');
 
         } elseif ($role == 'teacher' && $status == 'activated') {

@@ -29,17 +29,17 @@ class Students extends Model
         return $this->belongsTo(Parents_Details::class, 'parent_id');
     }
 
-    public function student_enrollment()
+    public function student_enrollment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Student_Enrollment::class, 'enroll_id');
     }
 
-    public function grades()
+    public function grades(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Grades::class, 'grade_id');
     }
 
-    public function classes()
+    public function classes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Classes::class, 'class_id');
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DiscussionRoomController;
 use App\Http\Controllers\PrimaryStudentsController;
@@ -65,8 +66,6 @@ Route::get('/admin/banner', [BannerController::class, 'index'])->name('adminBann
 
 //view when admin discussion room is clicked
 Route::get('/admin/discussion-room', [DiscussionRoomController::class, 'adminView'])->name('adminDiscussionRoom');
-
-
 
 
 
@@ -204,3 +203,11 @@ Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secon
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
 
 
+//route for attendance.index
+
+//route for teacger selectgradeclass()
+
+
+//Route::get('admin/attendance', fn() => view('attendance.index'));
+Route::get('/admin/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+Route::get('/api/get-students', [AttendanceController::class, 'getStudents']);

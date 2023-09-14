@@ -4,7 +4,8 @@
             {{ __('Teachers Dashboard') }}
         </h2>
     </x-slot>
-
+    {{auth ()->user()->name}}
+    {{auth ()->user()}}
 
     {{-- Banner --}}
     <div id="carouselExampleIndicators" class="relative w-full h-[500px]" data-te-carousel-init data-te-ride="carousel">

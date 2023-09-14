@@ -24,5 +24,7 @@ class Teachers extends Model
         "zip",
         "country",
         "enroll_id",
+        "class_id",
+        "grade_id",
     ];
 }

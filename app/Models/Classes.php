@@ -11,6 +11,6 @@ class Classes extends Model
 
     protected $table = 'classes';
     protected $fillable = [
-        "class_name",
+        "class_name","id",
     ];
 }

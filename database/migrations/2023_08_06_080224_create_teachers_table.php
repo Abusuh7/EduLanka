@@ -36,6 +36,7 @@ return new class extends Migration
 
 
             $table->foreign('enroll_id')->references('id')->on('teacher_enrollment');
+
         });
     }
 
