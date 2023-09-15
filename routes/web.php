@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DiscussionRoomController;
 use App\Http\Controllers\PrimaryStudentsController;
 use App\Http\Controllers\SecondaryStudentsController;
@@ -218,11 +219,21 @@ Route::get('admin/attendance/options',function (){
     return view('attendance.options');
 })->name('attendance.options');
 
-Route::get('admin/attendance/edit',function (){
-    return view('attendance.edit');
-})->name('attendance.edit');
+//Route::get('admin/attendance/edit',function (){
+//    return view('attendance.edit');
+//})->name('attendance.edit');
 
 Route::get('/attendance/view', [AttendanceController::class,'view'])->name('attendance.view');
 Route::get('/attendance/show', [AttendanceController::class,'show'])->name('attendance.show');
 Route::get('/attendance/edit/{id}', [AttendanceController::class,'edit'])->name('attendance.edit');
 Route::put('/attendance/update/{id}', [AttendanceController::class,'update'])->name('attendance.update');
+
+
+
+//contaent management babyy
+Route::get('/content/create',[ContentController::class, 'create'])->name('content.create');
+Route::post('/content/store',[ContentController::class, 'store'])->name('content.store');
+Route::get('/content/student_view',[ContentController::class,'Stu_index'])->name('student.content');
+Route::get('/content/download/{id}',[ContentController::class, 'download'])->name('student.content.download');
+
+Route::get('/content/download/filter',[ContentController::class, 'filter'])->name('student.content.filter');

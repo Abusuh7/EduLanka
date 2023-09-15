@@ -21,7 +21,9 @@
                     <x-nav-link href="{{ route('attendance.options') }}" :active="request()->routeIs('attendance.options')">
                         {{ __('Attendance Management') }}
                     </x-nav-link>
-
+                    <x-nav-link href="{{ route('content.create') }}" :active="request()->routeIs('content.create')">
+                        {{ __('Content Management') }}
+                    </x-nav-link>
                 </div>
             </div>
 

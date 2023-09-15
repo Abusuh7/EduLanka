@@ -18,8 +18,8 @@
 {{--                    <x-nav-link href="{{ route('primaryStudentReservations') }}" :active="request()->routeIs('primaryStudentReservations')">--}}
 {{--                        {{ __('Reservations') }}--}}
 {{--                    </x-nav-link>--}}
-                    <x-nav-link href="{{ route('primaryStudentDashboard') }}" :active="request()->routeIs('primaryStudentDashboard')">
-                        {{ __('View Subjects') }}
+                    <x-nav-link href="{{ route('student.content') }}" :active="request()->routeIs('student.content')">
+                        {{ __('Subject Materials') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('primaryStudentDashboard') }}" :active="request()->routeIs('primaryStudentDashboard')">
                         {{ __('Gradebook') }}
