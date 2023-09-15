@@ -51,8 +51,10 @@ class HomeController extends Controller
 
          // Get all the banners
          $all = Banners::all();
+            $grades = Grades::all();
+            $classes = Classes::all();
 
-         return view('teacher.dashboard', compact('banners', 'all'));
+         return view('teacher.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'primary' && $status == 'activated') {
 
@@ -62,8 +64,9 @@ class HomeController extends Controller
 
             // Get all the banners
             $all = Banners::all();
-
-            return view('primaryStudent.dashboard', compact('banners', 'all'));
+            $grades = Grades::all();
+            $classes = Classes::all();
+            return view('primaryStudent.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'secondary' && $status == 'activated') {
 
@@ -73,8 +76,10 @@ class HomeController extends Controller
 
             // Get all the banners
             $all = Banners::all();
+            $grades = Grades::all();
+            $classes = Classes::all();
 
-            return view('secondaryStudent.dashboard', compact('banners', 'all'));
+            return view('secondaryStudent.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'teacher' && $status == 'deactivated' || $role == 'primary' && $status == 'deactivated' || $role == 'secondary' && $status == 'deactivated') {
             //return a error message to the user that the account has been deactivated

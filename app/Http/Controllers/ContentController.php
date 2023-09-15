@@ -57,7 +57,7 @@ class ContentController extends Controller
         }
 
         // Save content to the database
-       ddd( $content->save());
+        $content->save();
 
         // Redirect back to the form with a success message or to another page
         return redirect()->route('content.create')->with('success', 'Content submitted successfully.');
@@ -67,25 +67,52 @@ class ContentController extends Controller
 // app/Http/Controllers/StudentContentController.php
     public function Stu_index(Request $request)
     {
-        // Retrieve grades and classes from your database
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
+
+        // Check if the user is a student
+        if ($user->role === 'secondary' || $user->role === 'primary') {
+            // Retrieve the student's information
+            $student = $user->student;
+
+            // Check if the student information is available
+            if ($student) {
+                // Get the grade_id and class_id
+                $gradeId = $student->grade_id;
+                $classId = $student->class_id;
+                $subjectId = $request->input('subject_id'); // Get the selected subject
+
+                // Query the contents based on the student's grade_id, class_id, and subject_id
+                $contents = Content::where('grade_id', $gradeId)
+                    ->where('class_id', $classId)
+                    ->when($subjectId, function ($query) use ($subjectId) {
+                        return $query->where('subject_id', $subjectId);
+                    })
+                    ->get();
+            } else {
+                return redirect()->route('studentDashboard')->with('error', 'Student information not found.');
+            }
+        } elseif ($user->role === 'teacher') {
+            // If the user is a teacher, implement teacher-specific logic here
+            // For example, retrieve the contents that the teacher has created
+            $teacherId = $user->teacher_id;
+
+            $contents = Content::where('teacher_id', $teacherId)->get();
+        } else {
+            // Handle other roles (if any) here
+            $contents = Content::all();
+        }
+
+        // Retrieve grades and classes from your database (optional)
         $grades = Grades::all();
         $classes = Classes::all();
+        $subjects = Subject::all();
 
-        // Default values for filtering
-        $selectedGrade = $request->input('grade_id');
-        $selectedClass = $request->input('class_id');
-
-        // Query the contents based on filtering options
-        $contents = Content::when($selectedGrade, function ($query, $selectedGrade) {
-            return $query->where('grade_id', $selectedGrade);
-        })
-            ->when($selectedClass, function ($query, $selectedClass) {
-                return $query->where('class_id', $selectedClass);
-            })
-            ->get();
-
-        return view('content.student_view', compact('grades', 'classes', 'contents'));
+        return view('content.student_view', compact('grades', 'classes', 'contents', 'subjects'));
     }
+
+
+
 
 
     public function download($id)

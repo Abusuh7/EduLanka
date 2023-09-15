@@ -6,12 +6,12 @@
     </x-slot>
 
     <div class="container mx-auto p-4">
-        <form action="{{ route('content.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('content.store') }}" method="POST" enctype="multipart/form-data" class="max-w-md mx-auto">
             @csrf
 
             <div class="mb-4">
                 <label for="subject" class="block text-sm font-medium text-gray-700">Subject:</label>
-                <select name="subject_id" id="subject_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <select name="subject_id" id="subject_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-base">
                     <option value="">Select Subject</option>
                     {{-- Populate subjects from your database --}}
                     @foreach ($subjects as $subject)
@@ -22,7 +22,7 @@
 
             <div class="mb-4">
                 <label for="class" class="block text-sm font-medium text-gray-700">Class:</label>
-                <select name="class_id" id="class_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <select name="class_id" id="class_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-base">
                     <option value="">Select Class</option>
                     {{-- Populate classes from your database --}}
                     @foreach ($classes as $class)
@@ -33,7 +33,7 @@
 
             <div class="mb-4">
                 <label for="grade" class="block text-sm font-medium text-gray-700">Grade:</label>
-                <select name="grade_id" id="grade_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <select name="grade_id" id="grade_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-base">
                     <option value="">Select Grade</option>
                     {{-- Populate grades from your database --}}
                     @foreach ($grades as $grade)
@@ -44,21 +44,24 @@
 
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
-                <input type="text" name="title" id="title" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <input type="text" name="title" id="title" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-base">
             </div>
 
             <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Description:</label>
-                <textarea name="description" id="description" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm"></textarea>
+                <textarea name="description" id="description" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-base"></textarea>
             </div>
 
             <div class="mb-4">
-                <label for="file" class="block text-sm font-medium text-gray-700">File Upload:</label>
-                <input type="file" name="file_path" id="file_path" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <label for="file_path" class="block text-sm font-medium text-gray-700">File Upload:</label>
+                <label for="file_path" class="block mt-1 cursor-pointer border border-blue-500 bg-blue-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-600 transition duration-300 ease-in-out">
+                    Upload File
+                </label>
+                <input type="file" name="file_path" id="file_path" class="hidden">
             </div>
 
             <div class="mb-4">
-                <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
+                <button type="submit" class="w-full px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
                     Submit Content
                 </button>
             </div>

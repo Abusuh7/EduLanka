@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banners;
 use App\Models\Discussion_Room_Booking;
+use App\Models\Grades;
 use Illuminate\Http\Request;
 
 class SecondaryStudentsController extends Controller
@@ -11,18 +12,31 @@ class SecondaryStudentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-         // Get all the banners whicxh are active and has a visibity of secondarystu or bothstu or all and compact them
-            $banners = Banners::where('status', 'active')->where('visibility', 'secondarystu')->orWhere('visibility', 'bothstu')->orWhere('visibility', 'all')->get();
-        //  $banners = Banners::where('status', 'active')->get();
+        // Get all the banners which are active and have visibility of secondarystu, bothstu, or all
+        $banners = Banners::where('status', 'active')
+            ->where(function ($query) {
+                $query->where('visibility', 'secondarystu')
+                    ->orWhere('visibility', 'bothstu')
+                    ->orWhere('visibility', 'all');
+            })
+            ->get();
 
-         // Get all the banners
-         $all = Banners::all();
+        // Get all the banners
+        $all = Banners::all();
 
-         return view('secondaryStudent.dashboard', compact('banners', 'all'));
+        // Get grade_id and class_id from the request
+        $grade_id = $request->input('grade_id');
+        $class_id = $request->input('class_id');
 
+        // Define the $selectedGrade variable based on the selected grade_id
+        $selectedGrade = Grades::find($grade_id);
+
+        return view('secondaryStudent.dashboard', compact('banners', 'all', 'grade_id', 'class_id', 'selectedGrade'));
     }
+
+
 
     public function secondaryReservations()
     {
