@@ -68,7 +68,6 @@ class TeachersController extends Controller
             'dob' => 'required|date',
             'gender' => 'required|string',
             'email' => 'required|email',
-            'subject' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',
             'city' => 'required|string',
@@ -78,6 +77,8 @@ class TeachersController extends Controller
             'enroll_date' => 'required|date',
             'class_id' => 'required|integer',
             'grade_id' => 'required|integer',
+            'subject_id' => 'required|integer',
+
         ]);
 
         // Create the teachers record
@@ -94,7 +95,6 @@ class TeachersController extends Controller
             'dob' => $validatedData['dob'],
             'gender' => $validatedData['gender'],
             'email' => $validatedData['email'],
-            'subject' => $validatedData['subject'],
             'phone' => $validatedData['phone'],
             'address' => $validatedData['address'],
             'city' => $validatedData['city'],
@@ -104,6 +104,7 @@ class TeachersController extends Controller
             'enroll_id' => $enrollment->id,
             'class_id' => $validatedData['class_id'],
             'grade_id' => $validatedData['grade_id'],
+            'subject_id' => $validatedData['subject_id'],
 
         ]);
 

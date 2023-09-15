@@ -256,24 +256,15 @@
                         <!-- Dropdown -->
                         <div class="mb-4">
                             <label for="subject" class="block text-sm font-medium">Subject:</label>
-                            <select id="subject" name="subject"
-                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
-                                    required>
-                                <option value="">Select Subject</option>
-                                <option value="maths">Maths</option>
-                                <option value="english">English</option>
-                                <option value="science">Science</option>
-                                <option value="physics">Physics</option>
-                                <option value="chemistry">Chemistry</option>
-                                <option value="biology">Biology</option>
-                                <option value="geography">Geography</option>
-                                <option value="computer-science">Computer Science</option>
-                                <option value="Sinhala">Sinhala</option>
-                                <option value="history">History</option>
-                                <option value="art">Art</option>
-                                <option value="music">Music</option>
-                                <option value="dance">Dance</option>
-                                <option value="pe">PE</option>
+                            <select id="subject_id" name="subject_id" required
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
+                                <option value="" disabled selected>Select Subject</option>
+                                @foreach($subjects as $subject)
+
+                                    <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>
+
+                                @endforeach
+
                             </select>
                         </div>
                         <div class="grid grid-cols-2 gap-4 mb-6">

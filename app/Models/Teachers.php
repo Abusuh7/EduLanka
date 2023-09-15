@@ -26,5 +26,6 @@ class Teachers extends Model
         "enroll_id",
         "class_id",
         "grade_id",
+        "subject_id",
     ];
 }

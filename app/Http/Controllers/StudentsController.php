@@ -8,6 +8,7 @@ use App\Models\Parents_Details;
 use App\Models\Student_Enrollment;
 use App\Models\Student_Grade;
 use App\Models\Students;
+use App\Models\subject;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -38,8 +39,9 @@ class StudentsController extends Controller
 
         $grades = Grades::all();
         $classes = Classes::all();
+        $subjects = Subject::all();
 
-        return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes'));
+        return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes','subjects'));
     }
 
     /**

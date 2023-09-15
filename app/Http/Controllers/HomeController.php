@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banners;
 use App\Models\Classes;
 use App\Models\Grades;
+use App\Models\subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +36,11 @@ class HomeController extends Controller
 
             $grades = Grades::all();
             $classes = Classes::all();
+            $subjects = Subject::all();
 
 
-            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes'));
+
+            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes','subjects'));
             // return view('admin.dashboard');
 
         } elseif ($role == 'teacher' && $status == 'activated') {

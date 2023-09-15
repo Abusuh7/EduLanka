@@ -57,6 +57,7 @@ class AttendanceController extends Controller
                 'student_id' => $attendanceData['student_id'],
                 'attendance_date' => $globalAttendanceDate, // Use the global date
                 'status' => $attendanceData['status'],
+                'teacher_id' => null,
                 // Add 'teacher_id' if needed
             ]);
         }
