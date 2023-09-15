@@ -27,13 +27,16 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if ($attendance->status === 'present')
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Present
-                                    </span>
+                        Present
+                    </span>
                             @else
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                        Absent
-                                    </span>
+                        Absent
+                    </span>
                             @endif
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="{{ route('attendance.edit', $attendance->id) }}" class="text-blue-500 hover:underline">Edit</a>
                         </td>
                     </tr>
                 @endforeach

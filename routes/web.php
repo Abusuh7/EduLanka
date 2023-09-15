@@ -224,3 +224,5 @@ Route::get('admin/attendance/edit',function (){
 
 Route::get('/attendance/view', [AttendanceController::class,'view'])->name('attendance.view');
 Route::get('/attendance/show', [AttendanceController::class,'show'])->name('attendance.show');
+Route::get('/attendance/edit/{id}', [AttendanceController::class,'edit'])->name('attendance.edit');
+Route::put('/attendance/update/{id}', [AttendanceController::class,'update'])->name('attendance.update');

@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('teacherReservations') }}" :active="request()->routeIs('teacherReservations')">
                         {{ __('Reservations') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('attendance.options') }}" :active="request()->routeIs('attendance.options')">
+                        {{ __('Attendance Management') }}
+                    </x-nav-link>
 
                 </div>
             </div>

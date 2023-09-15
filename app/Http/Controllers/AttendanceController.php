@@ -86,11 +86,51 @@ class AttendanceController extends Controller
 
     public function edit($id)
     {
+        // Retrieve the attendance record by its ID
+        $attendance = Attendance::find($id);
+
+        // Store the grade and class information in the session
+        session(['previous_grade' => $attendance->student->grade_id, 'previous_class' => $attendance->student->class_id]);
+
+        return view('attendance.edit', compact('attendance'));
     }
+
+
 
     public function update(Request $request, $id)
     {
+        // Validate the form data
+        $request->validate([
+            'attendance_date' => 'required|date',
+            'status' => 'required|in:present,absent',
+        ]);
+
+        // Find the attendance record by its ID
+        $attendance = Attendance::find($id);
+
+        // Store the grade and class information in variables
+        $previousGrade = $attendance->student->grade_id;
+        $previousClass = $attendance->student->class_id;
+
+        // Update the attendance record with the submitted data
+        $attendance->attendance_date = $request->input('attendance_date');
+        $attendance->status = $request->input('status');
+        // You can add more fields to update as needed
+
+        // Save the updated record
+        $attendance->save();
+
+        // Redirect back to the show page with the previous grade, class, and attendance_date values
+        return redirect()->route('attendance.show', [
+            'grade' => $previousGrade,
+            'class' => $previousClass,
+            'attendance_date' => $request->input('attendance_date'), // Include attendance_date
+        ])->with('success', 'Attendance record updated successfully.');
+
+
     }
+
+
 
     public function destroy($id)
     {
