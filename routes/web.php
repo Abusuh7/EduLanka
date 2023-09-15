@@ -214,3 +214,13 @@ Route::post('/admin/attendance/post', [AttendanceController::class, 'store'])->n
 Route::get('/admin/students-attendance', [AttendanceController::class, 'showStudentsAttendance'])->name('attendance.showStudents');
 
 
+Route::get('admin/attendance/options',function (){
+    return view('attendance.options');
+})->name('attendance.options');
+
+Route::get('admin/attendance/edit',function (){
+    return view('attendance.edit');
+})->name('attendance.edit');
+
+Route::get('/attendance/view', [AttendanceController::class,'view'])->name('attendance.view');
+Route::get('/attendance/show', [AttendanceController::class,'show'])->name('attendance.show');

@@ -10,16 +10,17 @@
 
         <form action="{{ route('attendance.store') }}" method="POST">
             @csrf
+
+            <div class="mb-4">
+                <label for="global_attendance_date" class="block text-sm font-medium text-gray-700">Attendance Date:</label>
+                <input type="date" id="global_attendance_date" name="global_attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+            </div>
+
             @foreach ($students as $student)
                 <div class="mb-4">
                     <label for="student_id_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Student:</label>
                     <input type="text" name="attendance[{{ $student->id }}][student_id]" value="{{ $student->id }}" hidden>
                     <p>{{ $student->fname }} {{ $student->lname }}</p>
-                </div>
-
-                <div class="mb-4">
-                    <label for="attendance_date_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Attendance Date:</label>
-                    <input type="date" name="attendance[{{ $student->id }}][attendance_date]" id="attendance_date_{{ $student->id }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
                 </div>
 
                 <div class="mb-4">
@@ -38,4 +39,16 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('global_attendance_date').addEventListener('change', function () {
+            const selectedDate = this.value;
+            // Set the selected date for all student date inputs
+            document.querySelectorAll('select[name^="attendance["]').forEach(function (statusSelect) {
+                const studentId = statusSelect.id.replace('status_', '');
+                const dateInput = document.getElementById('attendance_date_' + studentId);
+                dateInput.value = selectedDate;
+            });
+        });
+    </script>
 </x-app-layout>
