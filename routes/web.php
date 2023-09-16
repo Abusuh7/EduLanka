@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DiscussionRoomController;
+use App\Http\Controllers\MarkController;
 use App\Http\Controllers\PrimaryStudentsController;
 use App\Http\Controllers\SecondaryStudentsController;
 use App\Http\Controllers\showCategoryController;
@@ -251,3 +252,11 @@ Route::delete('/content/delete/{id}', [ContentController::class, 'destroy'])->na
 // calendar babyyyy
 Route::get('calendar-event', [CalenderController::class, 'index'])->name('calendar-event');
 Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
+
+
+
+//routes for marks
+Route::get('/marks', [MarkController::class, 'index'])->name('marks.index');
+Route::get('/marks/create', [MarkController::class, 'create'])->name('marks.create');
+Route::post('/marks/store', [MarkController::class, 'store'])->name('marks.store');
+Route::get('/marks/view', [MarkController::class, 'view'])->name('marks.view');

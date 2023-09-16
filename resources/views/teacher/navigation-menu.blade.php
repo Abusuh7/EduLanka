@@ -27,6 +27,9 @@
                     <x-nav-link href="{{ route('calendar-event') }}" :active="request()->routeIs('calendar-event')">
                         {{ __('Calendar') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('marks.index') }}" :active="request()->routeIs('calendar-event')">
+                        {{ __('Students grade management') }}
+                    </x-nav-link>
                 </div>
             </div>
 

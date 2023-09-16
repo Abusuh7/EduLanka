@@ -23,6 +23,9 @@
                     <x-nav-link href="{{ route('calendar-event') }}" :active="request()->routeIs('calendar-event')">
                         {{ __('Calendar') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('marks.view') }}" :active="request()->routeIs('marks.view')">
+                        {{ __('Semester Marks') }}
+                    </x-nav-link>
 
                 </div>
             </div>
