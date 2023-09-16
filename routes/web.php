@@ -233,7 +233,15 @@ Route::put('/attendance/update/{id}', [AttendanceController::class,'update'])->n
 //contaent management babyy
 Route::get('/content/create',[ContentController::class, 'create'])->name('content.create');
 Route::post('/content/store',[ContentController::class, 'store'])->name('content.store');
-Route::get('/content/student_view',[ContentController::class,'Stu_index'])->name('student.content');
+Route::get('/content/student/view',[ContentController::class,'Stu_index'])->name('student.content');
 Route::get('/content/download/{id}',[ContentController::class, 'download'])->name('student.content.download');
-
 Route::get('/content/download/filter',[ContentController::class, 'filter'])->name('student.content.filter');
+Route::get('content/index',[ContentController::class,'index'])->name('content.index');
+Route::get('/content/teacher_view',[ContentController::class,'Tea_index'])->name('Teacher.content');
+
+// Edit Content
+Route::get('/content/edit/{id}', [ContentController::class, 'edit'])->name('content.edit');
+Route::put('/content/update/{id}', [ContentController::class, 'update'])->name('content.update');
+
+// Delete Content
+Route::delete('/content/delete/{id}', [ContentController::class, 'destroy'])->name('content.destroy');

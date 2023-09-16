@@ -8,6 +8,7 @@ use App\Models\Grades;
 use App\Models\Subject;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
 {
@@ -110,7 +111,51 @@ class ContentController extends Controller
 
         return view('content.student_view', compact('grades', 'classes', 'contents', 'subjects'));
     }
+    public function Tea_index(Request $request)
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
 
+        // Check if the user is a student
+        if ($user->role === 'secondary' ) {
+            // Retrieve the student's information
+            $student = $user->student;
+
+            // Check if the student information is available
+            if ($student) {
+                // Get the grade_id and class_id
+                $gradeId = $student->grade_id;
+                $classId = $student->class_id;
+                $subjectId = $request->input('subject_id'); // Get the selected subject
+
+                // Query the contents based on the student's grade_id, class_id, and subject_id
+                $contents = Content::where('grade_id', $gradeId)
+                    ->where('class_id', $classId)
+                    ->when($subjectId, function ($query) use ($subjectId) {
+                        return $query->where('subject_id', $subjectId);
+                    })
+                    ->get();
+            } else {
+                return redirect()->route('studentDashboard')->with('error', 'Student information not found.');
+            }
+        } elseif ($user->role === 'teacher') {
+            // If the user is a teacher, implement teacher-specific logic here
+            // For example, retrieve the contents that the teacher has created
+            $teacherId = $user->teacher_id;
+
+            $contents = Content::where('teacher_id', $teacherId)->get();
+        } else {
+            // Handle other roles (if any) here
+            $contents = Content::all();
+        }
+
+        // Retrieve grades and classes from your database (optional)
+        $grades = Grades::all();
+        $classes = Classes::all();
+        $subjects = Subject::all();
+
+        return view('content.Teacher_view', compact('grades', 'classes', 'contents', 'subjects'));
+    }
 
 
 
@@ -128,5 +173,78 @@ class ContentController extends Controller
         return response()->download(storage_path('app/content/' . $content->file_path));
     }
 
+
+    public function index()
+    {
+        $contents = Content::all();
+
+        return view('content.index',compact('contents'));
+    }
+
+
+
+    public function edit($id)
+    {
+        // Find the content by ID
+        $content = Content::find($id);
+
+        if (!$content) {
+            return back()->with('error', 'Content not found.');
+        }
+
+        // Retrieve subjects and other necessary data
+        $subjects = Subject::all();
+        // Add any other necessary data retrieval here
+
+        return view('content.edit', compact('content', 'subjects'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Find the content by ID
+        $content = Content::find($id);
+
+        if (!$content) {
+            return back()->with('error', 'Content not found.');
+        }
+
+        // Validate the request data (similar to your store method)
+
+        // Update the content attributes based on the request data
+        $content->subject_id = $request->input('subject_id');
+        $content->title = $request->input('title');
+        $content->description = $request->input('description');
+
+        // Handle file upload (if necessary)
+
+        // Save the updated content
+        $content->save();
+
+        // Redirect back with a success message
+        return redirect()->route('content.edit', $content->id)->with('success', 'Content updated successfully.');
+    }
+
+
+
+    public function destroy($id)
+    {
+        // Find the content by ID
+        $content = Content::find($id);
+
+        if (!$content) {
+            return back()->with('error', 'Content not found.');
+        }
+
+        // Delete the content file (if it exists)
+        if ($content->file_path) {
+            Storage::delete('content/' . $content->file_path);
+        }
+
+        // Delete the content from the database
+        $content->delete();
+
+        // Redirect back to the content view with a success message
+        return redirect()->route('content.index')->with('success', 'Content deleted successfully.');
+    }
 
 }
