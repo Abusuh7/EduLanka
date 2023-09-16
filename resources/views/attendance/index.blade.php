@@ -35,7 +35,9 @@
             <button type="button" id="load-students" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
                 Go
             </button>
+            <a href="{{ route('attendance.options') }}" class="ml-4 text-sm text-gray-600 hover:underline">Back</a>
         </div>
+
     </div>
 
     <script>

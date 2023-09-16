@@ -17,25 +17,27 @@
             </div>
 
             @foreach ($students as $student)
-                <div class="mb-4">
-                    <label for="student_id_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Student:</label>
-                    <input type="text" name="attendance[{{ $student->id }}][student_id]" value="{{ $student->id }}" hidden>
-                    <p>{{ $student->fname }} {{ $student->lname }}</p>
-                </div>
-
-                <div class="mb-4">
-                    <label for="status_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Status:</label>
-                    <select name="attendance[{{ $student->id }}][status]" id="status_{{ $student->id }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
-                        <option value="present">Present</option>
-                        <option value="absent">Absent</option>
-                    </select>
+                <div class="mb-4 flex justify-between">
+                    <div class="w-1/2">
+                        <label for="student_id_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Student:</label>
+                        <input type="text" name="attendance[{{ $student->id }}][student_id]" value="{{ $student->id }}" hidden>
+                        <p>{{ $student->fname }} {{ $student->lname }}</p>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="status_{{ $student->id }}" class="block text-sm font-medium text-gray-700">Status:</label>
+                        <select name="attendance[{{ $student->id }}][status]" id="status_{{ $student->id }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </div>
                 </div>
             @endforeach
 
-            <div class="mb-4">
+            <div class="mt-4">
                 <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
                     Save Attendance
                 </button>
+                <a href="{{ route('attendance.index') }}" class="ml-4 text-sm text-gray-600 hover:underline">Back</a>
             </div>
         </form>
     </div>

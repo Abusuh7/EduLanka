@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DiscussionRoomController;
 use App\Http\Controllers\PrimaryStudentsController;
@@ -245,3 +246,8 @@ Route::put('/content/update/{id}', [ContentController::class, 'update'])->name('
 
 // Delete Content
 Route::delete('/content/delete/{id}', [ContentController::class, 'destroy'])->name('content.destroy');
+
+
+// calendar babyyyy
+Route::get('calendar-event', [CalenderController::class, 'index'])->name('calendar-event');
+Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
