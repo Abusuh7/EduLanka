@@ -264,3 +264,12 @@ Route::get('/marks/view', [MarkController::class, 'view'])->name('marks.view');
 
 Route::get('get-students', [MarkController::class, 'getStudents'])->name('get-students');
 Route::get('teacher/marks/view', [MarkController::class, 'tea_view'])->name('tea-marks-view');
+
+
+Route::get('/marks/edit/{id}', [MarkController::class, 'edit'])->name('marks.edit');
+Route::put('/marks/update/{mark}', [MarkController::class, 'update'])->name('marks.update');
+Route::get('/marks/{mark}/delete', [MarkController::class, 'confirmDelete'])->name('marks.confirmDelete');
+Route::delete('/marks{mark}',[MarkController::class, 'destroy'])->name('marks.destroy');
+
+Route::get('/marks/edit', [MarkController::class, 'editSheet'])->name('marks.editSheet');
+Route::put('/marks/updateSheet', [MarkController::class, 'updateSheet'])->name('marks.updateSheet');

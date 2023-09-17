@@ -118,4 +118,75 @@ public function getStudents(Request $request)
     return response()->json($students);
 }
 
+    public function edit($id)
+    {
+        // Retrieve the mark by its ID from the database
+        $mark = Mark::findOrFail($id);
+
+        // Pass the mark to the view
+        return view('marks.edit', compact('mark'));
+    }
+
+
+    public function update(Request $request, Mark $mark)
+    {
+        // Validate and update the marks data
+        $request->validate([
+            'marks' => 'required|array',
+            'marks.*' => 'required|integer|min:0|max:100',
+        ]);
+
+        $mark->update([
+            'marks' => $request->input('marks'),
+        ]);
+
+        return redirect()->route('marks.index')->with('success', 'Marks updated successfully.');
+    }
+
+    public function confirmDelete(Mark $mark)
+    {
+        // Show the confirmation view
+        return view('marks.confirmDelete', compact('mark'));
+    }
+
+    public function destroy(Mark $mark)
+    {
+        // Delete the mark
+        $mark->delete();
+
+        return redirect()->route('marks.index')->with('success', 'Mark deleted successfully.');
+    }
+
+
+    public function editSheet()
+    {
+        // Retrieve the marks you want to edit (e.g., all marks associated with the teacher)
+        $teacher = Auth::user()->teacher;
+        $marks = Mark::where('grade_id', $teacher->grade_id)
+            ->where('class_id', $teacher->class_id)
+            ->get();
+
+        // You can also retrieve all available semesters here if needed
+        $semesters = Mark::all();
+
+        return view('marks.editSheet', compact('marks', 'semesters'));
+    }
+    public function updateSheet(Request $request)
+    {
+        // Validate and update the entire mark sheet
+        $request->validate([
+            'marks' => 'required|array',
+            'marks.*' => 'required|integer|min:0|max:100',
+        ]);
+
+        foreach ($request->input('marks') as $markId => $newMark) {
+            $mark = Mark::findOrFail($markId);
+            $mark->marks = $newMark;
+            $mark->save();
+        }
+
+        return redirect()->route('tea-marks-view')->with('success', 'Mark sheet updated successfully.');
+    }
+
+
 }

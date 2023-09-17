@@ -31,7 +31,7 @@ class ContentController extends Controller
             'grade_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'file_path' => 'required|file|mimes:pdf,docx,xls,xlsx,ppt,pptx|max:2048,nullable',
+            'file_path' => 'required|file|mimes:pdf,docx,xls,xlsx,ppt,pptx|max:52400,nullable',
         ]);
 
         // Get the ID of the currently authenticated teacher
