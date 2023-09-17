@@ -28,4 +28,27 @@ class Teachers extends Model
         "grade_id",
         "subject_id",
     ];
+
+    public function teacher_enrollment()
+    {
+        return $this->belongsTo(Teacher_Enrollment::class, 'enroll_id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grades::class, 'grade_id');
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
+
+
 }
+

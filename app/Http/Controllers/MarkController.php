@@ -71,16 +71,30 @@ class MarkController extends Controller
     }
 
 
-
-
     // Display student marks
     public function view()
     {
         // Retrieve the currently authenticated student's marks
+        $semesters=Mark::all();
         $student = Auth::user()->student;
         $marks = Mark::where('student_id', $student->id)->get();
 
-        return view('marks.view', compact('marks'));
+        return view('marks.view', compact('marks','semesters'));
+    }
+    public function tea_view()
+    {
+        // Retrieve the currently authenticated teacher's information
+        $teacher = Auth::user()->teacher;
+
+        // Retrieve the marks associated with the teacher's grade and class
+        $marks = Mark::where('grade_id', $teacher->grade_id)
+            ->where('class_id', $teacher->class_id)
+            ->get();
+
+        // You can still retrieve all available semesters here if needed
+        $semesters = Mark::all();
+
+        return view('marks.tea_view', compact('marks', 'semesters'));
     }
 
 
@@ -89,4 +103,19 @@ class MarkController extends Controller
 
         return view('marks.index');
     }
+
+
+public function getStudents(Request $request)
+{
+    $gradeId = $request->input('grade_id');
+    $classId = $request->input('class_id');
+
+    // Query the students based on the selected grade and class
+    $students = Students::where('grade_id', $gradeId)
+        ->where('class_id', $classId)
+        ->get();
+
+    return response()->json($students);
+}
+
 }

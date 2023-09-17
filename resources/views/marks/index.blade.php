@@ -18,7 +18,7 @@
         </a>
 
         <!-- View Attendance Card -->
-        <a href="{{ route('marks.view') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center justify-center p-6">
+        <a href="{{ route('tea-marks-view') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center justify-center p-6">
             <div class="flex-shrink-0 mr-4">
                 <img src="{{ asset('assets/img/edit.png') }}" alt="Primary Student Icon" class="w-12 h-12">
             </div>

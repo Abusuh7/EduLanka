@@ -64,4 +64,5 @@
             });
         });
     </script>
+
 </x-app-layout>

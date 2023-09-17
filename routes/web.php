@@ -260,3 +260,7 @@ Route::get('/marks', [MarkController::class, 'index'])->name('marks.index');
 Route::get('/marks/create', [MarkController::class, 'create'])->name('marks.create');
 Route::post('/marks/store', [MarkController::class, 'store'])->name('marks.store');
 Route::get('/marks/view', [MarkController::class, 'view'])->name('marks.view');
+
+
+Route::get('get-students', [MarkController::class, 'getStudents'])->name('get-students');
+Route::get('teacher/marks/view', [MarkController::class, 'tea_view'])->name('tea-marks-view');
