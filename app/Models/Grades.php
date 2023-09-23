@@ -11,6 +11,6 @@ class Grades extends Model
 
     protected $table = 'grades';
     protected $fillable = [
-        "grade_name",
+        "grade_name","id",
     ];
 }

@@ -18,24 +18,23 @@ return new class extends Migration
             $table->date('dob');
             $table->string('gender');
             $table->string('email');
-            $table->string('subject');
-            //phone number
+            // Remove 'subject' column
             $table->string('phone');
-            //address
             $table->string('address');
-            //city
             $table->string('city');
-            //state
             $table->string('state');
-            //zip
             $table->string('zip');
-            //country
             $table->string('country');
             $table->unsignedBigInteger('enroll_id');
+            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('grade_id');
+            $table->unsignedBigInteger('subject_id')->nullable(); // Add subject_id column
             $table->timestamps();
 
-
-            $table->foreign('enroll_id')->references('id')->on('teacher_enrollment');
+            $table->foreign('enroll_id')->references('id')->on('teacher_enrollments')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade'); // Add subject_id foreign key
         });
     }
 
@@ -47,3 +46,4 @@ return new class extends Migration
         Schema::dropIfExists('teachers');
     }
 };
+

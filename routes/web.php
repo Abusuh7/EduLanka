@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DiscussionRoomController;
+use App\Http\Controllers\MarkController;
 use App\Http\Controllers\PrimaryStudentsController;
 use App\Http\Controllers\SecondaryStudentsController;
 use App\Http\Controllers\showCategoryController;
@@ -65,8 +69,6 @@ Route::get('/admin/banner', [BannerController::class, 'index'])->name('adminBann
 
 //view when admin discussion room is clicked
 Route::get('/admin/discussion-room', [DiscussionRoomController::class, 'adminView'])->name('adminDiscussionRoom');
-
-
 
 
 
@@ -204,3 +206,70 @@ Route::post('/student/discussion-room', [DiscussionRoomController::class, 'secon
 // Route::delete('/admin/{id}', [PrimaryStudentsController::class, 'destroy'])->name('destroy');
 
 
+//route for attendance.index
+
+//route for teacger selectgradeclass()
+
+
+//Route::get('admin/attendance', fn() => view('attendance.index'));
+Route::get('/admin/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+Route::post('/admin/attendance/post', [AttendanceController::class, 'store'])->name('attendance.store');
+Route::get('/admin/students-attendance', [AttendanceController::class, 'showStudentsAttendance'])->name('attendance.showStudents');
+
+
+Route::get('admin/attendance/options',function (){
+    return view('attendance.options');
+})->name('attendance.options');
+
+//Route::get('admin/attendance/edit',function (){
+//    return view('attendance.edit');
+//})->name('attendance.edit');
+
+Route::get('/attendance/view', [AttendanceController::class,'view'])->name('attendance.view');
+Route::get('/attendance/show', [AttendanceController::class,'show'])->name('attendance.show');
+Route::get('/attendance/edit/{id}', [AttendanceController::class,'edit'])->name('attendance.edit');
+Route::put('/attendance/update/{id}', [AttendanceController::class,'update'])->name('attendance.update');
+
+
+
+//contaent management babyy
+Route::get('/content/create',[ContentController::class, 'create'])->name('content.create');
+Route::post('/content/store',[ContentController::class, 'store'])->name('content.store');
+Route::get('/content/student/view',[ContentController::class,'Stu_index'])->name('student.content');
+Route::get('/content/download/{id}',[ContentController::class, 'download'])->name('student.content.download');
+Route::get('/content/download/filter',[ContentController::class, 'filter'])->name('student.content.filter');
+Route::get('content/index',[ContentController::class,'index'])->name('content.index');
+Route::get('/content/teacher_view',[ContentController::class,'Tea_index'])->name('Teacher.content');
+
+// Edit Content
+Route::get('/content/edit/{id}', [ContentController::class, 'edit'])->name('content.edit');
+Route::put('/content/update/{id}', [ContentController::class, 'update'])->name('content.update');
+
+// Delete Content
+Route::delete('/content/delete/{id}', [ContentController::class, 'destroy'])->name('content.destroy');
+
+
+// calendar babyyyy
+Route::get('calendar-event', [CalenderController::class, 'index'])->name('calendar-event');
+Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
+
+
+
+//routes for marks
+Route::get('/marks', [MarkController::class, 'index'])->name('marks.index');
+Route::get('/marks/create', [MarkController::class, 'create'])->name('marks.create');
+Route::post('/marks/store', [MarkController::class, 'store'])->name('marks.store');
+Route::get('/marks/view', [MarkController::class, 'view'])->name('marks.view');
+
+
+Route::get('get-students', [MarkController::class, 'getStudents'])->name('get-students');
+Route::get('teacher/marks/view', [MarkController::class, 'tea_view'])->name('tea-marks-view');
+
+
+Route::get('/marks/edit/{id}', [MarkController::class, 'edit'])->name('marks.edit');
+Route::put('/marks/update/{mark}', [MarkController::class, 'update'])->name('marks.update');
+Route::get('/marks/{mark}/delete', [MarkController::class, 'confirmDelete'])->name('marks.confirmDelete');
+Route::delete('/marks{mark}',[MarkController::class, 'destroy'])->name('marks.destroy');
+
+Route::get('/marks/edit', [MarkController::class, 'editSheet'])->name('marks.editSheet');
+Route::put('/marks/updateSheet', [MarkController::class, 'updateSheet'])->name('marks.updateSheet');

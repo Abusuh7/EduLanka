@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banners;
+use App\Models\Classes;
+use App\Models\Grades;
+use App\Models\subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +34,13 @@ class HomeController extends Controller
             // Get the total number of primary and secondary students
             $totalStudents = $primaryStudentCount + $secondaryStudentCount;
 
+            $grades = Grades::all();
+            $classes = Classes::all();
+            $subjects = Subject::all();
 
-            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents'));
+
+
+            return view('admin.dashboard', compact('primaryStudentCount', 'secondaryStudentCount', 'teacherCount', 'totalStudents','grades', 'classes','subjects'));
             // return view('admin.dashboard');
 
         } elseif ($role == 'teacher' && $status == 'activated') {
@@ -43,8 +51,10 @@ class HomeController extends Controller
 
          // Get all the banners
          $all = Banners::all();
+            $grades = Grades::all();
+            $classes = Classes::all();
 
-         return view('teacher.dashboard', compact('banners', 'all'));
+         return view('teacher.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'primary' && $status == 'activated') {
 
@@ -54,8 +64,9 @@ class HomeController extends Controller
 
             // Get all the banners
             $all = Banners::all();
-
-            return view('primaryStudent.dashboard', compact('banners', 'all'));
+            $grades = Grades::all();
+            $classes = Classes::all();
+            return view('primaryStudent.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'secondary' && $status == 'activated') {
 
@@ -65,8 +76,10 @@ class HomeController extends Controller
 
             // Get all the banners
             $all = Banners::all();
+            $grades = Grades::all();
+            $classes = Classes::all();
 
-            return view('secondaryStudent.dashboard', compact('banners', 'all'));
+            return view('secondaryStudent.dashboard', compact('banners', 'all','grades', 'classes'));
 
         } elseif ($role == 'teacher' && $status == 'deactivated' || $role == 'primary' && $status == 'deactivated' || $role == 'secondary' && $status == 'deactivated') {
             //return a error message to the user that the account has been deactivated

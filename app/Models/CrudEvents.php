@@ -1,16 +1,15 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Classes extends Model
+class CrudEvents extends Model
 {
     use HasFactory;
 
-    protected $table = 'classes';
     protected $fillable = [
-        "class_name","id",
+        'user_id',
+        'event_name',
+        'event_start',
+        'event_end'
     ];
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banners;
+use App\Models\Classes;
 use App\Models\Discussion_Room_Booking;
+use App\Models\Grades;
 use App\Models\Teacher_Enrollment;
 use App\Models\Teachers;
 use App\Models\User;
@@ -66,7 +68,6 @@ class TeachersController extends Controller
             'dob' => 'required|date',
             'gender' => 'required|string',
             'email' => 'required|email',
-            'subject' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',
             'city' => 'required|string',
@@ -74,6 +75,10 @@ class TeachersController extends Controller
             'zip' => 'required|string',
             'country' => 'required|string',
             'enroll_date' => 'required|date',
+            'class_id' => 'required|integer',
+            'grade_id' => 'required|integer',
+            'subject_id' => 'required|integer',
+
         ]);
 
         // Create the teachers record
@@ -90,7 +95,6 @@ class TeachersController extends Controller
             'dob' => $validatedData['dob'],
             'gender' => $validatedData['gender'],
             'email' => $validatedData['email'],
-            'subject' => $validatedData['subject'],
             'phone' => $validatedData['phone'],
             'address' => $validatedData['address'],
             'city' => $validatedData['city'],
@@ -98,6 +102,9 @@ class TeachersController extends Controller
             'zip' => $validatedData['zip'],
             'country' => $validatedData['country'],
             'enroll_id' => $enrollment->id,
+            'class_id' => $validatedData['class_id'],
+            'grade_id' => $validatedData['grade_id'],
+            'subject_id' => $validatedData['subject_id'],
 
         ]);
 
@@ -299,4 +306,9 @@ class TeachersController extends Controller
         //redirect to the same page
         return redirect()->back()->with('success', 'Teacher Activated successfully.');
     }
+
+    //regiser grade and class for teacher
+
+
+
 }

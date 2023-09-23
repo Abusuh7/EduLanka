@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
         <title>{{ config('app.name', 'EduLanka') }}</title>
 
         <!-- Fonts -->
@@ -37,6 +38,7 @@
 
             <!-- Page Content -->
             <main>
+                @yield('content')
                 {{ $slot }}
             </main>
         </div>
@@ -48,5 +50,8 @@
         <script src="/js/adminBanner.js"></script>
         <script src="/js/secondary-students-js/discussionRoom.js"></script>
         <script src="/js/secondary-students-js/reservationDashboard.js"></script>
+
+
+
     </body>
 </html>

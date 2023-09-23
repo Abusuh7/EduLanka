@@ -21,6 +21,8 @@ class Students extends Model
         "class",
         "parent_id",
         "enroll_id",
+        "class_id",
+        "grade_id",
     ];
 
     //check these tmr
@@ -34,13 +36,5 @@ class Students extends Model
         return $this->belongsTo(Student_Enrollment::class, 'enroll_id');
     }
 
-    public function grades()
-    {
-        return $this->belongsTo(Grades::class, 'grade_id');
-    }
 
-    public function classes()
-    {
-        return $this->belongsTo(Classes::class, 'class_id');
-    }
 }

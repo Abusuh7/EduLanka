@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Teachers Dashboard') }}
-        </h2>
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+            <br> Welcome {{auth ()->user()->name}} !!!
+        </h1>
     </x-slot>
-
 
     {{-- Banner --}}
     <div id="carouselExampleIndicators" class="relative w-full h-[500px]" data-te-carousel-init data-te-ride="carousel">

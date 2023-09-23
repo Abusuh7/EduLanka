@@ -18,14 +18,15 @@
 {{--                    <x-nav-link href="{{ route('primaryStudentReservations') }}" :active="request()->routeIs('primaryStudentReservations')">--}}
 {{--                        {{ __('Reservations') }}--}}
 {{--                    </x-nav-link>--}}
-                    <x-nav-link href="{{ route('primaryStudentDashboard') }}" :active="request()->routeIs('primaryStudentDashboard')">
-                        {{ __('View Subjects') }}
+                    <x-nav-link href="{{ route('student.content') }}" :active="request()->routeIs('student.content')">
+                        {{ __('Subject Materials') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('primaryStudentDashboard') }}" :active="request()->routeIs('primaryStudentDashboard')">
-                        {{ __('Gradebook') }}
+
+                    <x-nav-link href="{{ route('calendar-event') }}" :active="request()->routeIs('calendar-event')">
+                        {{ __('Calendar') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('primaryStudentDashboard') }}" :active="request()->routeIs('primaryStudentDashboard')">
-                        {{ __('Attendance Record') }}
+                    <x-nav-link href="{{ route('marks.view') }}" :active="request()->routeIs('marks.view')">
+                        {{ __('Semester marks') }}
                     </x-nav-link>
 
                 </div>

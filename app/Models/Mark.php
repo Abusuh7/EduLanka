@@ -1,37 +1,25 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teachers extends Model
+class Mark extends Model
 {
     use HasFactory;
 
-    protected $table = 'teachers';
     protected $fillable = [
-        "fname",
-        "lname",
-        "dob",
-        "gender",
-        "email",
-        "subject",
-        "phone",
-        "address",
-        "city",
-        "state",
-        "zip",
-        "country",
-        "enroll_id",
-        "class_id",
-        "grade_id",
-        "subject_id",
+        'student_id',
+        'subject',
+        'marks',
     ];
 
-    public function teacher_enrollment()
+    // Define a relationship with the Student model
+    public function student()
     {
-        return $this->belongsTo(Teacher_Enrollment::class, 'enroll_id');
+        return $this->belongsTo(Students::class, 'student_id');
     }
 
     public function subject()
@@ -48,7 +36,4 @@ class Teachers extends Model
     {
         return $this->belongsTo(Classes::class, 'class_id');
     }
-
-
 }
-
