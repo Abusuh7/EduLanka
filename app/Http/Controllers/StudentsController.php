@@ -56,8 +56,6 @@ class StudentsController extends Controller
             'dob' => 'required|date',
             'gender' => 'required|string',
             'category' => 'required|string',
-            'grade' => 'required|integer|min:1|max:12',
-            'class' => 'required|string',
             'parent_fname' => 'required|string',
             'parent_lname' => 'required|string',
             'parent_email' => 'required|email',
@@ -68,22 +66,24 @@ class StudentsController extends Controller
             'parent_zip' => 'required|string',
             'parent_country' => 'required|string',
             'enroll_date' => 'required|date',
+            'class_id' => 'required|integer',
+            'grade_id' => 'required|integer',
         ]);
 
-        // Create the grade record
-        $grade = Grades::create([
-            'grade_name' => $validatedData['grade'],
-        ]);
-
-        // Add the grade_id to the validated data before creating the primary student record
-        $validatedData['grade_id'] = $grade->id;
-
-        $class = Classes::create([
-            'class_name' => $validatedData['class'],
-        ]);
-
-        // Add the class_id to the validated data before creating the primary student record
-        $validatedData['class_id'] = $class->id;
+//        // Create the grade record
+//        $grade = Grades::create([
+//            'grade_name' => $validatedData['grade'],
+//        ]);
+//
+//        // Add the grade_id to the validated data before creating the primary student record
+//        $validatedData['grade_id'] = $grade->id;
+//
+//        $class = Classes::create([
+//            'class_name' => $validatedData['class'],
+//        ]);
+//
+//        // Add the class_id to the validated data before creating the primary student record
+//        $validatedData['class_id'] = $class->id;
 
 
 
