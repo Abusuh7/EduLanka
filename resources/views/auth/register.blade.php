@@ -89,6 +89,18 @@
 
                             </div>
 
+                                        <div class="mt-4">
+                                            <x-label for="city" value="{{ __('City') }}" />
+                                            <select id="city_id" class="block mt-1 w-full" name="city_id" required autocomplete="city">
+                                                <option value="" disabled selected>Select a city</option>
+                                                @foreach ($classes as $class)
+                                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+
                             <!-- Password input -->
                             <div class="relative mb-6" data-te-input-wrapper-init>
                                 <x-label for="password" value="{{ __('Password') }}" />

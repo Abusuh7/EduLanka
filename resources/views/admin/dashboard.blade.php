@@ -89,34 +89,29 @@
 
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label for="grade" class="block text-sm font-medium">Grade:</label>
-                            <select id="grade" name="grade" required
+                            <label for="grade_id" class="block text-sm font-medium">Grade:</label>
+                            <select id="grade_id" name="grade_id" required
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                                 <option value="" disabled selected>Select Grade</option>
-                                <option value="1">1st</option>\
-                                <option value="2">2nd</option>
-                                <option value="3">3rd</option>
-                                <option value="4">4th</option>
-                                <option value="5">5th</option>
-                                <option value="6">6th</option>
-                                <option value="7">7th</option>
-                                <option value="8">8th</option>
-                                <option value="9">9th</option>
-                                <option value="10">10th</option>
-                                <option value="11">11th</option>
-                                <option value="12">12th</option>
+                                @foreach($grades as $grade)
+
+                                    <option value="{{ $grade->id }}">{{ $grade->grade_name }}</option>
+
+                                @endforeach
+
                             </select>
                         </div>
                         <div>
-                            <label for="class" class="block text-sm font-medium">Class:</label>
-                            <select id="class" name="class" required
+                            <label for="class_id" class="block text-sm font-medium">Class:</label>
+                            <select id="class_id" name="class_id" required
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                                 <option value="" disabled selected>Select Class</option>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="E">E</option>
+                                @foreach($classes as $class)
+
+                                    <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+
+                                @endforeach
+
                             </select>
                         </div>
                     </div>
