@@ -5,7 +5,7 @@
         </x-slot> --}}
 
         <x-validation-errors class="mb-4" />
-
+<h1 class="text-6xl font-bold text-white py-10">Edulanka LMS System</h1>
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
