@@ -24,11 +24,11 @@ To get started with EDULANKA, follow these steps:
 
 1. Clone the repository: https://github.com/Abusuh7/EduLanka.git
 
-2. Install dependencies: [Instructions for installing dependencies]
+2. Install dependencies: [npm install]
 
 3. Configure the environment: [Instructions for setting up the environment]
 
-4. Run the application: [Instructions for running the application]
+4. Run the application: [php artisan serve]
 
 
 ## Team Members
