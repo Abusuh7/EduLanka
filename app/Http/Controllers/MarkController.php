@@ -16,11 +16,12 @@ class MarkController extends Controller
     // Display the form to input marks
     public function create()
     {
+        $teacher = Auth::user()->teacher;
         // Retrieve necessary data for the form (grades, classes, subjects, students)
-        $grades = Grades::all();
-        $classes = Classes::all();
+        $grades = Grades::where('id', $teacher->grade_id)->get();
+        $classes = Classes::where('id', $teacher->class_id)->get();
         $subjects = Subject::all();
-        $students = Students::all();
+        $students = Students::where('grade_id', $teacher->grade_id)->where('class_id', $teacher->class_id)->get();
 
         return view('marks.create', compact('grades', 'classes', 'subjects', 'students'));
     }
@@ -57,6 +58,7 @@ class MarkController extends Controller
         // Loop through subjects and marks, and store them
         foreach ($subjects as $key => $subject) {
             $mark = new Mark();
+            $mark->user_id = Auth::id(); // Save the currently authenticated user's ID
             $mark->grade_id = $gradeId;
             $mark->class_id = $classId;
             $mark->semester = $semester;
@@ -67,7 +69,7 @@ class MarkController extends Controller
         }
 
         // Redirect back to the form with a success message
-        return redirect()->route('marks.create')->with('success', 'Marks submitted successfully.');
+        return redirect()->route('marks.success')->with('success', 'Marks submitted successfully.');
     }
 
 
@@ -79,23 +81,45 @@ class MarkController extends Controller
         $student = Auth::user()->student;
         $marks = Mark::where('student_id', $student->id)->get();
 
-        return view('marks.view', compact('marks','semesters'));
+        // Calculate total marks for each term
+        $totalTerm1 = $marks->where('semester', 1)->sum('marks');
+        $totalTerm2 = $marks->where('semester', 2)->sum('marks');
+        $totalTerm3 = $marks->where('semester', 3)->sum('marks');
+
+        return view('marks.view', compact('marks','semesters', 'totalTerm1', 'totalTerm2', 'totalTerm3'));
     }
     public function tea_view()
     {
+        $searchTerm = request()->query('search');
+
+        // Retrieve the currently authenticated user's ID
+        $userId = Auth::id();
+
         // Retrieve the currently authenticated teacher's information
         $teacher = Auth::user()->teacher;
 
-        // Retrieve the marks associated with the teacher's grade and class
-        $marks = Mark::where('grade_id', $teacher->grade_id)
-            ->where('class_id', $teacher->class_id)
-            ->get();
+        // Retrieve the marks associated with the teacher's grade, class, and the user ID
+        $marks = Mark::where('user_id', $userId)->get();
+
+        // Get an array of student IDs from the retrieved marks
+        $studentIds = $marks->pluck('student_id')->unique();
+
+        // Query the students table based on student IDs and the search term
+        $students = Students::whereIn('id', $studentIds)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('fname', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('lname', 'LIKE', '%' . $searchTerm . '%');
+            })
+            ->paginate(10);
 
         // You can still retrieve all available semesters here if needed
         $semesters = Mark::all();
 
-        return view('marks.tea_view', compact('marks', 'semesters'));
+        return view('marks.tea_view', compact('marks', 'semesters', 'students', 'searchTerm'));
     }
+
+
+
 
 
     public function index()
@@ -130,18 +154,18 @@ public function getStudents(Request $request)
 
     public function update(Request $request, Mark $mark)
     {
-        // Validate and update the marks data
+        // Validate and update the mark data
         $request->validate([
-            'marks' => 'required|array',
-            'marks.*' => 'required|integer|min:0|max:100',
+            'marks' => 'required|integer|min:0|max:100', // Validate the mark as an integer
         ]);
 
         $mark->update([
             'marks' => $request->input('marks'),
         ]);
 
-        return redirect()->route('marks.index')->with('success', 'Marks updated successfully.');
+        return redirect()->route('tea-marks-view')->with('success', 'Mark updated successfully.');
     }
+
 
     public function confirmDelete(Mark $mark)
     {
@@ -186,6 +210,11 @@ public function getStudents(Request $request)
         }
 
         return redirect()->route('tea-marks-view')->with('success', 'Mark sheet updated successfully.');
+    }
+
+    public function success()
+    {
+        return view('marks.success');
     }
 
 

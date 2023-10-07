@@ -13,7 +13,7 @@
 
             <div class="mb-4">
                 <label for="global_attendance_date" class="block text-sm font-medium text-gray-700">Attendance Date:</label>
-                <input type="date" id="global_attendance_date" name="global_attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <input type="date" required id="global_attendance_date" name="global_attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
             </div>
 
             @foreach ($students as $student)

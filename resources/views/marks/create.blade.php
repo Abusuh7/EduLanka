@@ -40,9 +40,9 @@
                     <div class="w-1/2">
                         <label for="semester" class="block font-semibold text-gray-600 text-blue-800">Select Semester</label>
                         <select id="semester" name="semester" class="form-select" required>
-                            <option value="1">Semester 1</option>
-                            <option value="2">Semester 2</option>
-                            <option value="3">Semester 3</option>
+                            <option value="1">1st Term</option>
+                            <option value="2">2nd Term</option>
+                            <option value="3">3rd term</option>
                         </select>
                     </div>
                     <div class="w-1/2">
@@ -65,11 +65,12 @@
                                 <label for="marks_{{ $subject->id }}" class="text-blue-800">{{ $subject->subject_name }}</label>
                             </div>
                             <div class="w-1/2">
-                                <input type="number" id="marks_{{ $subject->id }}" name="marks[]" class="form-input" placeholder="Marks" required>
+                                <input type="number" id="marks_{{ $subject->id }}" name="marks[]" class="form-input" placeholder="Marks" min="1" max="100" required>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
             </div>
 
             <button type="submit" class="mt-4 btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -78,6 +79,55 @@
         </form>
     </div>
 </x-app-layout>
+<!-- Include SweetAlert library via CDN (Add this to your HTML) -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterStudentsButton = document.getElementById('filter-students');
+        const gradeSelect = document.getElementById('grade');
+        const classSelect = document.getElementById('class');
+        const studentSelect = document.getElementById('student');
+
+        filterStudentsButton.addEventListener('click', function() {
+            const selectedGrade = gradeSelect.value;
+            const selectedClass = classSelect.value;
+
+            // Make an AJAX request to fetch students based on grade and class
+            fetch(`/get-students?grade_id=${selectedGrade}&class_id=${selectedClass}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear existing options
+                    studentSelect.innerHTML = '<option value="">Select Student</option>';
+
+                    // Add new options based on the fetched data
+                    data.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.id;
+                        option.textContent = `${student.fname} ${student.lname}`;
+                        studentSelect.appendChild(option);
+                    });
+
+                    // Display a SweetAlert success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Students Fetched Successfully',
+                        text: 'The list of students has been updated.',
+                    });
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the fetch request
+                    console.error('Error fetching students:', error);
+                    // You can also display an error message using SweetAlert here
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'An error occurred while fetching students!',
+                    });
+                });
+        });
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

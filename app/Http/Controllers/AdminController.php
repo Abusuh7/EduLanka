@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Discussion_Room_Booking;
+use App\Models\Mark;
+use App\Models\Students;
+use App\Models\Teachers;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -79,4 +84,40 @@ class AdminController extends Controller
     {
         //
     }
+
+
+
+    public function analytics()
+    {
+// Retrieve user counts by month
+        $userCountsByMonth = User::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, count(*) as count')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $genderData = Students::select('gender', \DB::raw('count(*) as count'))
+            ->groupBy('gender')
+            ->pluck('count', 'gender')
+            ->toArray();
+
+        $teachers = Teachers::all();
+        $students = Students::all();
+        $attendance = Attendance::all();
+        $marks = Mark::all();
+
+        $primaryCount = Students::where('category', 'primary')->count();
+        $secondaryCount = Students::where('category', 'secondary')->count();
+
+        // Fetch student counts by grade using a join with the Grades table
+        $gradeCounts = Students::join('grades', 'students.grade_id', '=', 'grades.id')
+            ->select('grades.grade_name', \DB::raw('count(*) as count'))
+            ->groupBy('grades.grade_name')
+            ->pluck('count', 'grade_name');
+
+        return view('admin.analytics', compact('teachers',
+            'students', 'attendance', 'marks',
+            'primaryCount', 'secondaryCount', 'gradeCounts', 'userCountsByMonth'
+        , 'genderData'));
+    }
+
 }

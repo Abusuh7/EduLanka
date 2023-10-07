@@ -24,7 +24,7 @@
                         {{ __('Calendar') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('marks.view') }}" :active="request()->routeIs('marks.view')">
-                        {{ __('Semester Marks') }}
+                        {{ __('Term Marks') }}
                     </x-nav-link>
 
                 </div>

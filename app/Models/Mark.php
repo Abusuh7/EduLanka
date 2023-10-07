@@ -36,4 +36,9 @@ class Mark extends Model
     {
         return $this->belongsTo(Classes::class, 'class_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

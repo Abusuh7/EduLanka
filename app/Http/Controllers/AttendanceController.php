@@ -64,7 +64,7 @@ class AttendanceController extends Controller
         }
 
         // Redirect back or to a success page
-        return redirect()->back()->with('success', 'Attendance recorded successfully.');
+        return redirect()->route('attendance-success')->with('success', 'Attendance records saved successfully.');
     }
 
 
@@ -158,5 +158,9 @@ class AttendanceController extends Controller
         return view('attendance.view', compact('grades', 'classes'));
     }
 
+    public function success()
+    {
+        return view('attendance.success');
+    }
 
 }

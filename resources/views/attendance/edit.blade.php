@@ -14,7 +14,7 @@
 
             <div class="mb-4">
                 <label for="attendance_date">Attendance Date:</label>
-                <input type="date" name="attendance_date" id="attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm" value="{{ $attendance->attendance_date }}">
+                <input  disabled name="attendance_date" id="attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm" value="{{ $attendance->attendance_date }}">
             </div>
 
             <div class="mb-4">

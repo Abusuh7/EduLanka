@@ -12,6 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('displayAnalytics') }}" :active="request()->routeIs('displayAnalytics')">
+                        {{ __('Analytics') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
