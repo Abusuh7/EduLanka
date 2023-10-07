@@ -2,7 +2,7 @@
 
 
 
-![Project Image](https://github.com/krm-aadil/test/blob/main/crm.png?raw=true)
+![Project Image][(https://github.com/krm-aadil/test/blob/main/crm.png?raw=true)](https://github.com/krm-aadil/GIT-IMAGES/blob/main/lms.PNG?raw=true)
 
 ## About EDULANKA
 
