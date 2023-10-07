@@ -16,9 +16,34 @@
             </select>
         </div>
 
+        <div class="mb-4 w-full max-w-md">
+            <label for="date_filter" class="block font-medium text-lg mb-2">Filter by Date:</label>
+            <input type="date" id="date_filter" class="w-full border rounded py-2 px-3">
+        </div>
+
+        <div class="mb-4 w-full max-w-md">
+            <label for="month_filter" class="block font-medium text-lg mb-2">Filter by Month:</label>
+            <select id="month_filter" class="w-full border rounded py-2 px-3">
+                <option value="">All Months</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                <!-- Add more options for other months as needed -->
+            </select>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach ($contents as $content)
-                <div class="content-item bg-white shadow-md rounded-lg p-4" data-subject="{{ $content->subject_id }}">
+                <div class="content-item bg-white shadow-md rounded-lg p-4" data-subject="{{ $content->subject_id }}" data-date="{{ $content->created_at }}">
                     <h3 class="text-lg font-medium">{{ $content->title }}</h3>
                     <p class="mt-2">{{ $content->description }}</p>
                     <p class="mt-2">{{ $content->created_at }}</p>
@@ -31,24 +56,38 @@
     </div>
 
     <script>
-        // JavaScript to handle filtering based on subject selection
+        // JavaScript to handle filtering based on subject, date, and month selection
         document.addEventListener('DOMContentLoaded', function () {
             const subjectFilter = document.getElementById('subject_filter');
+            const dateFilter = document.getElementById('date_filter');
+            const monthFilter = document.getElementById('month_filter');
             const contentItems = document.querySelectorAll('.content-item');
 
-            subjectFilter.addEventListener('change', function () {
+            subjectFilter.addEventListener('change', filterItems);
+            dateFilter.addEventListener('change', filterItems);
+            monthFilter.addEventListener('change', filterItems);
+
+            function filterItems() {
                 const selectedSubjectId = subjectFilter.value;
+                const selectedDate = dateFilter.value;
+                const selectedMonth = monthFilter.value;
 
                 contentItems.forEach(function (contentItem) {
                     const subjectId = contentItem.getAttribute('data-subject');
+                    const contentDate = contentItem.getAttribute('data-date');
+                    const contentMonth = contentDate.split('-')[1];
 
-                    if (!selectedSubjectId || selectedSubjectId === subjectId) {
+                    const subjectMatch = !selectedSubjectId || selectedSubjectId === subjectId;
+                    const dateMatch = !selectedDate || selectedDate === contentDate;
+                    const monthMatch = !selectedMonth || selectedMonth === contentMonth;
+
+                    if (subjectMatch && dateMatch && monthMatch) {
                         contentItem.style.display = 'block';
                     } else {
                         contentItem.style.display = 'none';
                     }
                 });
-            });
+            }
         });
     </script>
 </x-app-layout>

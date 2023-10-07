@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CalenderController;
@@ -81,7 +82,7 @@ Route::get('/admin/users/secondary', [showCategoryController::class, 'secondary'
 Route::get('/admin/history/teachers', [showCategoryController::class, 'terminatedTeacher'])->name('displayTerminatedTeacher');
 Route::get('/admin/history/primary', [showCategoryController::class, 'terminatedPrimary'])->name('displayTerminatedPrimary');
 Route::get('/admin/history/secondary', [showCategoryController::class, 'terminatedSecondary'])->name('displayTerminatedSecondary');
-
+Route::get('/admin/analytics', [AdminController::class, 'analytics'])->name('displayAnalytics');
 
 //For Student Registration
 Route::post('/admin/studentCreate', [StudentsController::class, 'store'])->name('studentCreate');
@@ -229,7 +230,7 @@ Route::get('/attendance/view', [AttendanceController::class,'view'])->name('atte
 Route::get('/attendance/show', [AttendanceController::class,'show'])->name('attendance.show');
 Route::get('/attendance/edit/{id}', [AttendanceController::class,'edit'])->name('attendance.edit');
 Route::put('/attendance/update/{id}', [AttendanceController::class,'update'])->name('attendance.update');
-
+Route::get('/attendance/success', [AttendanceController::class,'success'])->name('attendance-success');
 
 
 //contaent management babyy
@@ -260,7 +261,7 @@ Route::get('/marks', [MarkController::class, 'index'])->name('marks.index');
 Route::get('/marks/create', [MarkController::class, 'create'])->name('marks.create');
 Route::post('/marks/store', [MarkController::class, 'store'])->name('marks.store');
 Route::get('/marks/view', [MarkController::class, 'view'])->name('marks.view');
-
+Route::get('/marks/success', [MarkController::class, 'success'])->name('marks.success');
 
 Route::get('get-students', [MarkController::class, 'getStudents'])->name('get-students');
 Route::get('teacher/marks/view', [MarkController::class, 'tea_view'])->name('tea-marks-view');
