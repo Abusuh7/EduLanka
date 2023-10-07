@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Grades;
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -57,7 +58,7 @@ class AttendanceController extends Controller
                 'student_id' => $attendanceData['student_id'],
                 'attendance_date' => $globalAttendanceDate, // Use the global date
                 'status' => $attendanceData['status'],
-                'teacher_id' => null,
+                'teacher_id' => Auth::user()->teacher_id,
                 // Add 'teacher_id' if needed
             ]);
         }

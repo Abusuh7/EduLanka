@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="container mx-auto p-6">
-        <h1 class="text-2xl font-semibold mb-4">Your Marks</h1>
+        <h1 class="text-2xl font-semi-bold mb-4">Your Marks</h1>
         <div class="mb-4">
             <label for="semester-filter" class="block font-semibold text-gray-600">Filter by Semester</label>
             <select id="semester-filter" class="form-select">
