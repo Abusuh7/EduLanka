@@ -12,8 +12,6 @@ EDULANKA is a web-based Learning Management System (LMS) designed to cater to bo
 
 - **Comprehensive Curriculum:** Our LMS covers a wide range of subjects and topics, following the national curriculum guidelines for both secondary and primary education.
 
-- **Interactive Lessons:** Engaging multimedia content, interactive quizzes, and educational games are incorporated to make learning fun and effective.
-
 - **Progress Tracking:** Students can track their progress, and teachers can monitor individual performance and offer personalized support.
 
 - **Scrum Framework:** We follow the Scrum methodology to ensure efficient project management and constant improvement of our platform.
