@@ -172,7 +172,8 @@ Route::get('/primary/discussion-room', [DiscussionRoomController::class, 'primar
 Route::post('/primary/discussion-room', [DiscussionRoomController::class, 'primaryStudentCreate'])->name('CreateRoomBookingPrimary');
 
 
-
+//games for kids
+Route::get('/primary/games', [PrimaryStudentsController::class, 'games'])->name('primary-games');
 
 //------------SECONDARY STUDENT ROUTES----------------
 

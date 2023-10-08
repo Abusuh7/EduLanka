@@ -8,6 +8,7 @@ use App\Models\Grades;
 use App\Models\Subject;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
@@ -16,9 +17,11 @@ class ContentController extends Controller
     {
         // Fetch subjects, classes, and grades from your database
 
-        $subjects = Subject::all();
-        $classes = Classes::all();
-        $grades = Grades::all();
+        $teacher = Auth::user()->teacher;
+        $subjects = Subject::where('id', $teacher->subject_id)->get();
+
+        $grades = Grades::where('id', $teacher->grade_id)->get();
+        $classes = Classes::where('id', $teacher->class_id)->get();
 
         return view('content.create', compact('subjects', 'classes', 'grades'));
     }

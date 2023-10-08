@@ -89,4 +89,10 @@ class PrimaryStudentsController extends Controller
     {
         //
     }
+
+
+    public function games()
+    {
+        return view('primaryStudent.games');
+    }
 }

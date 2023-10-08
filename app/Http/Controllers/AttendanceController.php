@@ -16,8 +16,9 @@ class AttendanceController extends Controller
     public function index()
     {
 
-        $classes = Classes::all();
-        $grades = Grades::all();
+        $teacher = Auth::user()->teacher;
+        $grades = Grades::where('id', $teacher->grade_id)->get();
+        $classes = Classes::where('id', $teacher->class_id)->get();
 
         $students = Students::all();
 
