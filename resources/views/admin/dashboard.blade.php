@@ -28,10 +28,10 @@
 
         <!-- Buttons Section -->
         <div class="flex justify-center mt-6 space-x-6">
-            <button type="button" id="showStudentBtn" class="btn btn-primary rounded-full px-6 py-3 text-lg bg-blue-300 hover:bg-blue-500">
+            <button type="button" id="showStudentBtn" class=" text-white btn btn-primary rounded-full px-6 py-3 text-lg bg-gray-600 hover:bg-blue-500">
                 Add New Student
             </button>
-            <button type="button" id="showTeacherBtn" class="btn btn-primary rounded-full px-6 py-3 text-lg bg-blue-300 hover:bg-blue-500">
+            <button type="button" id="showTeacherBtn" class="text-white btn btn-primary rounded-full px-6 py-3 text-lg bg-gray-600 hover:bg-blue-500">
                 Add New Teacher
             </button>
         </div>

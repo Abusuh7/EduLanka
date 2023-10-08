@@ -147,9 +147,9 @@
 
 
         <!-- Attendance Record -->
-        <a href="{{ route('attendance.show') }}" class="p-6 bg-green-100 rounded-lg shadow-md hover:bg-green-200 transition duration-300">
-            <h2 class="text-xl font-semibold mb-2">Attendance Record</h2>
-            <p class="text-gray-600">Check your attendance history and records.</p>
+        <a href="{{ route('studentReservations') }}" class="p-6 bg-green-100 rounded-lg shadow-md hover:bg-green-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Book Discussion Room</h2>
+            <p class="text-gray-600">Make reservations online and stay productive.</p>
         </a>
 
         <!-- Progress Report -->
@@ -159,9 +159,9 @@
         </a>
 
         <!-- Book Discussion Room -->
-        <a href="{{ route('studentReservations') }}" class="p-6 bg-purple-100 rounded-lg shadow-md hover:bg-purple-200 transition duration-300">
-            <h2 class="text-xl font-semibold mb-2">Book Discussion Room</h2>
-            <p class="text-gray-600">Make reservations online and stay productive.</p>
+        <a href="{{ route('profile.show') }}" class="p-6 bg-purple-100 rounded-lg shadow-md hover:bg-purple-200 transition duration-300">
+            <h2 class="text-xl font-semibold mb-2">Profile View</h2>
+            <p class="text-gray-600">View your profile to make changes.</p>
         </a>
 
         <!-- My Calendar -->
