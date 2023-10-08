@@ -12,7 +12,7 @@
                 <img src="{{ asset('assets/img/teacher_man_user_avatar_school_icon_209287.png') }}" alt="Primary Student Icon" class="w-12 h-12">
             </div>
             <div>
-                <span class="text-xl font-semibold">Create content</span>
+                <span class="text-xl font-semibold">Create Content</span>
 
             </div>
         </a>
@@ -23,7 +23,7 @@
                 <img src="{{ asset('assets/img/3750020.png') }}" alt="Primary Student Icon" class="w-12 h-12">
             </div>
             <div>
-                <span class="text-xl font-semibold">view content</span>
+                <span class="text-xl font-semibold">View Content</span>
 
             </div>
         </a>

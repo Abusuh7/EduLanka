@@ -5,7 +5,7 @@
         </x-slot> --}}
 
         <x-validation-errors class="mb-4" />
-<h1 class="text-6xl font-bold text-white py-10">Edulanka LMS System</h1>
+<h1 class="text-6xl font-bold text-white py-10">EduLanka LMS System</h1>
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
@@ -63,7 +63,7 @@
                             <!-- Email input -->
                             <div class="relative mb-6" data-te-input-wrapper-init>
                                 <x-label for="email" value="{{ __('Email') }}" />
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email"
+                                <x-input id="email" class="block mt-1 w-full p-2" type="email" name="email"
                                     :value="old('email')" required autocomplete="username" />
 
                             </div>
@@ -71,7 +71,7 @@
                             <!-- Password input -->
                             <div class="relative mb-6" data-te-input-wrapper-init>
                                 <x-label for="password" value="{{ __('Password') }}" />
-                                <x-input id="password" class="block mt-1 w-full" type="password" name="password"
+                                <x-input id="password" class="block mt-1 w-full p-2" type="password" name="password"
                                     required autocomplete="new-password" />
 
                             </div>
@@ -97,7 +97,7 @@
 
                             <!-- Login button -->
                             <div class="text-center lg:text-left">
-                                <x-button class="ml-4">
+                                <x-button class="ml-1">
                                     {{ __('Login') }}
                                 </x-button>
 

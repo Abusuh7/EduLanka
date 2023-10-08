@@ -70,7 +70,7 @@ class HomeController extends Controller
 
         } elseif ($role == 'secondary' && $status == 'activated') {
 
-            // Get all the banners whicxh are active and has a visibity of secondarystu and compact them
+            // Get all the banners which are active and has a visibity of secondarystu and compact them
             $banners = Banners::where('status', 'active')->where('visibility', 'secondarystu')->orWhere('visibility', 'bothstu')->orWhere('visibility', 'all')->get();
             //  $banners = Banners::where('status', 'active')->get();
 

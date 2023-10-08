@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Students Grades Management') }}
+            {{ __('Manage Grade Book') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                 <img src="{{ asset('assets/img/attendance.png') }}" alt="Primary Student Icon" class="w-12 h-12">
             </div>
             <div>
-                <span class="text-xl font-semibold">Create grade Book </span>
+                <span class="text-xl font-semibold">Create Grade Book </span>
 
             </div>
         </a>
@@ -23,7 +23,7 @@
                 <img src="{{ asset('assets/img/edit.png') }}" alt="Primary Student Icon" class="w-12 h-12">
             </div>
             <div>
-                <span class="text-xl font-semibold">View Grade book</span>
+                <span class="text-xl font-semibold">View Grade Book</span>
 
             </div>
         </a>

@@ -14,12 +14,12 @@
 
             <div class="mb-4">
                 <label for="attendance_date">Attendance Date:</label>
-                <input  disabled name="attendance_date" id="attendance_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm" value="{{ $attendance->attendance_date }}">
+                <input  disabled name="attendance_date" id="attendance_date" class="block w-full mt-1 p-1.5 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm" value="{{ $attendance->attendance_date }}">
             </div>
 
             <div class="mb-4">
                 <label for="status">Status:</label>
-                <select name="status" id="status" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
+                <select name="status" id="status" class="block w-full mt-1 p-1.5 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none sm:text-sm">
                     <option value="present" @if ($attendance->status === 'present') selected @endif>Present</option>
                     <option value="absent" @if ($attendance->status === 'absent') selected @endif>Absent</option>
                 </select>

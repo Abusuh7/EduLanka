@@ -12,26 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('displayAnalytics') }}" :active="request()->routeIs('displayAnalytics')">
-                        {{ __('Analytics') }}
-                    </x-nav-link>
                     <x-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('displayAnalytics') }}" :active="request()->routeIs('displayAnalytics')">
+                        {{ __('Analytics') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('adminUsers') }}" :active="request()->routeIs('adminUsers')">
-                        {{ __('Users') }}
+                        {{ __('User Management') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('adminHistory') }}" :active="request()->routeIs('adminHistory')">
                         {{ __('History') }}
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('adminBanner') }}" :active="request()->routeIs('adminBanner')">
-                        {{ __('Banner') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('adminDiscussionRoom') }}" :active="request()->routeIs('adminDiscussionRoom')">
                         {{ __('Discussion Room') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('attendance.options') }}" :active="request()->routeIs('attendance.options')">
                         {{ __('Attendance Management') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('adminBanner') }}" :active="request()->routeIs('adminBanner')">
+                        {{ __('Banner') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('calendar-event') }}" :active="request()->routeIs('calendar-event')">
                         {{ __('Calendar') }}

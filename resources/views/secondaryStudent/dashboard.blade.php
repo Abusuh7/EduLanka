@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>secondary Student Dashboard</title>
+        <title>Teachers Dashboard</title>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -140,20 +140,20 @@
 
     <div class="container mx-auto mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <!-- Learning Materials -->
-        <a href="{{ route('studentDashboard') }}" class="p-6 bg-blue-100 rounded-lg shadow-md hover:bg-blue-200 transition duration-300">
+        <a href="{{ route('student.content') }}" class="p-6 bg-blue-100 rounded-lg shadow-md hover:bg-blue-200 transition duration-300">
             <h2 class="text-xl font-semibold mb-2">Learning Materials</h2>
             <p class="text-gray-600">Access and manage your learning materials.</p>
         </a>
 
 
         <!-- Attendance Record -->
-        <a href="{{ route('studentDashboard') }}" class="p-6 bg-green-100 rounded-lg shadow-md hover:bg-green-200 transition duration-300">
+        <a href="{{ route('attendance.show') }}" class="p-6 bg-green-100 rounded-lg shadow-md hover:bg-green-200 transition duration-300">
             <h2 class="text-xl font-semibold mb-2">Attendance Record</h2>
             <p class="text-gray-600">Check your attendance history and records.</p>
         </a>
 
         <!-- Progress Report -->
-        <a href="{{ route('studentDashboard') }}" class="p-6 bg-yellow-100 rounded-lg shadow-md hover:bg-yellow-200 transition duration-300">
+        <a href="{{ route('marks.view') }}" class="p-6 bg-yellow-100 rounded-lg shadow-md hover:bg-yellow-200 transition duration-300">
             <h2 class="text-xl font-semibold mb-2">Progress Report</h2>
             <p class="text-gray-600">View your academic progress and performance.</p>
         </a>
@@ -165,7 +165,7 @@
         </a>
 
         <!-- My Calendar -->
-        <a href="{{ route('studentDashboard') }}" class="p-6 bg-white rounded-lg shadow-md hover:bg-pink-100 transition duration-300">
+        <a href="{{ route('calendar-event') }}" class="p-6 bg-white rounded-lg shadow-md hover:bg-pink-100 transition duration-300">
             <h2 class="text-xl font-semibold mb-2">School Calendar</h2>
             <p class="text-gray-600">Stay organized with your schedule and upcoming events.</p>
         </a>

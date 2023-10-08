@@ -18,13 +18,13 @@
                         {{ __('Home') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('student.content') }}" :active="request()->routeIs('student.content')">
-                        {{ __('Subject Materials') }}
+                        {{ __('Learning Materials') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('calendar-event') }}" :active="request()->routeIs('calendar-event')">
                         {{ __('Calendar') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('marks.view') }}" :active="request()->routeIs('marks.view')">
-                        {{ __('Term Marks') }}
+                        {{ __('Grade Book') }}
                     </x-nav-link>
 
                 </div>
